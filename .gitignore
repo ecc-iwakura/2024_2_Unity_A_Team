@@ -5,6 +5,6 @@ Logs/
 obj/
 Temp/
 UserSettings/
-*.vscofig
+*.vsconfig
 *.csproj
 *.sln
