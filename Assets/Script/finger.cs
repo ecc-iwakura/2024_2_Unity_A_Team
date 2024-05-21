@@ -27,7 +27,7 @@ public class finger : MonoBehaviour
         Vector2 cursorPos = Camera.main.ScreenToWorldPoint(mousePos); // スクリーン座標をワールド座標に変換
         float clampedX = Mathf.Clamp(cursorPos.x, minXmaxX.x, minXmaxX.y); // X座標を制限
         float clampedY = Mathf.Clamp(cursorPos.y, minYmaxY.x, minYmaxY.y); // Y座標を制限
-        targetPosition = new Vector3(clampedX, clampedY, 0f); // 制限された位置を目標位置として設定
+        targetPosition = new Vector3(clampedX * offsetX, clampedY * offsetY, 0f); // 制限された位置を目標位置として設定
         transform.position = Vector3.Lerp(transform.position, targetPosition, followSpeed * Time.deltaTime); // カーソルを滑らかに追従させる
     }
 }
