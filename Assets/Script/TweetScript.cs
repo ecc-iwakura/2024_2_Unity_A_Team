@@ -44,7 +44,7 @@ public class TweetScript : MonoBehaviour
 
         // Update the account name and ID
         accountName.text = tweetAccountName;
-        accountID.text = tweetAccountID;
+        accountID.text = "@" + tweetAccountID;
 
         // Adjust the size of the tweet container
         AdjustTweetSize();
@@ -56,21 +56,23 @@ public class TweetScript : MonoBehaviour
     {
         // Force update the layout elements
         LayoutRebuilder.ForceRebuildLayoutImmediate(tweetText.rectTransform);
-        LayoutRebuilder.ForceRebuildLayoutImmediate(tweetImage.rectTransform);
         LayoutRebuilder.ForceRebuildLayoutImmediate(tweetContainer);
 
         // Calculate the preferred height of the text
         float textHeight = LayoutUtility.GetPreferredHeight(tweetText.rectTransform);
 
+        float totalHeight = 230f;
+
+        totalHeight += textHeight*1.18f;
+
         // Calculate the preferred height of the image if it is active
-        float imageHeight = tweetImage.gameObject.activeSelf ? LayoutUtility.GetPreferredHeight(tweetImage.rectTransform) : 0f;
+        if (tweetImageContent != null)
+        {
+            // Add image height
+            totalHeight += (LayoutUtility.GetPreferredHeight(tweetImage.rectTransform) + 250f); 
+        }
 
-        // Calculate the total height required
-        float totalHeight = textHeight + imageHeight;
-
-        // Add some padding
-        float padding = 20f; // Adjust this value based on your UI design
-        totalHeight += padding;
+        // Add padding
 
         // Set the tweet container height
         tweetContainer.sizeDelta = new Vector2(tweetContainer.sizeDelta.x, totalHeight);
