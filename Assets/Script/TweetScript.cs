@@ -54,6 +54,9 @@ public class TweetScript : MonoBehaviour
     [ContextMenu("Adjust Tweet Size")]
     private void AdjustTweetSize()
     {
+        // Store the original anchored position
+        Vector2 originalPosition = tweetContainer.anchoredPosition;
+
         // Force update the layout elements
         LayoutRebuilder.ForceRebuildLayoutImmediate(tweetText.rectTransform);
         LayoutRebuilder.ForceRebuildLayoutImmediate(tweetContainer);
@@ -61,21 +64,23 @@ public class TweetScript : MonoBehaviour
         // Calculate the preferred height of the text
         float textHeight = LayoutUtility.GetPreferredHeight(tweetText.rectTransform);
 
+        // Calculate the total height required
         float totalHeight = 230f;
 
-        totalHeight += textHeight*1.18f;
+        totalHeight += textHeight * 1.18f;
 
         // Calculate the preferred height of the image if it is active
         if (tweetImageContent != null)
         {
             // Add image height
-            totalHeight += (LayoutUtility.GetPreferredHeight(tweetImage.rectTransform) + 250f); 
+            totalHeight += LayoutUtility.GetPreferredHeight(tweetImage.rectTransform) + 250f;
         }
-
-        // Add padding
 
         // Set the tweet container height
         tweetContainer.sizeDelta = new Vector2(tweetContainer.sizeDelta.x, totalHeight);
+
+        // Restore the original anchored position to keep the bottom edge fixed
+        tweetContainer.anchoredPosition = originalPosition + new Vector2(0, (totalHeight - tweetContainer.sizeDelta.y) / 2);
     }
 
     // Optionally, automatically update the UI when the game starts
