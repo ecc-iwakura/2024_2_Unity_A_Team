@@ -75,6 +75,8 @@ public class TimelineManager : MonoBehaviour
             // スポーン地点にツイートプレハブを生成
             newTweet = Instantiate(tweetPrefab, spawnPoint.position, Quaternion.identity, timeline);
 
+            newTweet.transform.rotation = timeline.rotation;
+
             // 新しいツイートのTweetScriptコンポーネントを取得
             TweetScript tweetScript = newTweet.GetComponent<TweetScript>();
 
@@ -95,6 +97,7 @@ public class TimelineManager : MonoBehaviour
             // ツイートの内容を更新
             oldTweetObjectData.tweetScript.UpdateTweet(text, image, accountName, accountID);
 
+            oldTweetObjectData.tweetObject.transform.rotation = timeline.rotation;
             // 再利用するツイートオブジェクトの位置を設定
             oldTweetObjectData.tweetObject.transform.position = spawnPoint.position;
 
