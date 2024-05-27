@@ -174,32 +174,32 @@ MonoBehaviour:
     tweetList:
     - tweetContent: "\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01"
       tweetImageContent: {fileID: 0}
-      tweetID: a47311e29e2c457ca823ccb26ce636e2
-      parentAccountID: 
+      tweetID: b7426b38f630490b9dc425f3516d52cc
+      parentAccountID: test
     - tweetContent: "\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01"
       tweetImageContent: {fileID: 0}
-      tweetID: 31d968e25904457db3240ae48432ebd5
-      parentAccountID: 
+      tweetID: f77116ee3c8d44cfbffccd9fed2047bb
+      parentAccountID: test
     - tweetContent: "\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01"
       tweetImageContent: {fileID: 0}
-      tweetID: f907b3ed955c48dd988b51e4fe6d94b4
-      parentAccountID: 
+      tweetID: 99b11684a84e480cb31d8fb48a888a35
+      parentAccountID: test
   - accountID: TestTest
     accountName: "\u30C6\u30B9\u30C8\u30A2\u30AB\u30A6\u30F3\u30C8\uFF12"
     accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
     tweetList:
     - tweetContent: "\u3053\u308C\u3082\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01"
       tweetImageContent: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
-      tweetID: 2f59ec560cef42f9a020d714f0ccfc6c
-      parentAccountID: 
+      tweetID: 3c70d96a8ec7445c90755117446a8620
+      parentAccountID: TestTest
     - tweetContent: "\u3053\u308C\u3082\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01\u3053\u308C\u3082\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01\u3053\u308C\u3082\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01"
       tweetImageContent: {fileID: 21300000, guid: 0016af889a7cdb3418d558d1e5f174c2, type: 3}
-      tweetID: 004e470a69ce497bb9825aea15cbd4b6
-      parentAccountID: 
+      tweetID: 36c3ed1b9cf54d9b97d21eb33117ac83
+      parentAccountID: TestTest
     - tweetContent: "\u3053\u308C\u3082\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01\u753B\u50CF\u3082\u3042\u308B\u3088\uFF01"
       tweetImageContent: {fileID: 21300000, guid: cd6b683baccf751418fec0a9ec6228ab, type: 3}
-      tweetID: 4484c172e03b447f8304dc3c67969217
-      parentAccountID: 
+      tweetID: fd1f527d8b224e73817a9a1d2cdeba22
+      parentAccountID: TestTest
 --- !u!1 &491228250
 GameObject:
   m_ObjectHideFlags: 0
@@ -915,6 +915,7 @@ MonoBehaviour:
   tweetPrefab: {fileID: 2732472929934927127, guid: e46c749adee439f478fe0e8a8ad78ab9, type: 3}
   timeline: {fileID: 1617694668}
   spawnPoint: {fileID: 2145114486}
+  tweetDatabase: {fileID: 373353067}
   maxTweets: 5
   tweetObjectList: []
   tweetCooldown: 1
