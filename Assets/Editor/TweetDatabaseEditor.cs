@@ -26,20 +26,44 @@ public class TweetDatabaseEditor : Editor
         EditorGUILayout.Space();
 
         // ツイートIDを生成するボタンを表示
-        if (GUILayout.Button("Generate Tweet ID"))
+        if (GUILayout.Button("Generate Tweet IDs"))
         {
-            generatedTweetID = GenerateTweetID();
-            Debug.Log("Generated Tweet ID: " + generatedTweetID);
+            GenerateTweetIDs(tweetDatabase);
+            Debug.Log("Tweet IDs generated for all tweets.");
         }
 
-        // 生成されたツイートIDを表示
-        EditorGUILayout.LabelField("Generated Tweet ID:");
-        EditorGUILayout.TextArea(generatedTweetID);
+        EditorGUILayout.Space();
+
+        // 親のアカウントID を持つ各ツイートに自動的に設定するボタンを表示
+        if (GUILayout.Button("Set Parent Account IDs"))
+        {
+            SetParentAccountIDs(tweetDatabase);
+        }
     }
 
-    private string GenerateTweetID()
+    private void GenerateTweetIDs(TweetDatabase tweetDatabase)
     {
-        // UUID形式のツイートIDを生成する
-        return Guid.NewGuid().ToString("N");
+        foreach (var accountInfo in tweetDatabase.accountList)
+        {
+            foreach (var tweetInfo in accountInfo.tweetList)
+            {
+                // UUID形式のツイートIDを生成する
+                tweetInfo.tweetID = Guid.NewGuid().ToString("N");
+            }
+        }
+    }
+
+    private void SetParentAccountIDs(TweetDatabase tweetDatabase)
+    {
+        foreach (var accountInfo in tweetDatabase.accountList)
+        {
+            foreach (var tweetInfo in accountInfo.tweetList)
+            {
+                // 各ツイートに親のアカウントID を設定する
+                tweetInfo.parentAccountID = accountInfo.accountID;
+            }
+        }
+
+        Debug.Log("Parent Account IDs set for all tweets.");
     }
 }

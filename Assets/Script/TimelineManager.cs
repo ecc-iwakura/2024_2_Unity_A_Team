@@ -30,6 +30,7 @@ public class TimelineManager : MonoBehaviour
     public GameObject tweetPrefab;         // ツイートプレハブ
     public RectTransform timeline;         // タイムラインのRectTransform
     public Transform spawnPoint;           // スポーン地点
+    public TweetDatabase tweetDatabase;         // タイムラインのRectTransform
     public int maxTweets = 10;             // 最大ツイート数
 
     [SerializeField]
@@ -64,8 +65,9 @@ public class TimelineManager : MonoBehaviour
     [ContextMenu("Add Test Tweet")] // インスペクターから呼び出すためのコンテキストメニュー
     public void AddTweet()
     {
-        // ランダムなツイートデータを生成
-        (string text, Sprite image, string accountName, string accountID) = GenerateRandomTweetData();
+
+        (string text, Sprite image, Sprite accountImage, string accountName, string accountID) = GenerateRandomTweetData();
+
 
         GameObject newTweet = null;
         RectTransform tweetRect = null;
@@ -82,7 +84,7 @@ public class TimelineManager : MonoBehaviour
 
             tweetRect = newTweet.GetComponent<RectTransform>();
             // ツイートの内容を設定
-            tweetScript.UpdateTweet(text, image, accountName, accountID);
+            tweetScript.UpdateTweet(text, image, accountImage, accountName, accountID);
 
             // ツイートオブジェクトとTweetScriptのセットをリストに追加
             tweetObjectList.Add(new TweetObjectData(newTweet, tweetScript, tweetRect));
@@ -95,7 +97,7 @@ public class TimelineManager : MonoBehaviour
             tweetObjectList.RemoveAt(0);
 
             // ツイートの内容を更新
-            oldTweetObjectData.tweetScript.UpdateTweet(text, image, accountName, accountID);
+            oldTweetObjectData.tweetScript.UpdateTweet(text, image, accountImage, accountName, accountID);
 
             oldTweetObjectData.tweetObject.transform.rotation = timeline.rotation;
             // 再利用するツイートオブジェクトの位置を設定
@@ -155,20 +157,33 @@ public class TimelineManager : MonoBehaviour
         isTweetMoving = false; // ツイートが移動中でないことを示すフラグをリセット
     }
 
-    // ランダムなツイートデータを生成するメソッド
-    private (string, Sprite, string, string) GenerateRandomTweetData()
+    // GenerateRandomTweetDataメソッドの修正
+    private (string, Sprite, Sprite, string, string) GenerateRandomTweetData()
     {
-        string[] randomTexts = { "これはテストツイートです", "これはテストツイートです。これはテストツイートです。これはテストツイートです。", "これはテストツイートです。これはテストツイートです。これはテストツイートです。これはテストツイートです。これはテストツイートです。" };
-        string[] randomAccountNames = { "TestTweet", "TestTweetです！", "TestTweetだってば" };
-        string[] randomAccountIDs = { "test_account", "random_account1", "another_account" };
+        string randomID = tweetDatabase.GetRandomTweetID();
 
-        string text = randomTexts[Random.Range(0, randomTexts.Length)];
-        string accountName = randomAccountNames[Random.Range(0, randomAccountNames.Length)];
-        string accountID = randomAccountIDs[Random.Range(0, randomAccountIDs.Length)];
+        if (randomID == null)
+        {
+            Debug.LogWarning("ランダムなツイートIDが取得できませんでした。");
+            return ("null", null, null, "null", "null"); // 要素数を5つに修正
+        }
 
-        // ランダムな画像を生成（今回はnullのままにしておきますが、画像を追加する場合は適切に設定）
-        Sprite image = null; // 画像が必要な場合はランダムに画像を選択する処理を追加
+        TweetInfo tweetInfo = tweetDatabase.GetTweetInfo(randomID);
 
-        return (text, image, accountName, accountID);
+        string accountID = tweetDatabase.GetParentAccountID(randomID);
+        AccountInfo accountInfo = tweetDatabase.GetAccountInfo(accountID);
+
+        if (tweetInfo == null)
+        {
+            Debug.LogWarning("ツイート情報が取得できませんでした。ID: " + randomID);
+            return ("null", null, null, "null", "null"); // 要素数を5つに修正
+        }
+
+        string text = tweetInfo.tweetContent;
+        Sprite image = tweetInfo.tweetImageContent;
+        Sprite accountImage = accountInfo.accountImage; // フィールドを修正
+        string accountName = accountInfo.accountName;
+
+        return (text, image, accountImage, accountName, accountID);
     }
 }

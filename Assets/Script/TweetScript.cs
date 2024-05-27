@@ -9,23 +9,28 @@ public class TweetScript : MonoBehaviour
     public Image tweetImage;            // ツイートの画像を表示するUI Imageコンポーネント
     public TMP_Text accountName;        // アカウント名を表示するTextMeshProコンポーネント
     public TMP_Text accountID;          // アカウントIDを表示するTextMeshProコンポーネント
+    public Image accountImage;            // ツイートの画像を表示するUI Imageコンポーネント
     public RectTransform tweetContainer; // ツイート全体を囲むUIのRectTransformコンポーネント
 
     // Fields for tweet data
     [TextArea(3, 10)] // TextArea attribute to make multiline text input easier in the Inspector
+
     public string tweetContent;        // ツイートの文面
     public Sprite tweetImageContent;   // ツイートの画像
+    public Sprite tweetAccountImage;    // アカウント名
     public string tweetAccountName;    // アカウント名
     public string tweetAccountID;      // アカウントID
 
     // Method to update the tweet content
-    public void UpdateTweet(string newText, Sprite newImage, string newAccountName, string newAccountID)
+    public void UpdateTweet(string newText, Sprite newImage, Sprite newAccountImage, string newAccountName, string newAccountID)
     {
         // Update the tweet data fields
         tweetContent = newText;
         tweetImageContent = newImage;
+        tweetAccountImage = newAccountImage;
         tweetAccountName = newAccountName;
         tweetAccountID = newAccountID;
+
 
         // Update the UI elements
         UpdateUI();
@@ -45,6 +50,7 @@ public class TweetScript : MonoBehaviour
         // Update the account name and ID
         accountName.text = tweetAccountName;
         accountID.text = "@" + tweetAccountID;
+        accountImage.sprite = tweetAccountImage;
 
         // Adjust the size of the tweet container
         AdjustTweetSize();

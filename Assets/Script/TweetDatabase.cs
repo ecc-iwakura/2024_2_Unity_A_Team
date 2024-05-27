@@ -8,13 +8,15 @@ public class TweetInfo
     public string tweetContent;         // ツイートの文面
     public Sprite tweetImageContent;    // ツイートの画像
     public string tweetID;              // ツイートID
+    public string parentAccountID;      // 親のアカウントID
 
     // コンストラクタでランダムなツイートIDを生成
-    public TweetInfo(string content, Sprite image)
+    public TweetInfo(string content, Sprite image, string parentID)
     {
         tweetContent = content;
         tweetImageContent = image;
         tweetID = GenerateRandomTweetID();
+        parentAccountID = parentID;
     }
 
     // ランダムなツイートIDを生成する関数
@@ -33,6 +35,7 @@ public class AccountInfo
     public string accountName;              // アカウント名
     public Sprite accountImage;             // アカウント画像
     public List<TweetInfo> tweetList;      // ツイートリスト
+
 
     public AccountInfo(string id, string name, Sprite image)
     {
@@ -90,6 +93,75 @@ public class TweetDatabase : MonoBehaviour
                     Debug.LogWarning("ツイートID " + tweetInfo.tweetID + " は既に存在します。");
                 }
             }
+        }
+    }
+
+    public void Start()
+    {
+        UpdateDictionariesFromList();
+    }
+
+    // ツイートIDからTweetInfoを取得する関数
+    public TweetInfo GetTweetInfo(string tweetID)
+    {
+        // ツイートIDが存在するか確認
+        if (tweetDictionary.ContainsKey(tweetID))
+        {
+            // ツイート情報を返す
+            return tweetDictionary[tweetID];
+        }
+        else
+        {
+            Debug.LogWarning("ツイートID " + tweetID + " が見つかりません。");
+            return null;
+        }
+    }
+
+    public AccountInfo GetAccountInfo(string accountID)
+    {
+        // アカウントIDが存在するか確認
+        if (accountDictionary.ContainsKey(accountID))
+        {
+            // アカウント情報を返す
+            return accountDictionary[accountID];
+        }
+        else
+        {
+            Debug.LogWarning("アカウントID " + accountID + " が見つかりません。");
+            return null;
+        }
+    }
+
+    public string GetParentAccountID(string tweetID)
+    {
+        TweetInfo tweet = GetTweetInfo(tweetID);
+        if (tweet != null)
+        {
+            return tweet.parentAccountID;
+        }
+        else
+        {
+            Debug.LogWarning("ツイートID " + tweetID + " に対応するツイート情報が見つかりません。");
+            return null;
+        }
+    }
+
+
+    // ランダムにツイートIDを取得する関数
+    public string GetRandomTweetID()
+    {
+        if (tweetDictionary.Count > 0)
+        {
+            List<string> keys = new List<string>(tweetDictionary.Keys); // KeyCollection を List に変換
+            int randomIndex = Random.Range(0, keys.Count);
+            string randomID = keys[randomIndex];
+            Debug.Log("ランダムに選ばれたツイートID: " + randomID);
+            return randomID;
+        }
+        else
+        {
+            Debug.LogWarning("ツイート辞書が空です。");
+            return null;
         }
     }
 }

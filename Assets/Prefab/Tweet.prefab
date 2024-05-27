@@ -95,11 +95,13 @@ MonoBehaviour:
   tweetImage: {fileID: 2732472930574607386}
   accountName: {fileID: 2732472930162846084}
   accountID: {fileID: 2732472930892066106}
+  accountImage: {fileID: 2732472930565254943}
   tweetContainer: {fileID: 2732472929934927120}
   tweetContent: 'koreha
 
     TestTweetdesu'
   tweetImageContent: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  tweetAccountImage: {fileID: 21300000, guid: 0016af889a7cdb3418d558d1e5f174c2, type: 3}
   tweetAccountName: TestTweet
   tweetAccountID: TestTweet
 --- !u!1 &2732472929991099546
@@ -334,7 +336,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.3901367, y: 0.663}
+  m_AnchoredPosition: {x: 2.3901367, y: 0.61}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2732472930162846085
@@ -367,8 +369,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: TestTweet
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 817d872a293a9bd4aa1813676fabe804, type: 2}
+  m_sharedMaterial: {fileID: -2458743268801026041, guid: 817d872a293a9bd4aa1813676fabe804, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -392,17 +394,17 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 43.1
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: 0
+  m_characterSpacing: -6.28
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -428,7 +430,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: -13.105225, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -913,7 +915,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.460083, y: 0.6674856}
+  m_AnchoredPosition: {x: 5.52, y: 0.6}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2732472930892066107
@@ -946,8 +948,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '@TestTweet'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 817d872a293a9bd4aa1813676fabe804, type: 2}
+  m_sharedMaterial: {fileID: -2458743268801026041, guid: 817d872a293a9bd4aa1813676fabe804, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1007,7 +1009,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 33.701477, w: 0}
+  m_margin: {x: 0, y: -15.7702675, z: 33.701477, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1083,8 +1085,8 @@ MonoBehaviour:
 
     TestTweetdesu'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 817d872a293a9bd4aa1813676fabe804, type: 2}
+  m_sharedMaterial: {fileID: -2458743268801026041, guid: 817d872a293a9bd4aa1813676fabe804, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
