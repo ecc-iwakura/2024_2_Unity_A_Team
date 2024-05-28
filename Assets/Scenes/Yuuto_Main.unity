@@ -181,9 +181,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 40
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.94716984, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -207,11 +207,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorImage: {fileID: 0}
   hotSpot: {x: 0, y: 0}
-  offsetY: 0.5
+  offsetY: 1
   offsetX: 1
   followSpeed: 5
-  minXmaxX: {x: 3, y: 5}
-  minYmaxY: {x: -6, y: 6}
+  minXmaxX: {x: 4, y: 5}
+  minYmaxY: {x: -5, y: 5}
+  clickedFollowSpeed: 20
 --- !u!4 &169839210
 Transform:
   m_ObjectHideFlags: 0
@@ -220,7 +221,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 169839207}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.4926546, y: -1.47447, z: 0}
+  m_LocalPosition: {x: 4.1, y: 2.29, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -451,7 +452,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -542,7 +543,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &1205128903
 RectTransform:
