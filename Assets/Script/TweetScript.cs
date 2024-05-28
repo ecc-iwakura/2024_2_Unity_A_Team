@@ -31,11 +31,24 @@ public class TweetScript : MonoBehaviour
 
     [Space(10)] // 10のスペースを追加
 
-    public Button likeButton;           // いいねボタン
-    public Button retweetButton;        // リツイートボタン
-    public Button bookmarkButton;       // ブックマークボタン
-    public Button reportButton;         // 通報ボタン
+    private bool shouldLike;
+    private bool shouldRetweet;
+    private bool shouldBookmark;
+    private bool shouldReport;
 
+    [SerializeField]
+    private ButtonFlag buttonFlag;
+
+    [System.Flags]
+    private enum ButtonFlag
+    {
+        None = 0,
+        Like = 1 << 0,
+        Retweet = 1 << 1,
+        LikeAndRetweet = Like | Retweet, // いいねとリツイートの両方
+        Bookmark = 1 << 2,
+        Report = 1 << 3
+    }
     // Method to update the tweet content
     public void UpdateTweet(string newText, Sprite newImage, Sprite newAccountImage, string newAccountName, string newAccountID)
     {
@@ -45,7 +58,6 @@ public class TweetScript : MonoBehaviour
         tweetAccountImage = newAccountImage;
         tweetAccountName = newAccountName;
         tweetAccountID = newAccountID;
-
 
         // Update the UI elements
         UpdateUI();
@@ -105,6 +117,26 @@ public class TweetScript : MonoBehaviour
         tweetContainer.anchoredPosition = originalPosition + new Vector2(0, (totalHeight - tweetContainer.sizeDelta.y) / 2);
     }
 
+    public void LikeButtonPressed()
+    {
+        CheckAction(ButtonFlag.Like);
+    }
+
+    public void RetweetButtonPressed()
+    {
+        CheckAction(ButtonFlag.Retweet);
+    }
+
+    public void BookmarkButtonPressed()
+    {
+        CheckAction(ButtonFlag.Bookmark);
+    }
+
+    public void ReportButtonPressed()
+    {
+        CheckAction(ButtonFlag.Report);
+    }
+
     // ランダムにフォロー状態と投稿時間を決定し、表示する関数
     public void RandomTweetInfo()
     {
@@ -119,7 +151,38 @@ public class TweetScript : MonoBehaviour
 
         // 投稿時間を表示
         ElapsedTime.text = $"{Mathf.FloorToInt(minutesSincePosted)}分前";
+    }
 
+    private void CheckAction(ButtonFlag action)
+    {
+        bool isCorrect = false;
+        switch (action)
+        {
+            case ButtonFlag.Like:
+                isCorrect = shouldLike;
+                break;
+            case ButtonFlag.Retweet:
+                isCorrect = shouldRetweet;
+                break;
+            case ButtonFlag.Bookmark:
+                isCorrect = shouldBookmark;
+                break;
+            case ButtonFlag.Report:
+                isCorrect = shouldReport;
+                break;
+            case ButtonFlag.LikeAndRetweet:
+                isCorrect = shouldLike && shouldRetweet;
+                break;
+        }
+
+        if (isCorrect)
+        {
+            Debug.Log("正しいです");
+        }
+        else
+        {
+            Debug.Log("正しくないです");
+        }
     }
 
     // Optionally, automatically update the UI when the game starts
