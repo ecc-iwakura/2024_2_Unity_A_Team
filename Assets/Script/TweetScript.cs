@@ -13,13 +13,28 @@ public class TweetScript : MonoBehaviour
     public RectTransform tweetContainer; // ツイート全体を囲むUIのRectTransformコンポーネント
 
     // Fields for tweet data
-    [TextArea(3, 10)] // TextArea attribute to make multiline text input easier in the Inspector
+    [TextArea(3, 10)] 
 
     public string tweetContent;        // ツイートの文面
     public Sprite tweetImageContent;   // ツイートの画像
     public Sprite tweetAccountImage;    // アカウント名
     public string tweetAccountName;    // アカウント名
     public string tweetAccountID;      // アカウントID
+
+    [Space(10)] // 10のスペースを追加
+
+    public bool isFollowing;            // フォローしているかどうか
+    public float minutesSincePosted;    // 投稿されてからの時間（分）
+
+    public TMP_Text ElapsedTime;        // アカウント名を表示するTextMeshProコンポーネント
+    public GameObject IsFollow;        // アカウント名を表示するTextMeshProコンポーネント
+
+    [Space(10)] // 10のスペースを追加
+
+    public Button likeButton;           // いいねボタン
+    public Button retweetButton;        // リツイートボタン
+    public Button bookmarkButton;       // ブックマークボタン
+    public Button reportButton;         // 通報ボタン
 
     // Method to update the tweet content
     public void UpdateTweet(string newText, Sprite newImage, Sprite newAccountImage, string newAccountName, string newAccountID)
@@ -52,6 +67,7 @@ public class TweetScript : MonoBehaviour
         accountID.text = "@" + tweetAccountID;
         accountImage.sprite = tweetAccountImage;
 
+        RandomTweetInfo();
         // Adjust the size of the tweet container
         AdjustTweetSize();
     }
@@ -87,6 +103,23 @@ public class TweetScript : MonoBehaviour
 
         // Restore the original anchored position to keep the bottom edge fixed
         tweetContainer.anchoredPosition = originalPosition + new Vector2(0, (totalHeight - tweetContainer.sizeDelta.y) / 2);
+    }
+
+    // ランダムにフォロー状態と投稿時間を決定し、表示する関数
+    public void RandomTweetInfo()
+    {
+        // フォローしているかどうかをランダムに決定（50%の確率でフォロー）
+        isFollowing = Random.value > 0.5f;
+
+        // 投稿されてからの時間をランダムに決定（0から60分の間）
+        minutesSincePosted = Random.Range(0f, 60f);
+
+        // フォロー状態を表示
+        IsFollow.SetActive(isFollowing);
+
+        // 投稿時間を表示
+        ElapsedTime.text = $"{Mathf.FloorToInt(minutesSincePosted)}分前";
+
     }
 
     // Optionally, automatically update the UI when the game starts
