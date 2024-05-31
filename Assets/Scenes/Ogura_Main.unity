@@ -155,7 +155,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1205128903}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 16.218, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8415094, g: 0.8415094, b: 0.8415094, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -264,15 +264,15 @@ MonoBehaviour:
     tweetList:
     - tweetContent: "\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01"
       tweetImageContent: {fileID: 0}
-      tweetID: f4dc632abec4460e830fb2fae3a013a7
+      tweetID: 216dc62c610a44adb121e13ed919fcbc
       parentAccountID: test
     - tweetContent: "\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01"
       tweetImageContent: {fileID: 0}
-      tweetID: 41317fce41a14e518dd6072afc277cf3
+      tweetID: c38c4db8fc1b4af9844895602533d301
       parentAccountID: test
-    - tweetContent: "\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01"
+    - tweetContent: "\u30EC\u30BF\u30FC\u30D1\u30C3\u30AF\u3067\u73FE\u91D1\u9001\u308C\u306F\u3059\u3079\u3066\u8A50\u6B3A\u3067\u3059\uFF01"
       tweetImageContent: {fileID: 0}
-      tweetID: 7d0a6038445d4cce8904e6bc654d640d
+      tweetID: f78c11b3537442b9a7408ddfa9c021e5
       parentAccountID: test
   - accountID: TestTest
     accountName: "\u30C6\u30B9\u30C8\u30A2\u30AB\u30A6\u30F3\u30C8\uFF12"
@@ -280,47 +280,15 @@ MonoBehaviour:
     tweetList:
     - tweetContent: "\u3053\u308C\u3082\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01"
       tweetImageContent: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
-      tweetID: f5e49fbd70784ac6985ca63877dbe2ac
+      tweetID: af85a66202e5421d9d173c4ad2d8960f
       parentAccountID: TestTest
     - tweetContent: "\u3053\u308C\u3082\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01\u3053\u308C\u3082\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01\u3053\u308C\u3082\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01"
       tweetImageContent: {fileID: 21300000, guid: 0016af889a7cdb3418d558d1e5f174c2, type: 3}
-      tweetID: 7d786e657d4a4110997c6405867bee19
+      tweetID: 589a0c404cbf48db8e2745a1d51f8665
       parentAccountID: TestTest
     - tweetContent: "\u3053\u308C\u3082\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01\u753B\u50CF\u3082\u3042\u308B\u3088\uFF01"
       tweetImageContent: {fileID: 21300000, guid: cd6b683baccf751418fec0a9ec6228ab, type: 3}
-      tweetID: 12f8167fb1924b1b9c3dd2b33b5b75e2
-      parentAccountID: TestTest
-  - accountID: test
-    accountName: "\u30C6\u30B9\u30C8\u30A2\u30AB\u30A6\u30F3\u30C83"
-    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
-    tweetList:
-    - tweetContent: "\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\u3002<color=#4169e1>#\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8</color>"
-      tweetImageContent: {fileID: 0}
-      tweetID: 6c69ab54e7204a5687bcc2c6386e833e
-      parentAccountID: TestTest
-    - tweetContent: "\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\u3002<color=#4169e1>#\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8</color>"
-      tweetImageContent: {fileID: 0}
-      tweetID: 81f13d3ed06c40f782b7a06622f25e18
-      parentAccountID: TestTest
-    - tweetContent: "\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\u3002<color=#4169e1>#\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8</color>"
-      tweetImageContent: {fileID: 0}
-      tweetID: e207b1e0fcd249559b04bf4fd7f660b9
-      parentAccountID: TestTest
-    - tweetContent: "\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\u3002<color=#4169e1>#\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8</color>"
-      tweetImageContent: {fileID: 0}
-      tweetID: 7dd97900ca134bccacce86d25c201849
-      parentAccountID: TestTest
-    - tweetContent: "\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\u3002<color=#4169e1>#\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8</color>"
-      tweetImageContent: {fileID: 0}
-      tweetID: f0d7df7601194d67ba0f1ed3f51eb995
-      parentAccountID: TestTest
-    - tweetContent: "\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\u3002<color=#4169e1>#\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8</color>"
-      tweetImageContent: {fileID: 0}
-      tweetID: 1c68a53318dc4848a12a0169a3843cc6
-      parentAccountID: TestTest
-    - tweetContent: "\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\u3002<color=#4169e1>#\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8</color>"
-      tweetImageContent: {fileID: 0}
-      tweetID: 1ecd91c9a8bf44e7b8e67543873afa90
+      tweetID: 7e5413ea5218439f84a9c24d99224e4b
       parentAccountID: TestTest
 --- !u!1 &491228250
 GameObject:
@@ -508,7 +476,7 @@ RectTransform:
   - {fileID: 2145114486}
   - {fileID: 1617694668}
   m_Father: {fileID: 1205128903}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 16.218, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -596,7 +564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keywords:
-  - "\u30A2\u30D6\u30E9\u30AB\u30C0\u30D6\u30E9"
+  - "\u8A50\u6B3A"
 --- !u!4 &950172717
 Transform:
   m_ObjectHideFlags: 0
@@ -705,6 +673,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1888792036}
   - {fileID: 161928977}
   - {fileID: 896375273}
   - {fileID: 1778848034}
@@ -901,7 +870,7 @@ MonoBehaviour:
   m_IsGlobal: 1
   priority: 0
   blendDistance: 0
-  weight: 0
+  weight: 1
   sharedProfile: {fileID: 11400000, guid: 65d46ef5a09b7fb4789b0f757de94db0, type: 2}
 --- !u!4 &1301501416
 Transform:
@@ -1039,9 +1008,10 @@ MonoBehaviour:
   timeline: {fileID: 1617694668}
   spawnPoint: {fileID: 2145114486}
   tweetDatabase: {fileID: 373353067}
+  keywordChecker: {fileID: 950172716}
   maxTweets: 5
   tweetObjectList: []
-  tweetCooldown: 1
+  tweetCooldown: 2
 --- !u!1 &1617694667
 GameObject:
   m_ObjectHideFlags: 0
@@ -1111,7 +1081,7 @@ RectTransform:
   - {fileID: 1252836978}
   - {fileID: 491228251}
   m_Father: {fileID: 1205128903}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1148,7 +1118,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1205128903}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1778848035
 SpriteRenderer:
@@ -1320,6 +1290,82 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1888792035
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1888792036}
+  - component: {fileID: 1888792038}
+  - component: {fileID: 1888792037}
+  m_Layer: 5
+  m_Name: r (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1888792036
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888792035}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 8031}
+  m_LocalScale: {x: 133.9279, y: 230.356, z: 133.9279}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1205128903}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 182.4, y: 252.73}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1888792037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888792035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.21509439, g: 0.21509439, b: 0.21509439, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1888792038
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888792035}
+  m_CullTransparentMesh: 1
 --- !u!1 &2145114485
 GameObject:
   m_ObjectHideFlags: 0

@@ -153,9 +153,9 @@ public class TweetDatabase : MonoBehaviour
         if (tweetDictionary.Count > 0)
         {
             List<string> keys = new List<string>(tweetDictionary.Keys); // KeyCollection を List に変換
-            int randomIndex = Random.Range(0, keys.Count);
+            int randomIndex = GenerateRandomIndex(keys.Count); // ランダムなインデックスを生成
             string randomID = keys[randomIndex];
-            Debug.Log("ランダムに選ばれたツイートID: " + randomID);
+            //Debug.Log("ランダムに選ばれたツイートID: " + randomID);
             return randomID;
         }
         else
@@ -163,5 +163,24 @@ public class TweetDatabase : MonoBehaviour
             Debug.LogWarning("ツイート辞書が空です。");
             return null;
         }
+    }
+
+    // 乱数のインデックスを生成する関数
+    private int GenerateRandomIndex(int count)
+    {
+        // ボックス＝ミュラー法を用いて正規分布から乱数を生成
+        float u1 = 1.0f - Random.value;
+        float u2 = 1.0f - Random.value;
+        float randStdNormal = Mathf.Sqrt(-2.0f * Mathf.Log(u1)) * Mathf.Sin(2.0f * Mathf.PI * u2);
+
+        // 平均を中心として標準偏差の5倍までの範囲で乱数を生成
+        float mean = count / 2.0f;
+        float stdDev = count / 10.0f; // 10は任意の値で、調整が必要な場合は変更可能
+        int randomIndex = Mathf.RoundToInt(mean + stdDev * randStdNormal);
+
+        // インデックスが範囲外の場合は範囲内に収める
+        randomIndex = Mathf.Clamp(randomIndex, 0, count - 1);
+
+        return randomIndex;
     }
 }

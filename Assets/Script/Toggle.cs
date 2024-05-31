@@ -22,4 +22,10 @@ public class Toggle : MonoBehaviour
         // このオブジェクトのアクティブ状態をトグル（反転）する
         gameObject.SetActive(!gameObject.activeSelf);
     }
+
+    public void SetActive(bool IsActive)
+    {
+        // このオブジェクトのアクティブ状態をトグル（反転）する
+        gameObject.SetActive(IsActive);
+    }
 }

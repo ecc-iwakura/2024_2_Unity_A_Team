@@ -31,6 +31,7 @@ public class TimelineManager : MonoBehaviour
     public RectTransform timeline;         // タイムラインのRectTransform
     public Transform spawnPoint;           // スポーン地点
     public TweetDatabase tweetDatabase;         // タイムラインのRectTransform
+    public KeywordChecker keywordChecker;
     public int maxTweets = 10;             // 最大ツイート数
 
     [SerializeField]
@@ -71,6 +72,7 @@ public class TimelineManager : MonoBehaviour
 
         GameObject newTweet = null;
         RectTransform tweetRect = null;
+        bool isKeyword = false;
         if (tweetObjectList.Count < maxTweets)
         {
             UnityEngine.Debug.Log("新品生成！");
@@ -83,8 +85,10 @@ public class TimelineManager : MonoBehaviour
             TweetScript tweetScript = newTweet.GetComponent<TweetScript>();
 
             tweetRect = newTweet.GetComponent<RectTransform>();
+
+            isKeyword = keywordChecker.CheckForKeyword(text);
             // ツイートの内容を設定
-            tweetScript.UpdateTweet(text, image, accountImage, accountName, accountID);
+            tweetScript.UpdateTweet(text, image, accountImage, accountName, accountID, isKeyword);
 
             // ツイートオブジェクトとTweetScriptのセットをリストに追加
             tweetObjectList.Add(new TweetObjectData(newTweet, tweetScript, tweetRect));
@@ -94,10 +98,14 @@ public class TimelineManager : MonoBehaviour
             UnityEngine.Debug.Log("再利用！");
             // リストで１番古いツイートを取得して再利用
             var oldTweetObjectData = tweetObjectList[0];
+
+            oldTweetObjectData.tweetScript.TweetCheck();
+
             tweetObjectList.RemoveAt(0);
 
+            isKeyword = keywordChecker.CheckForKeyword(text);
             // ツイートの内容を更新
-            oldTweetObjectData.tweetScript.UpdateTweet(text, image, accountImage, accountName, accountID);
+            oldTweetObjectData.tweetScript.UpdateTweet(text, image, accountImage, accountName, accountID, isKeyword);
 
             oldTweetObjectData.tweetObject.transform.rotation = timeline.rotation;
             // 再利用するツイートオブジェクトの位置を設定
