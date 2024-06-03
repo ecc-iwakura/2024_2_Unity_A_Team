@@ -39,6 +39,7 @@ public class TimelineManager : MonoBehaviour
 
     private float currentYPosition = 0f;   // 現在のY位置
     public float tweetCooldown = 3f;       // ツイートの間隔（秒）
+    public float tweetSpeedTime = 3f;       // ツイートの間隔（秒）
 
     private bool isTweetMoving = false;    // ツイートが移動中かどうかを示すフラグ
 
@@ -132,7 +133,7 @@ public class TimelineManager : MonoBehaviour
     {
         isTweetMoving = true; // ツイートが移動中であることを示すフラグを設定
 
-        float duration = tweetCooldown; // 移動にかける基本時間
+        float duration = tweetSpeedTime; // 移動にかける基本時間
 
         // 移動にかける時間を距離に応じて調整
         float distanceFactor = Mathf.Clamp(tweetHeight / 100f, 0.5f, 2f);

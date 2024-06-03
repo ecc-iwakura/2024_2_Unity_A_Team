@@ -24,6 +24,8 @@ public class TweetScript : MonoBehaviour
 
     [Space(10)] // 10のスペースを追加
 
+    [Tooltip("シーン内の 'Followplus' オブジェクトへの参照。")]
+    public followplus Followplus;
     public bool isFollowing;            // フォローしているかどうか
     public float minutesSincePosted;    // 投稿されてからの時間（分）
     public bool IsKeyword; //キーワードが含まれているかどうか
@@ -77,6 +79,7 @@ public class TweetScript : MonoBehaviour
     void Start()
     {
         UpdateUI();
+        Followplus = GameObject.Find("FollowPlus").GetComponent<followplus>();
     }
 
     // Method to update the UI elements based on the tweet data
@@ -242,6 +245,15 @@ public class TweetScript : MonoBehaviour
         string statusText = isCorrect ? "正しいです" : "正しくないです";
         string buttonState = $" {(shouldRetweet ? "O" : "X")}{(shouldLike ? "O" : "X")}{(shouldBookmark ? "O" : "X")}{(shouldReport ? "O" : "X")}";
         Debug.Log($"{buttonState} => {logText} => {statusText}");
+
+        if( isCorrect )
+        {
+            Followplus.CorrectAction();
+        }
+        else
+        {
+            Followplus.IncorrectAction();
+        }
     }
 
 

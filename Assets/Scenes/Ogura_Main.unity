@@ -1421,6 +1421,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followers: 0
+  totalFollowersText: {fileID: 1164824089}
+  changeInFollowersText: {fileID: 269191438}
 --- !u!4 &1507077401
 Transform:
   m_ObjectHideFlags: 0
@@ -1560,7 +1562,8 @@ MonoBehaviour:
   keywordChecker: {fileID: 950172716}
   maxTweets: 5
   tweetObjectList: []
-  tweetCooldown: 2
+  tweetCooldown: 3.5
+  tweetSpeedTime: 1
 --- !u!1 &1617694667
 GameObject:
   m_ObjectHideFlags: 0
