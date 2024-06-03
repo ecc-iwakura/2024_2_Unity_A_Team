@@ -980,6 +980,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followers: 10
+  minIncreaseRate: 0.15
+  maxIncreaseRate: 0.25
+  minFixedIncrease: 1
+  maxFixedIncrease: 10
+  minDecreaseRate: 0.4
+  maxDecreaseRate: 0.5
   totalFollowersText: {fileID: 1848699802}
   changeInFollowersText: {fileID: 822378777}
 --- !u!1 &1778848033

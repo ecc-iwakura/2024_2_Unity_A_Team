@@ -93,6 +93,22 @@ public class followplus : MonoBehaviour
     private int maxFollowers = 0; // 最高到達点のフォロワー数
     private bool firstCorrectAction = true; // 初めて正しい行動が行われたかどうかを管理するフラグ
 
+    [Header("フォロワー増加設定")]
+    [Tooltip("フォロワー数が増加する最小割合")]
+    public float minIncreaseRate = 0.05f; // 最小増加率
+    [Tooltip("フォロワー数が増加する最大割合")]
+    public float maxIncreaseRate = 0.10f; // 最大増加率
+    [Tooltip("フォロワー数が増加する最小固定値")]
+    public int minFixedIncrease = 1; // 最小固定増加値
+    [Tooltip("フォロワー数が増加する最大固定値")]
+    public int maxFixedIncrease = 10; // 最大固定増加値
+
+    [Header("フォロワー減少設定")]
+    [Tooltip("最高到達点のフォロワー数から減少する最小割合")]
+    public float minDecreaseRate = 0.40f; // 最小減少率
+    [Tooltip("最高到達点のフォロワー数から減少する最大割合")]
+    public float maxDecreaseRate = 0.50f; // 最大減少率
+
     // UIテキストコンポーネントへの参照
     public TMP_Text totalFollowersText;
     public TMP_Text changeInFollowersText;
@@ -117,7 +133,7 @@ public class followplus : MonoBehaviour
         else
         {
             // フォロワーが5%～10%で増加し、さらに1～10の固定値を追加
-            float increaseRate = Random.Range(0.05f, 0.10f); // 5%～10%の増加率
+            float increaseRate = Random.Range(0.15f, 0.25f); // 5%～10%の増加率
             int increaseAmountFromRate = Mathf.CeilToInt(followers * increaseRate); // 増加する割合部分のフォロワー数
             int fixedIncrease = Random.Range(1, 11); // 1～10の固定値
             increaseAmount = increaseAmountFromRate + fixedIncrease; // 合計増加フォロワー数
