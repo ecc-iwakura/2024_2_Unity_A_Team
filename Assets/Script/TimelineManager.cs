@@ -129,6 +129,7 @@ public class TimelineManager : MonoBehaviour
     }
 
     // コルーチンでタイムラインをゆっくり下に移動
+    // コルーチンでタイムラインをゆっくり下に移動
     private IEnumerator MoveTimeline(float tweetHeight)
     {
         isTweetMoving = true; // ツイートが移動中であることを示すフラグを設定
@@ -139,29 +140,44 @@ public class TimelineManager : MonoBehaviour
         float distanceFactor = Mathf.Clamp(tweetHeight / 100f, 0.5f, 2f);
         duration *= distanceFactor;
 
-        float distance = tweetHeight; // 移動距離
-
         Vector2 startPos = timeline.anchoredPosition;
         Vector2 endPos = startPos - new Vector2(0, tweetHeight); // 下に移動
 
         float elapsed = 0f;
         while (elapsed < duration)
         {
-            float t = elapsed / duration;
-            timeline.anchoredPosition = Vector2.Lerp(startPos, endPos, t * t); // 移動をより滑らかにするために t * t を使用
+            // アニメーションを直接計算
+            float progress = Mathf.SmoothStep(0f, 1f, elapsed / duration);
+            timeline.anchoredPosition = Vector2.Lerp(startPos, endPos, progress);
 
-            // 距離に応じて時間を調整
+            // 経過時間を加算
             elapsed += Time.deltaTime;
-            yield return null;
+            yield return null; // 次のフレームまで待機
         }
 
         timeline.anchoredPosition = endPos;
 
         // 現在のY位置を更新
         currentYPosition += tweetHeight;
-        timeline.sizeDelta = new Vector2(timeline.sizeDelta.x, currentYPosition);
+        timeline.sizeDelta = new Vector2(0, 0);
 
         yield return new WaitForSeconds(tweetCooldown); // クールダウン
+
+        Vector3[] childWorldPositions = new Vector3[timeline.childCount];
+        for (int i = 0; i < timeline.childCount; i++)
+        {
+            childWorldPositions[i] = timeline.GetChild(i).position;
+        }
+
+        // 親オブジェクトの位置を変更
+        timeline.anchoredPosition = new Vector2(0.0f, 0.0f);
+
+        // 子オブジェクトの位置を元のワールド座標に戻す
+        for (int i = 0; i < timeline.childCount; i++)
+        {
+            RectTransform childRectTransform = timeline.GetChild(i).GetComponent<RectTransform>();
+            childRectTransform.position = childWorldPositions[i];
+        }
 
         isTweetMoving = false; // ツイートが移動中でないことを示すフラグをリセット
     }
