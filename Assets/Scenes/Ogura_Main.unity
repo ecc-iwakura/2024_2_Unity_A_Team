@@ -734,9 +734,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   availableRules:
-  - ruleName: 
+  - ruleName: "\u30D5\u30A9\u30ED\u30FC\u3092\u3057\u3066\u305F\u3089"
+  - ruleName: "\uFF11\uFF10\u5206\u4EE5\u5185\u306A\u3089"
+  - ruleName: "\u30AD\u30FC\u30EF\u30FC\u30C9\u304C\u3042\u3063\u305F\u3089"
+  - ruleName: "\u4F55\u3082\u306A\u304B\u3063\u305F\u3089"
+  keywordChecker: {fileID: 950172716}
   selectedRules:
-  - ruleName: 
+  - ruleName: "\u30D5\u30A9\u30ED\u30FC\u3092\u3057\u3066\u305F\u3089"
+  - ruleName: "\uFF11\uFF10\u5206\u4EE5\u5185\u306A\u3089"
+  - ruleName: "\u30AD\u30FC\u30EF\u30FC\u30C9\u304C\u3042\u3063\u305F\u3089"
+  - ruleName: "\u4F55\u3082\u306A\u304B\u3063\u305F\u3089"
 --- !u!1 &896375272
 GameObject:
   m_ObjectHideFlags: 0

@@ -34,9 +34,9 @@ public class RuleChecker : MonoBehaviour
     public class Rule
     {
         public string ruleName;
-        public Func<TweetData, ButtonFlag> ruleFunction;
+        public Func<TweetData, ButtonFlag, ButtonFlag> ruleFunction;
 
-        public Rule(string name, Func<TweetData, ButtonFlag> function)
+        public Rule(string name, Func<TweetData, ButtonFlag, ButtonFlag> function)
         {
             ruleName = name;
             ruleFunction = function;
@@ -51,75 +51,109 @@ public class RuleChecker : MonoBehaviour
 
     [SerializeField]
     public Rule[] availableRules;
+
+    public KeywordChecker keywordChecker;
+
     // インスペクターから選択するためのルールリスト
     public List<RuleReference> selectedRules = new List<RuleReference>();
+    private Dictionary<string, Func<TweetData, ButtonFlag, ButtonFlag>> ruleFunctions = new Dictionary<string, Func<TweetData, ButtonFlag, ButtonFlag>>();
 
-    private void Awake()
+    public void InitializeRules()
     {
-        // 利用可能なルールを配列に追加
         availableRules = new Rule[]
         {
-            new Rule("ExampleRule", ExampleRuleFunction),
-            new Rule("AnotherRule", AnotherRuleFunction),
-            new Rule("LikeIfFollowing", LikeIfFollowing)
+            new Rule("フォローをしてたら", LikeCheck),
+            new Rule("１０分以内なら", RetweetCheck),
+            new Rule("キーワードがあったら", ReportCheck),
+            new Rule("何もなかったら", BookmarkCheck),
         };
+
+        // 利用可能なルールを辞書に登録
+        foreach (var rule in availableRules)
+        {
+            // ルール名がすでに存在するかどうかをチェック
+            if (!ruleFunctions.ContainsKey(rule.ruleName))
+            {
+                // 辞書にルールを登録
+                ruleFunctions.Add(rule.ruleName, rule.ruleFunction);
+            }
+            else
+            {
+                // 既に同じ名前のルールが存在する場合は警告を出力
+                Debug.LogWarning("ルールがすでに存在します: " + rule.ruleName);
+            }
+        }
     }
 
     private void Start()
     {
-        // 例として、ツイートデータを作成
-        TweetData tweet = new TweetData(true, 15, "example");
-
-        // 選択されたルールを適用
-        ButtonFlag result = ApplyRules(tweet);
-        Debug.Log(result);
+        if (keywordChecker == null) { Debug.LogWarning("キーワードチェッカーがありません！"); }
     }
 
     public ButtonFlag ApplyRules(TweetData tweetData)
     {
+        if (tweetData == null)
+        {
+            Debug.LogError("TweetDataがありません！");
+            return ButtonFlag.None;
+        }
+
         ButtonFlag result = ButtonFlag.None;
 
         foreach (var selectedRule in selectedRules)
         {
-            var rule = Array.Find(availableRules, r => r.ruleName == selectedRule.ruleName);
-            if (rule != null)
+            if (ruleFunctions.ContainsKey(selectedRule.ruleName))
             {
-                result = rule.ruleFunction(tweetData);
-                if (result != ButtonFlag.None)
-                {
-                    break;
-                }
+                // 選択されたルールの関数を取得し、元の結果と tweetData を渡して適用する
+                result = ruleFunctions[selectedRule.ruleName](tweetData, result);
+            }
+            else
+            {
+                Debug.LogWarning("ルールが見つかりません: " + selectedRule.ruleName);
             }
         }
 
+        Debug.Log("ルール結果: " + result.ToString() + ", Bool:" + tweetData.someBool + ", Int:" + tweetData.someInt);
         return result;
     }
 
     // 例としてのルール関数
-    private ButtonFlag ExampleRuleFunction(TweetData tweetData)
+    private ButtonFlag LikeCheck(TweetData tweetData, ButtonFlag original)
     {
         if (tweetData.someBool)
         {
             return ButtonFlag.Like;
         }
-        return ButtonFlag.None;
+        return original; // 元々の値を返す
     }
 
-    private ButtonFlag AnotherRuleFunction(TweetData tweetData)
+    private ButtonFlag RetweetCheck(TweetData tweetData, ButtonFlag original)
     {
-        if (tweetData.someInt > 10)
+        if (tweetData.someInt <= 10)
         {
             return ButtonFlag.Retweet;
         }
-        return ButtonFlag.None;
+        return original; // 元々の値を返す
     }
 
-    private ButtonFlag LikeIfFollowing(TweetData tweetData)
+    private ButtonFlag ReportCheck(TweetData tweetData, ButtonFlag original)
     {
-        if (tweetData.someBool && tweetData.someString == "example")
+        bool IsKey = keywordChecker.CheckForKeyword(tweetData.someString);
+
+        if (IsKey)
         {
             return ButtonFlag.Like;
         }
-        return ButtonFlag.None;
+
+        return original; // 元々の値を返す
+    }
+
+    private ButtonFlag BookmarkCheck(TweetData tweetData, ButtonFlag original)
+    {
+        if(original == ButtonFlag.None) {
+
+            return ButtonFlag.Bookmark;
+        }
+        return original; // 元々の値を返す
     }
 }
