@@ -37,6 +37,9 @@ public class TimelineManager : MonoBehaviour
     [SerializeField]
     private List<TweetObjectData> tweetObjectList = new List<TweetObjectData>(); // ツイートオブジェクトとTweetScriptのセットのリスト
 
+
+    public List<string> stackTweetIDs = new List<string>(); // スタックツイートIDリスト
+
     private float currentYPosition = 0f;   // 現在のY位置
     public float tweetCooldown = 3f;       // ツイートの間隔（秒）
     public float tweetSpeedTime = 3f;       // ツイートの間隔（秒）
@@ -67,8 +70,23 @@ public class TimelineManager : MonoBehaviour
     [ContextMenu("Add Test Tweet")] // インスペクターから呼び出すためのコンテキストメニュー
     public void AddTweet()
     {
+        string text = "";
+        Sprite image = null;
+        Sprite accountImage = null;
+        string accountName = "";
+        string accountID = "";
 
-        (string text, Sprite image, Sprite accountImage, string accountName, string accountID) = GenerateRandomTweetData();
+        if (stackTweetIDs.Count > 0)
+        {
+            // スタックツイートIDリストにツイートIDがある場合はそのツイートIDを使ってツイートを生成
+            string tweetID = stackTweetIDs[0]; // リストの先頭からツイートIDを取得
+            stackTweetIDs.RemoveAt(0); // リストから削除
+            (text, image, accountImage, accountName, accountID) = GenerateTweetData(tweetID);
+        }
+        else
+        {
+            (text, image, accountImage, accountName, accountID) = GenerateRandomTweetData();
+        }
 
 
         GameObject newTweet = null;
@@ -207,6 +225,27 @@ public class TimelineManager : MonoBehaviour
         string text = tweetInfo.tweetContent;
         Sprite image = tweetInfo.tweetImageContent;
         Sprite accountImage = accountInfo.accountImage; // フィールドを修正
+        string accountName = accountInfo.accountName;
+
+        return (text, image, accountImage, accountName, accountID);
+    }
+
+    private (string, Sprite, Sprite, string, string) GenerateTweetData(string ID)
+    {
+        TweetInfo tweetInfo = tweetDatabase.GetTweetInfo(ID);
+
+        string accountID = tweetDatabase.GetParentAccountID(ID); // randomIDからIDに変更
+        AccountInfo accountInfo = tweetDatabase.GetAccountInfo(accountID);
+
+        if (tweetInfo == null)
+        {
+            Debug.LogWarning("ツイート情報が取得できませんでした。ID: " + ID); // randomIDからIDに変更
+            return ("null", null, null, "null", "null");
+        }
+
+        string text = tweetInfo.tweetContent;
+        Sprite image = tweetInfo.tweetImageContent;
+        Sprite accountImage = accountInfo.accountImage;
         string accountName = accountInfo.accountName;
 
         return (text, image, accountImage, accountName, accountID);

@@ -19,23 +19,25 @@ public class RuleCheckerEditor : Editor
             EditorGUI.LabelField(new Rect(rect.x + 15, rect.y, rect.width - 15, rect.height), "Selected Rules", EditorStyles.boldLabel);
         };
 
-
         reorderableList.drawElementCallback = (Rect rect, int index, bool isActive, bool isFocused) =>
         {
             var element = ruleChecker.selectedRules[index];
-            List<string> ruleNames = new List<string>();
-            foreach (var rule in ruleChecker.availableRules)
+
+            List<string> conditionNames = new List<string>();
+            foreach (var condition in ruleChecker.availableConditions)
             {
-                ruleNames.Add(rule.ruleName);
+                conditionNames.Add(condition.conditionName);
             }
 
             rect.y += 2;
-            int selectedIndex = ruleNames.IndexOf(element.ruleName);
-            selectedIndex = EditorGUI.Popup(new Rect(rect.x, rect.y, rect.width, EditorGUIUtility.singleLineHeight), selectedIndex, ruleNames.ToArray());
-            if (selectedIndex >= 0 && selectedIndex < ruleNames.Count)
+            int conditionSelectedIndex = conditionNames.IndexOf(element.conditionName);
+            conditionSelectedIndex = EditorGUI.Popup(new Rect(rect.x, rect.y, rect.width / 2 - 5, EditorGUIUtility.singleLineHeight), conditionSelectedIndex, conditionNames.ToArray());
+            if (conditionSelectedIndex >= 0 && conditionSelectedIndex < conditionNames.Count)
             {
-                element.ruleName = ruleNames[selectedIndex];
+                element.conditionName = conditionNames[conditionSelectedIndex];
             }
+
+            element.actionFlag = (RuleChecker.ButtonFlag)EditorGUI.EnumPopup(new Rect(rect.x + rect.width / 2 + 5, rect.y, rect.width / 2 - 5, EditorGUIUtility.singleLineHeight), element.actionFlag);
         };
 
         reorderableList.onAddCallback = (ReorderableList list) =>
@@ -43,7 +45,6 @@ public class RuleCheckerEditor : Editor
             ruleChecker.selectedRules.Add(new RuleChecker.RuleReference());
             EditorUtility.SetDirty(ruleChecker); // Mark the ruleChecker as dirty to save changes
         };
-
 
         ruleChecker.InitializeRules();
     }
@@ -54,18 +55,16 @@ public class RuleCheckerEditor : Editor
 
         EditorGUILayout.Space();
         EditorGUI.BeginDisabledGroup(true);
-        EditorGUILayout.ObjectField("Rule Checker", ruleChecker, typeof(RuleChecker), true);
         EditorGUI.EndDisabledGroup();
         EditorGUI.indentLevel--;
 
         // 元のフィールドを表示
         DrawDefaultInspector();
 
-        if (ruleChecker.availableRules == null) return;
+        if (ruleChecker.availableConditions == null) return;
 
         serializedObject.Update();
         reorderableList.DoLayoutList();
         serializedObject.ApplyModifiedProperties();
     }
-
 }

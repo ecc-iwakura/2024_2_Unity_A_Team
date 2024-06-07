@@ -34,6 +34,7 @@ public class AccountInfo
     public string accountID;                // アカウントID
     public string accountName;              // アカウント名
     public Sprite accountImage;             // アカウント画像
+    public bool IsExclusion;
     public List<TweetInfo> tweetList;      // ツイートリスト
 
 
@@ -146,17 +147,37 @@ public class TweetDatabase : MonoBehaviour
         }
     }
 
-
-    // ランダムにツイートIDを取得する関数
     public string GetRandomTweetID()
     {
         if (tweetDictionary.Count > 0)
         {
             List<string> keys = new List<string>(tweetDictionary.Keys); // KeyCollection を List に変換
-            int randomIndex = GenerateRandomIndex(keys.Count); // ランダムなインデックスを生成
-            string randomID = keys[randomIndex];
-            //Debug.Log("ランダムに選ばれたツイートID: " + randomID);
-            return randomID;
+            int maxAttempts = 3; // 最大試行回数を設定
+            int attempt = 0;
+
+            while (attempt < maxAttempts)
+            {
+                int randomIndex = GenerateRandomIndex(keys.Count); // ランダムなインデックスを生成
+                string randomID = keys[randomIndex];
+
+                // 親アカウントが IsExclusion が true の場合は再度試行
+                string parentAccountID = GetParentAccountID(randomID);
+                if (parentAccountID != null)
+                {
+                    AccountInfo parentAccount = GetAccountInfo(parentAccountID);
+                    if (parentAccount != null && parentAccount.IsExclusion)
+                    {
+                        attempt++;
+                        continue;
+                    }
+                }
+
+                //Debug.Log("ランダムに選ばれたツイートID: " + randomID);
+                return randomID;
+            }
+
+            Debug.LogWarning("適切なツイートIDが見つかりませんでした。");
+            return null;
         }
         else
         {

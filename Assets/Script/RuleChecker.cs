@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using TMPro;
 
 public class RuleChecker : MonoBehaviour
 {
@@ -10,9 +11,17 @@ public class RuleChecker : MonoBehaviour
         None = 0,
         Like = 1 << 0,
         Retweet = 1 << 1,
-        LikeAndRetweet = Like | Retweet,
+        LikeRT = Like | Retweet,
         Bookmark = 1 << 2,
-        Report = 1 << 3
+        Report = 1 << 3,
+        Other = 1 << 4
+    }
+
+    public enum Terms
+    {
+        False = 0,
+        OR = 1 << 0,
+        Equal = 1 << 1,
     }
 
     [System.Serializable]
@@ -31,63 +40,77 @@ public class RuleChecker : MonoBehaviour
     }
 
     [System.Serializable]
-    public class Rule
+    public class Condition
     {
-        public string ruleName;
-        public Func<TweetData, ButtonFlag, ButtonFlag> ruleFunction;
+        public string conditionName;
+        public Func<TweetData, Terms> conditionFunction;
 
-        public Rule(string name, Func<TweetData, ButtonFlag, ButtonFlag> function)
+        public Condition(string name, Func<TweetData, Terms> function)
         {
-            ruleName = name;
-            ruleFunction = function;
+            conditionName = name;
+            conditionFunction = function;
         }
     }
 
     [System.Serializable]
     public class RuleReference
     {
-        public string ruleName;
+        public string conditionName;
+        public ButtonFlag actionFlag;
     }
 
-    [SerializeField]
-    public Rule[] availableRules;
 
     public KeywordChecker keywordChecker;
+    public TMP_Text Log;
+    public TMP_Text ruleDisplayText; // 追加: ルールを表示するためのTMPテキスト
+
+    [Tooltip("シーン内の 'Followplus' オブジェクトへの参照。")]
+    public followplus Followplus;
+
+    [SerializeField]
+    public Condition[] availableConditions;
 
     // インスペクターから選択するためのルールリスト
     public List<RuleReference> selectedRules = new List<RuleReference>();
-    private Dictionary<string, Func<TweetData, ButtonFlag, ButtonFlag>> ruleFunctions = new Dictionary<string, Func<TweetData, ButtonFlag, ButtonFlag>>();
+    private Dictionary<string, Func<TweetData, Terms>> conditionFunctions = new Dictionary<string, Func<TweetData, Terms>>();
 
     public void InitializeRules()
     {
-        availableRules = new Rule[]
+        availableConditions = new Condition[]
         {
-            new Rule("フォローをしてたら", LikeCheck),
-            new Rule("１０分以内なら", RetweetCheck),
-            new Rule("キーワードがあったら", ReportCheck),
-            new Rule("何もなかったら", BookmarkCheck),
+            new Condition("フォローをしていたら", FollowCondition),
+            new Condition("１０分以内なら", TimeCondition),
+            new Condition("「キーワード」があったらそれ以外を押さずに", KeywordCondition)
         };
 
-        // 利用可能なルールを辞書に登録
-        foreach (var rule in availableRules)
+        // 利用可能な条件を辞書に登録
+        foreach (var condition in availableConditions)
         {
-            // ルール名がすでに存在するかどうかをチェック
-            if (!ruleFunctions.ContainsKey(rule.ruleName))
+            if (!conditionFunctions.ContainsKey(condition.conditionName))
             {
-                // 辞書にルールを登録
-                ruleFunctions.Add(rule.ruleName, rule.ruleFunction);
+                conditionFunctions.Add(condition.conditionName, condition.conditionFunction);
             }
             else
             {
-                // 既に同じ名前のルールが存在する場合は警告を出力
-                Debug.LogWarning("ルールがすでに存在します: " + rule.ruleName);
+                Debug.LogWarning("条件がすでに存在します: " + condition.conditionName);
             }
         }
+
+        DisplaySelectedRules();
     }
 
     private void Start()
     {
         if (keywordChecker == null) { Debug.LogWarning("キーワードチェッカーがありません！"); }
+
+        Followplus = GameObject.Find("FollowPlus").GetComponent<followplus>();
+        if (Followplus == null)
+        {
+
+            Debug.LogError("Followplusが見つかりませんでした！");
+        }
+
+        InitializeRules();
     }
 
     public ButtonFlag ApplyRules(TweetData tweetData)
@@ -102,14 +125,30 @@ public class RuleChecker : MonoBehaviour
 
         foreach (var selectedRule in selectedRules)
         {
-            if (ruleFunctions.ContainsKey(selectedRule.ruleName))
+            if (string.IsNullOrEmpty(selectedRule.conditionName))
             {
-                // 選択されたルールの関数を取得し、元の結果と tweetData を渡して適用する
-                result = ruleFunctions[selectedRule.ruleName](tweetData, result);
+                Debug.LogWarning("選択されたルールに条件名がありません！");
+                continue; // ルールに条件名がない場合、次のルールに進む
+            }
+
+            if (conditionFunctions.ContainsKey(selectedRule.conditionName))
+            {
+
+                Terms terms = conditionFunctions[selectedRule.conditionName](tweetData);
+
+                // 選択された条件の関数を取得し、条件が成立する場合のみアクションを適用する
+                if (terms == Terms.OR)
+                {
+                    result |= selectedRule.actionFlag;
+                }
+                else if(terms == Terms.Equal)
+                {
+                    result = selectedRule.actionFlag;
+                }
             }
             else
             {
-                Debug.LogWarning("ルールが見つかりません: " + selectedRule.ruleName);
+                Debug.LogWarning("条件が見つかりません: " + selectedRule.conditionName);
             }
         }
 
@@ -117,43 +156,124 @@ public class RuleChecker : MonoBehaviour
         return result;
     }
 
-    // 例としてのルール関数
-    private ButtonFlag LikeCheck(TweetData tweetData, ButtonFlag original)
+    public void CheckAction(ButtonFlag correctAction, bool shouldLike, bool shouldRetweet, bool shouldBookmark, bool shouldReport)
     {
-        if (tweetData.someBool)
+
+        ButtonFlag userAction = ButtonFlag.Other;
+
+        // ユーザーの行動を設定
+        if (!shouldLike && !shouldRetweet && !shouldBookmark && !shouldReport)
         {
-            return ButtonFlag.Like;
+            userAction = ButtonFlag.None;
         }
-        return original; // 元々の値を返す
+        else if (shouldLike && !shouldRetweet && !shouldBookmark && !shouldReport)
+        {
+            userAction = ButtonFlag.Like;
+        }
+        else if (!shouldLike && shouldRetweet && !shouldBookmark && !shouldReport)
+        {
+            userAction = ButtonFlag.Retweet;
+        }
+        else if (shouldLike && shouldRetweet && !shouldBookmark && !shouldReport)
+        {
+            userAction = ButtonFlag.LikeRT;
+        }
+        else if (!shouldLike && !shouldRetweet && shouldBookmark && !shouldReport)
+        {
+            userAction = ButtonFlag.Bookmark;
+        }
+        else if (!shouldLike && !shouldRetweet && !shouldBookmark && shouldReport)
+        {
+            userAction = ButtonFlag.Report;
+        }
+
+
+        bool isCorrect = userAction == correctAction;
+
+        string userActionText = userAction.ToString();
+        string correctActionText = correctAction.ToString();
+        string statusText = isCorrect ? "<color=green><b>TRUE!</b></color>" : "<color=red><b>FALSE!</b></color>";
+        string logMessage = $"{userActionText} == {correctActionText} => {statusText}";
+        string finalLogMessage = $"{System.DateTime.Now} - {logMessage}";
+
+        Debug.LogWarning(finalLogMessage);
+
+        UpdateLog(logMessage);
+
+        if (isCorrect)
+        {
+            Followplus.CorrectAction();
+        }
+        else
+        {
+            Followplus.IncorrectAction();
+        }
+
+
     }
 
-    private ButtonFlag RetweetCheck(TweetData tweetData, ButtonFlag original)
+    private void UpdateLog(string newLog)
     {
-        if (tweetData.someInt <= 10)
+        string[] currentLog = Log.text.Split('\n');
+        List<string> updatedLog = new List<string>(currentLog);
+
+        updatedLog.Add(newLog);
+        if (updatedLog.Count > 10)
         {
-            return ButtonFlag.Retweet;
+            updatedLog.RemoveAt(0);
         }
-        return original; // 元々の値を返す
+
+        Log.text = string.Join("\n", updatedLog);
     }
 
-    private ButtonFlag ReportCheck(TweetData tweetData, ButtonFlag original)
+    public void AddRule(string conditionName, ButtonFlag actionFlag)
     {
-        bool IsKey = keywordChecker.CheckForKeyword(tweetData.someString);
-
-        if (IsKey)
+        foreach (var condition in availableConditions)
         {
-            return ButtonFlag.Like;
+            if (condition.conditionName == conditionName)
+            {
+                foreach (var rule in selectedRules)
+                {
+                    if (rule.conditionName == conditionName)
+                    {
+                        Debug.LogWarning("選択された条件名は既に選択されています: " + conditionName);
+                        return;
+                    }
+                }
+
+                // 条件名に対応するルールが見つかった場合、新しいルールを作成して追加
+                selectedRules.Add(new RuleReference { conditionName = conditionName, actionFlag = actionFlag });
+                DisplaySelectedRules(); // ルールを再表示
+                return;
+            }
         }
 
-        return original; // 元々の値を返す
+        Debug.LogWarning("条件名に対応する関数が見つかりませんでした: " + conditionName);
+    }
+    // 選択されたルールを表示するメソッド
+    [ContextMenu("Rules表示！")]
+    public void DisplaySelectedRules()
+    {
+        string rulesText = "";
+        foreach (var rule in selectedRules)
+        {
+            rulesText += $" {rule.conditionName}{rule.actionFlag}\n";
+        }
+        ruleDisplayText.text = rulesText;
     }
 
-    private ButtonFlag BookmarkCheck(TweetData tweetData, ButtonFlag original)
+    private Terms FollowCondition(TweetData tweetData)
     {
-        if(original == ButtonFlag.None) {
+        return tweetData.someBool ? Terms.OR : Terms.False;
+    }
 
-            return ButtonFlag.Bookmark;
-        }
-        return original; // 元々の値を返す
+    private Terms TimeCondition(TweetData tweetData)
+    {
+        return tweetData.someInt <= 10 ? Terms.OR : Terms.False;
+    }
+
+    private Terms KeywordCondition(TweetData tweetData)
+    {
+        return keywordChecker.CheckForKeyword(tweetData.someString) ? Terms.Equal : Terms.False;
     }
 }

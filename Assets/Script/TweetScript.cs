@@ -25,8 +25,7 @@ public class TweetScript : MonoBehaviour
 
     [Space(10)] // 10のスペースを追加
 
-    [Tooltip("シーン内の 'Followplus' オブジェクトへの参照。")]
-    public followplus Followplus;
+
     [Tooltip("シーン内の 'RuleChecker' オブジェクトへの参照。")]
     public RuleChecker ruleChecker;
     public bool isFollowing;            // フォローしているかどうか
@@ -73,11 +72,6 @@ public class TweetScript : MonoBehaviour
     void Start()
     {
         buttonFlag = ButtonFlag.None; // あなたのコードに合わせて初期化してください
-        Followplus = GameObject.Find("FollowPlus").GetComponent<followplus>();
-        if (Followplus == null) {
-
-            Debug.LogError("Followplusが見つかりませんでした！"); 
-        }
 
         if (ruleChecker == null) { 
             
@@ -163,7 +157,7 @@ public class TweetScript : MonoBehaviour
         if(!shouldReport)
         {
             shouldReport = true;
-            CheckAction(buttonFlag);
+            //ruleChecker.CheckAction(buttonFlag, shouldLike, shouldRetweet, shouldBookmark, shouldReport); //現状ここはおいておく
         }
     }
 
@@ -193,63 +187,7 @@ public class TweetScript : MonoBehaviour
 
     public void TweetCheck()
     {
-        CheckAction(buttonFlag);
-    }
-
-    private void CheckAction(ButtonFlag action)
-    {
-        bool isCorrect = false;
-        string logText = "";
-
-        switch (action)
-        {
-            case ButtonFlag.Like:
-                isCorrect = shouldLike && !shouldRetweet && !shouldBookmark && !shouldReport;
-                logText = "Like";
-                break;
-            case ButtonFlag.Retweet:
-                isCorrect = shouldRetweet && !shouldLike && !shouldBookmark && !shouldReport;
-                logText = "Retweet";
-                break;
-            case ButtonFlag.Bookmark:
-                isCorrect = shouldBookmark && !shouldLike && !shouldRetweet && !shouldReport;
-                logText = "Bookmark";
-                break;
-            case ButtonFlag.Report:
-                isCorrect = shouldReport;
-                logText = "Report";
-                break;
-            case ButtonFlag.LikeAndRetweet:
-                isCorrect = shouldLike && shouldRetweet && !shouldBookmark && !shouldReport;
-                logText = "Like&Retweet";
-                break;
-        }
-
-        string statusText = isCorrect ? "<b>正解！</b>" : "<b>不正解！</b>";
-        string buttonState = $" {(shouldRetweet ? "O" : "X")}{(shouldLike ? "O" : "X")}{(shouldBookmark ? "O" : "X")}{(shouldReport ? "O" : "X")}";
-        string logMessage = $"{buttonState} => {logText} => {statusText}";
-        string finalLogMessage = $"{System.DateTime.Now} - {logMessage}";
-
-        if (isCorrect)
-        {
-            Debug.LogWarning($"<color=green>{finalLogMessage}</color>");
-        }
-        else
-        {
-            Debug.LogWarning($"<color=red>{finalLogMessage}</color>");
-        }
-
-
-
-
-        if ( isCorrect )
-        {
-            Followplus.CorrectAction();
-        }
-        else
-        {
-            Followplus.IncorrectAction();
-        }
+        ruleChecker.CheckAction(buttonFlag, shouldLike, shouldRetweet, shouldBookmark, shouldReport);
     }
 
 

@@ -31,7 +31,7 @@ MonoBehaviour:
   active: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.23
+    m_Value: -1
   xMultiplier:
     m_OverrideState: 1
     m_Value: 1
@@ -137,12 +137,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 221518ef91623a7438a71fef23660601, type: 3}
   m_Name: WhiteBalance
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   temperature:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: -43
   tint:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: -43
 --- !u!114 &-2755095722243503154
 MonoBehaviour:
@@ -159,10 +159,10 @@ MonoBehaviour:
   active: 1
   distance:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.225
   cropToFit:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.272
 --- !u!114 &-616463916749304376
 MonoBehaviour:
   m_ObjectHideFlags: 3
