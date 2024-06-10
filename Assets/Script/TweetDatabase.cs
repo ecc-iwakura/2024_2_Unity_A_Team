@@ -152,7 +152,7 @@ public class TweetDatabase : MonoBehaviour
         if (tweetDictionary.Count > 0)
         {
             List<string> keys = new List<string>(tweetDictionary.Keys); // KeyCollection ‚ğ List ‚É•ÏŠ·
-            int maxAttempts = 3; // Å‘ås‰ñ”‚ğİ’è
+            int maxAttempts = 10; // Å‘ås‰ñ”‚ğİ’è
             int attempt = 0;
 
             while (attempt < maxAttempts)
