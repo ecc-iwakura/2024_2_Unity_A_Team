@@ -823,7 +823,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 85.29, y: -120.87}
+  m_AnchoredPosition: {x: 100, y: -95.09}
   m_SizeDelta: {x: 577.14, y: 72.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &863729699
@@ -846,7 +846,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u4F5C\u6210\u3059\u308B\u3068\u5229\u7528\u898F\u7D04\u3001\u30D7\u30E9\u30A4\u30D0\u30B7\u30FC\u30DC\u30EA\u30B7\u30FC\u3001Cookie\r\n\u306E\u4F7F\u7528\u306B\u540C\u610F\u3057\u305F\u3082\u306E\u3068\u307F\u306A\u3055\u308C\u307E\u3059"
+  m_text: "\u203B\u4F5C\u6210\u3059\u308B\u3068\u5229\u7528\u898F\u7D04\u3001\u30D7\u30E9\u30A4\u30D0\u30B7\u30FC\u30DC\u30EA\u30B7\u30FC\u3001\n
+    Cookie\u306E\u4F7F\u7528\u306B\u540C\u610F\u3057\u305F\u3082\u306E\u3068\u307F\u306A\u3055\u308C\u307E\u3059\u3002"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 817d872a293a9bd4aa1813676fabe804, type: 2}
   m_sharedMaterial: {fileID: -2458743268801026041, guid: 817d872a293a9bd4aa1813676fabe804, type: 2}
@@ -873,8 +874,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 17.7
-  m_fontSizeBase: 17.7
+  m_fontSize: 19.5
+  m_fontSizeBase: 19.5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -909,7 +910,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 79.10126, w: 0}
+  m_margin: {x: 0, y: 0, z: 33.534775, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

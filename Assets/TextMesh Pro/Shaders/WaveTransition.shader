@@ -6,7 +6,7 @@ Shader "Custom/WaveTransition"
         _WaveAmplitude ("Wave Amplitude", Float) = 1.0
         _WaveFrequency ("Wave Frequency", Float) = 10.0
         _Progress ("Progress", Float) = 0.0
-        _WaveColor ("Wave Color", Color) = (60,1,47,1)
+        _WaveColor ("Wave Color", Color) = (0,0,0,0)
     }
     SubShader
     {
