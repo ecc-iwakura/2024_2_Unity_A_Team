@@ -472,6 +472,7 @@ MonoBehaviour:
   - accountID: test
     accountName: "\u30C6\u30B9\u30C8\u30A2\u30AB\u30A6\u30F3\u30C8"
     accountImage: {fileID: 21300000, guid: 0016af889a7cdb3418d558d1e5f174c2, type: 3}
+    IsExclusion: 0
     tweetList:
     - tweetContent: "\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01"
       tweetImageContent: {fileID: 0}
@@ -488,6 +489,7 @@ MonoBehaviour:
   - accountID: TestTest
     accountName: "\u30C6\u30B9\u30C8\u30A2\u30AB\u30A6\u30F3\u30C8\uFF12"
     accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
+    IsExclusion: 0
     tweetList:
     - tweetContent: "\u3053\u308C\u3082\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01"
       tweetImageContent: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
@@ -846,8 +848,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u203B\u4F5C\u6210\u3059\u308B\u3068\u5229\u7528\u898F\u7D04\u3001\u30D7\u30E9\u30A4\u30D0\u30B7\u30FC\u30DC\u30EA\u30B7\u30FC\u3001\n
-    Cookie\u306E\u4F7F\u7528\u306B\u540C\u610F\u3057\u305F\u3082\u306E\u3068\u307F\u306A\u3055\u308C\u307E\u3059\u3002"
+  m_text: "\u203B\u4F5C\u6210\u3059\u308B\u3068\u5229\u7528\u898F\u7D04\u3001\u30D7\u30E9\u30A4\u30D0\u30B7\u30FC\u30DC\u30EA\u30B7\u30FC\u3001\nCookie\u306E\u4F7F\u7528\u306B\u540C\u610F\u3057\u305F\u3082\u306E\u3068\u307F\u306A\u3055\u308C\u307E\u3059\u3002"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 817d872a293a9bd4aa1813676fabe804, type: 2}
   m_sharedMaterial: {fileID: -2458743268801026041, guid: 817d872a293a9bd4aa1813676fabe804, type: 2}
@@ -1049,6 +1050,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keywords:
   - "\u8A50\u6B3A"
+  KeywordDisplayText: {fileID: 0}
 --- !u!4 &950172717
 Transform:
   m_ObjectHideFlags: 0
@@ -1673,7 +1675,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1433733943}
   - component: {fileID: 1433733947}
-  - component: {fileID: 1433733946}
   - component: {fileID: 1433733945}
   - component: {fileID: 1433733944}
   m_Layer: 5
@@ -1749,17 +1750,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1433733946}
-        m_TargetAssemblyTypeName: WaveTransition, Assembly-CSharp
-        m_MethodName: StartTransition
-        m_Mode: 1
+      - m_Target: {fileID: 1586261173}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1433733945
 MonoBehaviour:
@@ -1791,21 +1792,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1433733946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1433733942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b59e901247711a143b7e4173b4f99623, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transitionMaterial: {fileID: 2100000, guid: 0e3411e4b279b0d459127f9e44e7d449, type: 2}
-  duration: 1
-  waveColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!222 &1433733947
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1844,6 +1830,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followers: 0
+  maxFollowers: 0
   minIncreaseRate: 0.05
   maxIncreaseRate: 0.1
   minFixedIncrease: 1
@@ -1951,7 +1938,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1586261174
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1979,7 +1966,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1586261173}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5bada5a30a7eab4e83c0cf4f176d759, type: 3}
   m_Name: 
@@ -1991,6 +1978,7 @@ MonoBehaviour:
   keywordChecker: {fileID: 950172716}
   maxTweets: 5
   tweetObjectList: []
+  stackTweetIDs: []
   tweetCooldown: 3.5
   tweetSpeedTime: 1
 --- !u!1 &1617694667
@@ -2165,7 +2153,6 @@ GameObject:
   - component: {fileID: 1826542915}
   - component: {fileID: 1826542917}
   - component: {fileID: 1826542916}
-  - component: {fileID: 1826542919}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2272,19 +2259,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1826542919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1826542914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ea04e74593341b4fb11e01b4f779799, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transitionMaterial: {fileID: 2100000, guid: 0e3411e4b279b0d459127f9e44e7d449, type: 2}
 --- !u!1 &1888792035
 GameObject:
   m_ObjectHideFlags: 0
