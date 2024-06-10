@@ -205,16 +205,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec5d6abf3a91ea249ae22074fe1ef397, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCanvasRect: {fileID: 1205128903}
   cursorImage: {fileID: 0}
   hotSpot: {x: 0, y: 0}
   offsetX: 1
   offsetY: 1
-  followSpeed: 5
+  followSpeed: 30
   clickedFollowSpeed: 30
-  minXmaxX: {x: 4, y: 5}
-  minYmaxY: {x: -4.5, y: 4.5}
-  MouseMin: {x: 336.7, y: 16.6}
-  MouseMax: {x: 545.2, y: 368.1}
+  minXmaxX: {x: -16570, y: 17374}
+  minYmaxY: {x: 14066.9, y: 28654}
+  MouseMin: {x: 11306.2, y: 19251}
+  MouseMax: {x: -11014, y: -18763.3}
 --- !u!4 &169839210
 Transform:
   m_ObjectHideFlags: 0
@@ -222,14 +223,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 169839207}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.1, y: 2.29, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 457.49762, y: 255.52917, z: 0}
+  m_LocalScale: {x: 111.584785, y: 111.584785, z: 111.584785}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 640657900}
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 1205128903}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &491228250
 GameObject:
@@ -756,6 +757,7 @@ RectTransform:
   - {fileID: 491228251}
   - {fileID: 1003298270}
   - {fileID: 1768245024}
+  - {fileID: 169839210}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

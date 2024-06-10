@@ -11,4 +11,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/rinto_Main2.unity
+    guid: 42cc073574aa16148b6fb8de7090bc63
+  - enabled: 1
+    path: Assets/Scenes/rintoMAIN.unity
+    guid: 92ef3e1a2aace5043a68981c3c6d0083
+  - enabled: 1
+    path: Assets/Scenes/Ogura_Main.unity
+    guid: b756f4d42734a6e41821e15729aac3cc
+  - enabled: 1
+    path: Assets/Scenes/Yuuto_Main.unity
+    guid: 220f384d300ee554c99d0fdb73f65305
   m_configObjects: {}
