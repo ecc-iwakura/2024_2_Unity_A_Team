@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
 using static RuleChecker;
+using System.Collections.Generic;
 
 public class TweetScript : MonoBehaviour
 {
@@ -28,7 +29,9 @@ public class TweetScript : MonoBehaviour
 
     [Tooltip("シーン内の 'RuleChecker' オブジェクトへの参照。")]
     public RuleChecker ruleChecker;
+
     public bool isFollowing;            // フォローしているかどうか
+    public bool isImage;
     public float minutesSincePosted;    // 投稿されてからの時間（分）
     public bool IsKeyword; //キーワードが含まれているかどうか
 
@@ -45,10 +48,11 @@ public class TweetScript : MonoBehaviour
 
     [SerializeField]
     private ButtonFlag buttonFlag = ButtonFlag.None;
+    public List<RuleReference> Rocal_selectedRules = new List<RuleReference>();
 
 
     // Method to update the tweet content
-    public void UpdateTweet(string newText, Sprite newImage, Sprite newAccountImage, string newAccountName, string newAccountID ,bool isKeyword)
+    public void UpdateTweet(string newText, Sprite newImage, Sprite newAccountImage, string newAccountName, string newAccountID ,bool isKeyword, List<RuleReference> selectedRules)
     {
         // Update the tweet data fields
         tweetContent = newText;
@@ -62,6 +66,8 @@ public class TweetScript : MonoBehaviour
         shouldRetweet = false;
         shouldBookmark = false;
         shouldReport = false;
+
+        Rocal_selectedRules = selectedRules;
 
         onReset.Invoke();
         // Update the UI elements
@@ -181,14 +187,14 @@ public class TweetScript : MonoBehaviour
             ruleChecker = GameObject.Find("RuleChecker").GetComponent<RuleChecker>();
         }
 
-        TweetData tweetData = new TweetData(isFollowing, (int)minutesSincePosted, tweetContent);
-        buttonFlag = ruleChecker.ApplyRules(tweetData);
+        isImage = tweetImageContent != null;
+
+        TweetData tweetData = new TweetData(isFollowing,isImage, (int)minutesSincePosted, tweetContent);
+        buttonFlag = ruleChecker.ApplyRules(tweetData, Rocal_selectedRules);
     }
 
     public void TweetCheck()
     {
         ruleChecker.CheckAction(buttonFlag, shouldLike, shouldRetweet, shouldBookmark, shouldReport);
     }
-
-
 }

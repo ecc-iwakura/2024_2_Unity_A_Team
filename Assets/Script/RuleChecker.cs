@@ -27,15 +27,18 @@ public class RuleChecker : MonoBehaviour
     [System.Serializable]
     public class TweetData
     {
-        public bool someBool;
-        public int someInt;
-        public string someString;
+        public bool IsFollow;
+        public bool IsImage;
+        public int Time;
+        public string Text;
 
-        public TweetData(bool b, int i, string s)
+
+        public TweetData(bool b,bool i,int t, string s)
         {
-            someBool = b;
-            someInt = i;
-            someString = s;
+            IsFollow = b;
+            IsImage = i;
+            Time = t;
+            Text = s;
         }
     }
 
@@ -80,7 +83,8 @@ public class RuleChecker : MonoBehaviour
         {
             new Condition("フォローをしていたら", FollowCondition),
             new Condition("１０分以内なら", TimeCondition),
-            new Condition("「キーワード」があったらそれ以外を押さずに", KeywordCondition)
+            new Condition("「キーワード」があったらそれ以外を押さずに", KeywordCondition),
+            new Condition("画像があったら",ImageCondition)
         };
 
         // 利用可能な条件を辞書に登録
@@ -113,7 +117,7 @@ public class RuleChecker : MonoBehaviour
         InitializeRules();
     }
 
-    public ButtonFlag ApplyRules(TweetData tweetData)
+    public ButtonFlag ApplyRules(TweetData tweetData, List<RuleReference> selectedRules)
     {
         if (tweetData == null)
         {
@@ -133,7 +137,6 @@ public class RuleChecker : MonoBehaviour
 
             if (conditionFunctions.ContainsKey(selectedRule.conditionName))
             {
-
                 Terms terms = conditionFunctions[selectedRule.conditionName](tweetData);
 
                 // 選択された条件の関数を取得し、条件が成立する場合のみアクションを適用する
@@ -141,7 +144,7 @@ public class RuleChecker : MonoBehaviour
                 {
                     result |= selectedRule.actionFlag;
                 }
-                else if(terms == Terms.Equal)
+                else if (terms == Terms.Equal)
                 {
                     result = selectedRule.actionFlag;
                 }
@@ -152,7 +155,7 @@ public class RuleChecker : MonoBehaviour
             }
         }
 
-        Debug.Log("ルール結果: " + result.ToString() + ", Bool:" + tweetData.someBool + ", Int:" + tweetData.someInt);
+        Debug.Log("ルール結果: " + result.ToString() + ", Bool:" + tweetData.IsFollow + ", Int:" + tweetData.Time);
         return result;
     }
 
@@ -243,10 +246,12 @@ public class RuleChecker : MonoBehaviour
 
                 // 条件名に対応するルールが見つかった場合、新しいルールを作成して追加
                 selectedRules.Add(new RuleReference { conditionName = conditionName, actionFlag = actionFlag });
+                Debug.LogWarning("新しくルールを追加しました！" + conditionName + actionFlag);
                 DisplaySelectedRules(); // ルールを再表示
                 return;
             }
         }
+
 
         Debug.LogWarning("条件名に対応する関数が見つかりませんでした: " + conditionName);
     }
@@ -265,16 +270,21 @@ public class RuleChecker : MonoBehaviour
 
     private Terms FollowCondition(TweetData tweetData)
     {
-        return tweetData.someBool ? Terms.OR : Terms.False;
+        return tweetData.IsFollow ? Terms.OR : Terms.False;
     }
 
     private Terms TimeCondition(TweetData tweetData)
     {
-        return tweetData.someInt <= 10 ? Terms.OR : Terms.False;
+        return tweetData.Time <= 10 ? Terms.OR : Terms.False;
     }
 
     private Terms KeywordCondition(TweetData tweetData)
     {
-        return keywordChecker.CheckForKeyword(tweetData.someString) ? Terms.Equal : Terms.False;
+        return keywordChecker.CheckForKeyword(tweetData.Text) ? Terms.Equal : Terms.False;
+    }
+
+    private Terms ImageCondition(TweetData tweetData)
+    {
+        return tweetData.IsImage ? Terms.OR : Terms.False;
     }
 }

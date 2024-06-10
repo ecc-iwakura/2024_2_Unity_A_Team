@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using static RuleChecker;
+using System;
 
 [System.Serializable]
 public class TweetObjectData
@@ -24,6 +26,21 @@ public class TweetObjectData
     }
 }
 
+[System.Serializable]
+public class AddRuleTweet
+{
+    public string tweetID;
+    public string ruleFunctionName;
+    public ButtonFlag ruleFlag;
+
+    public AddRuleTweet(string tweetID, string ruleFunctionName, ButtonFlag ruleFlag)
+    {
+        this.tweetID = tweetID;
+        this.ruleFunctionName = ruleFunctionName;
+        this.ruleFlag = ruleFlag;
+    }
+}
+
 
 public class TimelineManager : MonoBehaviour
 {
@@ -32,13 +49,14 @@ public class TimelineManager : MonoBehaviour
     public Transform spawnPoint;           // スポーン地点
     public TweetDatabase tweetDatabase;         // タイムラインのRectTransform
     public KeywordChecker keywordChecker;
+    public RuleChecker ruleChecker;
     public int maxTweets = 10;             // 最大ツイート数
 
     [SerializeField]
     private List<TweetObjectData> tweetObjectList = new List<TweetObjectData>(); // ツイートオブジェクトとTweetScriptのセットのリスト
 
 
-    public List<string> stackTweetIDs = new List<string>(); // スタックツイートIDリスト
+    public List<AddRuleTweet> stackTweetIDs = new List<AddRuleTweet>(); // スタックツイートIDリスト
 
     private float currentYPosition = 0f;   // 現在のY位置
     public float tweetCooldown = 3f;       // ツイートの間隔（秒）
@@ -79,9 +97,18 @@ public class TimelineManager : MonoBehaviour
         if (stackTweetIDs.Count > 0)
         {
             // スタックツイートIDリストにツイートIDがある場合はそのツイートIDを使ってツイートを生成
-            string tweetID = stackTweetIDs[0]; // リストの先頭からツイートIDを取得
+            AddRuleTweet stack = stackTweetIDs[0];
+            string tweetID = stack.tweetID; // リストの先頭からツイートIDを取得
             stackTweetIDs.RemoveAt(0); // リストから削除
             (text, image, accountImage, accountName, accountID) = GenerateTweetData(tweetID);
+
+            if (!string.IsNullOrEmpty(stack.ruleFunctionName) && stack.ruleFlag != null)
+            {
+                UnityEngine.Debug.LogError($"到達！{stack.ruleFunctionName} {stack.ruleFlag}");
+                ruleChecker.AddRule(stack.ruleFunctionName, stack.ruleFlag);
+            }
+
+
         }
         else
         {
@@ -106,8 +133,10 @@ public class TimelineManager : MonoBehaviour
             tweetRect = newTweet.GetComponent<RectTransform>();
 
             isKeyword = keywordChecker.CheckForKeyword(text);
+
+            
             // ツイートの内容を設定
-            tweetScript.UpdateTweet(text, image, accountImage, accountName, accountID, isKeyword);
+            tweetScript.UpdateTweet(text, image, accountImage, accountName, accountID, isKeyword, ruleChecker.selectedRules);
 
             // ツイートオブジェクトとTweetScriptのセットをリストに追加
             tweetObjectList.Add(new TweetObjectData(newTweet, tweetScript, tweetRect));
@@ -124,7 +153,7 @@ public class TimelineManager : MonoBehaviour
 
             isKeyword = keywordChecker.CheckForKeyword(text);
             // ツイートの内容を更新
-            oldTweetObjectData.tweetScript.UpdateTweet(text, image, accountImage, accountName, accountID, isKeyword);
+            oldTweetObjectData.tweetScript.UpdateTweet(text, image, accountImage, accountName, accountID, isKeyword, ruleChecker.selectedRules);
 
             oldTweetObjectData.tweetObject.transform.rotation = timeline.rotation;
             // 再利用するツイートオブジェクトの位置を設定
@@ -146,7 +175,6 @@ public class TimelineManager : MonoBehaviour
         StartCoroutine(MoveTimeline(tweetHeight));
     }
 
-    // コルーチンでタイムラインをゆっくり下に移動
     // コルーチンでタイムラインをゆっくり下に移動
     private IEnumerator MoveTimeline(float tweetHeight)
     {

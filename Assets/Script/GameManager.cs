@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
 using static RuleChecker;
+using static TimelineManager;
 
 public class GameManager : MonoBehaviour
 {
@@ -67,28 +68,19 @@ public class GameManager : MonoBehaviour
         timelineManager.tweetCooldown -= eventInfo.tweetCooldownReduction;
         timelineManager.tweetSpeedTime -= eventInfo.tweetSpeedReduction;
 
-        // スタックツイートIDの追加
-        timelineManager.stackTweetIDs.Add(eventInfo.tweetIDToAdd);
-
-        StartCoroutine(AddRuleWithDelay(eventInfo.ruleFunctionName, eventInfo.actionFlag, 10f));
+        // AddRuleTweet オブジェクトを作成して追加
+        AddRuleTweet addRuleTweet = new AddRuleTweet(eventInfo.tweetIDToAdd, eventInfo.ruleFunctionName, eventInfo.actionFlag);
+        timelineManager.stackTweetIDs.Add(addRuleTweet);
 
         Debug.Log($"Event executed: {eventInfo.ruleFunctionName} added with action {eventInfo.actionFlag}");
     }
 
     public void GameOver()
     {
-
+        
     }
 
-    private IEnumerator AddRuleWithDelay(string ruleFunctionName, ButtonFlag actionFlag, float delay)
-    {
-        yield return new WaitForSeconds(delay); // 遅延時間待機
 
-        // ルールの追加
-        ruleChecker.AddRule(ruleFunctionName, actionFlag);
-
-        Debug.Log($"Event executed with delay: {ruleFunctionName} added with action {actionFlag}");
-    }
 }
 
 
