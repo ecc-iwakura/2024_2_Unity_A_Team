@@ -174,14 +174,17 @@
 
 using UnityEngine;
 using System.Text;
+using TMPro;
 
 public class KeywordChecker : MonoBehaviour
 {
     public string[] keywords; // 判定するキーワードの配列
+    public TMP_Text KeywordDisplayText;
 
     // ツイート文にキーワードが含まれているかどうかを判定するメソッド
     public bool CheckForKeyword(string tweetContent)
     {
+        DisplayKeyword();
         // ツイート文を小文字に変換し、ひらがなに変換
         string normalizedTweetContent = ToHiragana(tweetContent.ToLower());
 
@@ -230,6 +233,17 @@ public class KeywordChecker : MonoBehaviour
     void Start()
     {
         TestCheckForKeyword();
+    }
+
+    [ContextMenu("キーワード表示")]
+    public void DisplayKeyword()
+    {
+        string KeywordText = "";
+        foreach (var keyword in keywords)
+        {
+            KeywordText += $" {keyword}\n"; // ここで keyword を直接使用する
+        }
+        KeywordDisplayText.text = KeywordText;
     }
 
     // テスト用のメソッド

@@ -90,7 +90,7 @@ using TMPro; // TextMeshProを使うために必要
 public class followplus : MonoBehaviour
 {
     public int followers = 0; // フォロワー数を管理する変数
-    private int maxFollowers = 0; // 最高到達点のフォロワー数
+    public int maxFollowers = 0; // 最高到達点のフォロワー数
     private bool firstCorrectAction = true; // 初めて正しい行動が行われたかどうかを管理するフラグ
 
     [Header("フォロワー増加設定")]

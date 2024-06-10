@@ -47,8 +47,12 @@ public class TweetDatabaseEditor : Editor
         {
             foreach (var tweetInfo in accountInfo.tweetList)
             {
-                // UUID形式のツイートIDを生成する
-                tweetInfo.tweetID = Guid.NewGuid().ToString("N");
+                // ツイートIDがまだ入力されていない場合のみ新しいIDを生成
+                if (string.IsNullOrEmpty(tweetInfo.tweetID))
+                {
+                    // UUID形式のツイートIDを生成する
+                    tweetInfo.tweetID = Guid.NewGuid().ToString("N");
+                }
             }
         }
     }

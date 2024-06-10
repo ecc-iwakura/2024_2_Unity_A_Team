@@ -43,6 +43,14 @@ public class finger : MonoBehaviour
         {
             FollowMouse();
         }
+
+        float distance = Vector3.Distance(transform.position, targetPosition);
+        float targetRotation = distance * 8f;
+
+        // 現在の回転角度と目標の回転角度の間を線形補間して滑らかな回転を実現
+        Quaternion currentRotation = transform.rotation;
+        Quaternion targetQuaternion = Quaternion.Euler(0f, 0f, targetRotation);
+        transform.rotation = Quaternion.Lerp(currentRotation, targetQuaternion, Time.deltaTime * followSpeed);
     }
 
     // マウス入力を処理する
