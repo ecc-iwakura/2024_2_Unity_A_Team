@@ -77,8 +77,8 @@ public class finger : MonoBehaviour
         Vector2 localMousePosition = GetMouseCanvasPosition();
 
         // キャンバスのローカル座標に変換したマウスの範囲を取得
-        Vector3 canvasMouseMin = mainCanvasRect.InverseTransformPoint(Camera.main.ScreenToWorldPoint(new Vector3(MouseMin.x, MouseMin.y, -Camera.main.transform.position.z)));
-        Vector3 canvasMouseMax = mainCanvasRect.InverseTransformPoint(Camera.main.ScreenToWorldPoint(new Vector3(MouseMax.x, MouseMax.y, -Camera.main.transform.position.z)));
+        Vector2 canvasMouseMin = mainCanvasRect.InverseTransformPoint(Camera.main.ScreenToWorldPoint(new Vector3(MouseMin.x, MouseMin.y, Camera.main.WorldToScreenPoint(transform.position).z)));
+        Vector2 canvasMouseMax = mainCanvasRect.InverseTransformPoint(Camera.main.ScreenToWorldPoint(new Vector3(MouseMax.x, MouseMax.y, Camera.main.WorldToScreenPoint(transform.position).z)));
 
         // キャンバスのスケールを取得してギズモを拡大縮小
         Vector3 canvasScale = mainCanvasRect.localScale;
@@ -88,12 +88,12 @@ public class finger : MonoBehaviour
         canvasMouseMax.y *= canvasScale.y;
 
         // キャンバスのローカル座標を基準にして線を描画
-        Vector3 bottomLeft = mainCanvasRect.TransformPoint(canvasMouseMin);
-        Vector3 topRight = mainCanvasRect.TransformPoint(canvasMouseMax);
+        Vector2 bottomLeft = mainCanvasRect.TransformPoint(canvasMouseMin);
+        Vector2 topRight = mainCanvasRect.TransformPoint(canvasMouseMax);
 
         // ローカル座標系での範囲チェック
-        bool isInRange = localMousePosition.x >= topRight.x && localMousePosition.x <= bottomLeft.x &&
-                         localMousePosition.y >= topRight.y && localMousePosition.y <= bottomLeft.y;
+        bool isInRange = localMousePosition.x >= bottomLeft.x && localMousePosition.x <= topRight.x &&
+                         localMousePosition.y >= bottomLeft.y && localMousePosition.y <= topRight.y;
 
         // 範囲の位置とマウスの位置をログ出力
         Debug.Log("範囲左下: " + bottomLeft + ", マウスの位置: " + localMousePosition + ", 範囲右上: " + topRight);
@@ -105,33 +105,43 @@ public class finger : MonoBehaviour
     // マウスを追従する
     private void FollowMouse()
     {
-        Vector3 mousePos = GetMouseCanvasPosition();
+        // マウスのキャンバス内の2D位置を取得
+        Vector2 mousePos = GetMouseCanvasPosition();
 
-        Vector3 canvasMouseMinGizmo = mainCanvasRect.InverseTransformPoint(Camera.main.ScreenToWorldPoint(new Vector3(minXmaxX.x, minXmaxX.y, -Camera.main.transform.position.z)));
-        Vector3 canvasMouseMaxGizmo = mainCanvasRect.InverseTransformPoint(Camera.main.ScreenToWorldPoint(new Vector3(minYmaxY.x, minYmaxY.y, -Camera.main.transform.position.z)));
+        // キャンバスのローカル座標に変換した範囲を取得
+        Vector2 canvasMouseMinGizmo = mainCanvasRect.InverseTransformPoint(new Vector2(minXmaxX.x, minXmaxX.y));
+        Vector2 canvasMouseMaxGizmo = mainCanvasRect.InverseTransformPoint(new Vector2(minYmaxY.x, minYmaxY.y));
 
+        // キャンバスのスケールを適用
         Vector3 canvasScale = mainCanvasRect.localScale;
         canvasMouseMinGizmo.x *= canvasScale.x;
         canvasMouseMinGizmo.y *= canvasScale.y;
         canvasMouseMaxGizmo.x *= canvasScale.x;
         canvasMouseMaxGizmo.y *= canvasScale.y;
 
-        // キャンバスのローカル座標を基準にして線を描画
-        Vector3 bottomLeftGizmo = mainCanvasRect.TransformPoint(canvasMouseMinGizmo);
-        Vector3 topRightGizmo = mainCanvasRect.TransformPoint(canvasMouseMaxGizmo);
+        // キャンバスのローカル座標を基準にして範囲をクランプ
+        Vector2 bottomLeftGizmo = mainCanvasRect.TransformPoint(canvasMouseMinGizmo);
+        Vector2 topRightGizmo = mainCanvasRect.TransformPoint(canvasMouseMaxGizmo);
 
-        float clampedX = Mathf.Clamp(mousePos.x, topRightGizmo.x, topRightGizmo.y);
-        float clampedY = Mathf.Clamp(mousePos.y, bottomLeftGizmo.x, bottomLeftGizmo.y);
-        targetPosition = new Vector3(clampedX * offsetX, clampedY * offsetY, 0f);
+        float clampedX = Mathf.Clamp(mousePos.x, topRightGizmo.x, bottomLeftGizmo.x);
+        float clampedY = Mathf.Clamp(mousePos.y, topRightGizmo.y, bottomLeftGizmo.y);
+
+        // 目標位置を設定して、オブジェクトを追従
+        targetPosition = new Vector3(clampedX * offsetX, clampedY * offsetY, transform.position.z);
         transform.position = Vector3.Lerp(transform.position, targetPosition, followSpeed * Time.deltaTime);
     }
 
-    // マウスのキャンバス座標を取得する
-    private Vector3 GetMouseCanvasPosition()
+    // マウスのキャンバス座標を取得するメソッド
+    private Vector2 GetMouseCanvasPosition()
     {
         Vector3 mousePos = Input.mousePosition;
-        mousePos.z = -Camera.main.transform.position.z;
-        return Camera.main.ScreenToWorldPoint(mousePos);
+
+        // マウスのスクリーン座標をワールド座標に変換、オブジェクトのZ軸位置を考慮
+        mousePos.z = Camera.main.WorldToScreenPoint(transform.position).z;
+
+        // ワールド座標をキャンバスのローカル座標に変換
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
+        return mainCanvasRect.InverseTransformPoint(worldPos);
     }
 
     // 指定されたターゲット位置に移動するコルーチン
@@ -150,9 +160,12 @@ public class finger : MonoBehaviour
     {
         Gizmos.color = Color.red;
 
+        // ローカルZ軸を取得
+        float localZ = transform.localPosition.z;
+
         // キャンバスのローカル座標に変換
-        Vector3 canvasMouseMin = mainCanvasRect.InverseTransformPoint(Camera.main.ScreenToWorldPoint(new Vector3(MouseMin.x, MouseMin.y, -Camera.main.transform.position.z)));
-        Vector3 canvasMouseMax = mainCanvasRect.InverseTransformPoint(Camera.main.ScreenToWorldPoint(new Vector3(MouseMax.x, MouseMax.y, -Camera.main.transform.position.z)));
+        Vector2 canvasMouseMin = mainCanvasRect.InverseTransformPoint(new Vector3(MouseMin.x, MouseMin.y, localZ));
+        Vector2 canvasMouseMax = mainCanvasRect.InverseTransformPoint(new Vector3(MouseMax.x, MouseMax.y, localZ));
 
         // キャンバスのスケールを取得してギズモを拡大縮小
         Vector3 canvasScale = mainCanvasRect.localScale;
@@ -162,10 +175,10 @@ public class finger : MonoBehaviour
         canvasMouseMax.y *= canvasScale.y;
 
         // キャンバスのローカル座標を基準にして線を描画
-        Vector3 bottomLeft = mainCanvasRect.TransformPoint(canvasMouseMin);
-        Vector3 topRight = mainCanvasRect.TransformPoint(canvasMouseMax);
-        Vector3 topLeft = mainCanvasRect.TransformPoint(new Vector3(canvasMouseMin.x, canvasMouseMax.y, 0f));
-        Vector3 bottomRight = mainCanvasRect.TransformPoint(new Vector3(canvasMouseMax.x, canvasMouseMin.y, 0f));
+        Vector3 bottomLeft = mainCanvasRect.TransformPoint(new Vector3(canvasMouseMin.x, canvasMouseMin.y, localZ));
+        Vector3 topRight = mainCanvasRect.TransformPoint(new Vector3(canvasMouseMax.x, canvasMouseMax.y, localZ));
+        Vector3 topLeft = mainCanvasRect.TransformPoint(new Vector3(canvasMouseMin.x, canvasMouseMax.y, localZ));
+        Vector3 bottomRight = mainCanvasRect.TransformPoint(new Vector3(canvasMouseMax.x, canvasMouseMin.y, localZ));
 
         Gizmos.DrawLine(bottomLeft, topLeft);
         Gizmos.DrawLine(topLeft, topRight);
@@ -175,9 +188,8 @@ public class finger : MonoBehaviour
         Gizmos.color = Color.blue;
 
         // キャンバスのローカル座標に変換したマウスの範囲を取得
-        Vector3 canvasMouseMinGizmo = mainCanvasRect.InverseTransformPoint(Camera.main.ScreenToWorldPoint(new Vector3(minXmaxX.x, minXmaxX.y, -Camera.main.transform.position.z)));
-        Vector3 canvasMouseMaxGizmo = mainCanvasRect.InverseTransformPoint(Camera.main.ScreenToWorldPoint(new Vector3(minYmaxY.x, minYmaxY.y, -Camera.main.transform.position.z)));
-
+        Vector2 canvasMouseMinGizmo = mainCanvasRect.InverseTransformPoint(new Vector3(minXmaxX.x, minXmaxX.y, localZ));
+        Vector2 canvasMouseMaxGizmo = mainCanvasRect.InverseTransformPoint(new Vector3(minYmaxY.x, minYmaxY.y, localZ));
 
         canvasMouseMinGizmo.x *= canvasScale.x;
         canvasMouseMinGizmo.y *= canvasScale.y;
@@ -185,16 +197,17 @@ public class finger : MonoBehaviour
         canvasMouseMaxGizmo.y *= canvasScale.y;
 
         // キャンバスのローカル座標を基準にして線を描画
-        Vector3 bottomLeftGizmo = mainCanvasRect.TransformPoint(canvasMouseMinGizmo);
-        Vector3 topRightGizmo = mainCanvasRect.TransformPoint(canvasMouseMaxGizmo);
-        Vector3 topLeftGizmo = mainCanvasRect.TransformPoint(new Vector3(canvasMouseMinGizmo.x, canvasMouseMaxGizmo.y, 0f));
-        Vector3 bottomRightGizmo = mainCanvasRect.TransformPoint(new Vector3(canvasMouseMaxGizmo.x, canvasMouseMinGizmo.y, 0f));
+        Vector3 bottomLeftGizmo = mainCanvasRect.TransformPoint(new Vector3(canvasMouseMinGizmo.x, canvasMouseMinGizmo.y, localZ));
+        Vector3 topRightGizmo = mainCanvasRect.TransformPoint(new Vector3(canvasMouseMaxGizmo.x, canvasMouseMaxGizmo.y, localZ));
+        Vector3 topLeftGizmo = mainCanvasRect.TransformPoint(new Vector3(canvasMouseMinGizmo.x, canvasMouseMaxGizmo.y, localZ));
+        Vector3 bottomRightGizmo = mainCanvasRect.TransformPoint(new Vector3(canvasMouseMaxGizmo.x, canvasMouseMinGizmo.y, localZ));
 
         Gizmos.DrawLine(bottomLeftGizmo, topLeftGizmo);
         Gizmos.DrawLine(topLeftGizmo, topRightGizmo);
         Gizmos.DrawLine(topRightGizmo, bottomRightGizmo);
         Gizmos.DrawLine(bottomRightGizmo, bottomLeftGizmo);
     }
+
 
 
 
