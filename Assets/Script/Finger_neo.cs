@@ -23,11 +23,6 @@ public class Finger_neo : MonoBehaviour
         // レイキャストでマウスがターゲットオブジェクトに当たっているかチェック
         IsMouseInRange();
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            animator.SetTrigger("Touch");
-            Debug.Log("2aaaa" ); // レイキャストが当たったオブジェクトをログに出力
-        }
 
     }
 
@@ -42,17 +37,28 @@ public class Finger_neo : MonoBehaviour
             Debug.Log("当たっているオブジェクト: " + hit.transform.name); // レイキャストが当たったオブジェクトをログに出力
             if (hit.transform.CompareTag("Target"))
             {
-                FollowMouse(hit.point);
-                lastTargetPosition = hit.point;
+                Vector3 hitPosition = hit.point;
+                Vector3 targetPosition = hit.transform.position;
+                FollowMouse(hitPosition);
+                lastTargetPosition = targetPosition;
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    animator.SetTrigger("Touch");
+                    Debug.Log("2aaaa"); // レイキャストが当たったオブジェクトをログに出力
+                }
             }
             else if (hit.transform.CompareTag("BackGround"))
             {
-                // ターゲットの最後の位置に近づくように、lastTargetPosition の比重を増やして平均を計算
-                Vector3 averagePosition = Vector3.Lerp(lastTargetPosition, hit.point, 0.3f);
-                FollowMouse(averagePosition);
+                Vector3 hitPosition = hit.point;
+                // 当たったバックグラウンドオブジェクトの位置と直近で当たったターゲットオブジェクトの位置の平均を取る
+                Vector3 averagePosition = Vector3.Lerp(Vector3.Lerp(lastTargetPosition, hitPosition, 0.3f), hit.point, 0.3f);
+
+                FollowMouse(averagePosition); 
             }
         }
     }
+
 
     private void FollowMouse(Vector3 mousePosition)
     {
