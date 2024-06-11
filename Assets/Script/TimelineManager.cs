@@ -263,6 +263,11 @@ public class TimelineManager : MonoBehaviour
         TweetInfo tweetInfo = tweetDatabase.GetTweetInfo(ID);
 
         string accountID = tweetDatabase.GetParentAccountID(ID); // randomIDからIDに変更
+
+        if(accountID == null) {
+            Debug.LogWarning("アカウントIDがNullでした！");
+        }
+
         AccountInfo accountInfo = tweetDatabase.GetAccountInfo(accountID);
 
         if (tweetInfo == null)
