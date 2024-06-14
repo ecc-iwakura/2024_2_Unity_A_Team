@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using static RuleChecker;
 using System;
+using UnityEngine.Events;
 
 [System.Serializable]
 public class TweetObjectData
@@ -51,6 +52,9 @@ public class TimelineManager : MonoBehaviour
     public KeywordChecker keywordChecker;
     public RuleChecker ruleChecker;
     public int maxTweets = 10;             // 最大ツイート数
+    public bool IsStop = false;
+
+    public UnityEvent AddTweetSE;
 
     [SerializeField]
     private List<TweetObjectData> tweetObjectList = new List<TweetObjectData>(); // ツイートオブジェクトとTweetScriptのセットのリスト
@@ -75,7 +79,7 @@ public class TimelineManager : MonoBehaviour
     {
         while (true)
         {
-            if (!isTweetMoving)
+            if (!isTweetMoving && !IsStop)
             {
                 AddTweet(); // ツイートを追加
             }
@@ -171,8 +175,10 @@ public class TimelineManager : MonoBehaviour
 
         float tweetHeight = tweetRect.sizeDelta.y * 1.1f;
 
+        AddTweetSE.Invoke();
         // タイムラインをツイートの高さ分だけ下に移動
         StartCoroutine(MoveTimeline(tweetHeight));
+
     }
 
     // コルーチンでタイムラインをゆっくり下に移動

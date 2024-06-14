@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Collections;
 using static RuleChecker;
 using static TimelineManager;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class GameManager : MonoBehaviour
     public List<DifficultyEvent> difficultyEvents = new List<DifficultyEvent>();
     private bool IsGameover = false;
     private int currentEventIndex = 0; // 現在のイベントインデックス
+    public UnityEvent GameOverEvent;
+
 
     void Start()
     {
@@ -33,12 +36,12 @@ public class GameManager : MonoBehaviour
     // フォロワー数とfollowerThresholdを比較し、イベントを実行する
     public void CheckFollowerThreshold()
     {
-        if(followPlusScript.followers < 0)
+        if(followPlusScript.followers <= 0)
         {
             if(!IsGameover)
             {
                 GameOver();
-                IsGameover = false;
+                IsGameover = true;
             }
 
         }
@@ -77,7 +80,8 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        
+        timelineManager.IsStop = true;
+        GameOverEvent.Invoke();
     }
 
 

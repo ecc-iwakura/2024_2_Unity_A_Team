@@ -1,6 +1,8 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Collections;
+using UnityEngine.Events;
 using TMPro;
 
 public class RuleChecker : MonoBehaviour
@@ -69,6 +71,11 @@ public class RuleChecker : MonoBehaviour
 
     [Tooltip("シーン内の 'Followplus' オブジェクトへの参照。")]
     public followplus Followplus;
+
+    public UnityEvent CorrectSE;
+    public UnityEvent IncorrectSE;
+
+    public int Logs = 5;
 
     [SerializeField]
     public Condition[] availableConditions;
@@ -206,27 +213,45 @@ public class RuleChecker : MonoBehaviour
         if (isCorrect)
         {
             Followplus.CorrectAction();
+            CorrectSE.Invoke();
         }
         else
         {
             Followplus.IncorrectAction();
+            IncorrectSE.Invoke();
         }
 
 
     }
 
-    private void UpdateLog(string newLog)
+    public void UpdateLog(string newLog)
     {
+        StartCoroutine(UpdateLogCoroutine(newLog));
+    }
+
+
+    private IEnumerator UpdateLogCoroutine(string newLog)
+    {
+        // ログを一瞬消す
+        Log.enabled = false;
+
+        // ログを少しの間非表示にする（例えば0.1秒）
+        yield return new WaitForSeconds(0.1f);
+
+        // 現在のログを分割
         string[] currentLog = Log.text.Split('\n');
         List<string> updatedLog = new List<string>(currentLog);
 
+        // 新しいログを追加
         updatedLog.Add(newLog);
-        if (updatedLog.Count > 10)
+        if (updatedLog.Count > Logs)
         {
             updatedLog.RemoveAt(0);
         }
 
+        // ログを再表示
         Log.text = string.Join("\n", updatedLog);
+        Log.enabled = true;
     }
 
     public void AddRule(string conditionName, ButtonFlag actionFlag)
