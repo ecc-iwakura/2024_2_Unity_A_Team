@@ -133,51 +133,51 @@ MonoBehaviour:
       tweetImageContent: {fileID: 0}
       tweetID: f641255f0e5b4521b471aac8d6ddf615
       parentAccountID: odtd
-  - accountID: sdfghuy
-    accountName: uls3m
+  - accountID: uls3m
+    accountName: "\u3046\u3064(\u9B31)"
     accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
     IsExclusion: 0
     tweetList:
     - tweetContent: "\u8179\u6E1B\u3063\u305F"
       tweetImageContent: {fileID: 0}
       tweetID: 8d32c470bbc245adb1a6184c7a4b0df5
-      parentAccountID: sdfghuy
-  - accountID: jvtdga
-    accountName: prove_qui
+      parentAccountID: uls3m
+  - accountID: fknews
+    accountName: "FK\u30CB\u30E5\u30FC\u30B9"
     accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
     IsExclusion: 0
     tweetList:
     - tweetContent: "\u3010\u901F\u5831\u3011\u4E5D\u5DDE\u5317\u90E8\u3000\u3000\u6885\u96E8\u5165\u308A"
       tweetImageContent: {fileID: 0}
       tweetID: 9f64614b50874845ab8577fc35a96b01
-      parentAccountID: jvtdga
-  - accountID: tinko
-    accountName: clover968
+      parentAccountID: fknews
+  - accountID: clover968
+    accountName: "\u304F\u308D\u30FC\u3070\u30FC"
     accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
     IsExclusion: 0
     tweetList:
     - tweetContent: "\u30D0\u30A4\u30C8\u304A\u308F\u305F\uFF01"
       tweetImageContent: {fileID: 0}
       tweetID: 74908f021d1148208f57b8d080f83d2f
-      parentAccountID: tinko
-  - accountID: taaaydfh
-    accountName: reiru0141
+      parentAccountID: clover968
+  - accountID: reiru0141
+    accountName: "\u308C\u3044\u3093"
     accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
     IsExclusion: 0
     tweetList:
     - tweetContent: "\u30E6\u30CB\u30BB\u30D5\u52DF\u91D1\u3092\u304A\u9858\u3044\u3057\u307E\u3059"
       tweetImageContent: {fileID: 0}
       tweetID: db5e3982d85d4b46a9f0331d742a1ec3
-      parentAccountID: taaaydfh
-  - accountID: jhgfghrdafnn
-    accountName: hiiiiragii0723
+      parentAccountID: reiru0141
+  - accountID: hiiiiragii0723
+    accountName: "\u3086\u304D\u3068"
     accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
     IsExclusion: 0
     tweetList:
     - tweetContent: "\u3010\u60B2\u5831\u3011\u5F31\u8005\u7537\u6027\u304C\u5973\u6027\u3092\u898B\u308B\u306E\u306F\u9055\u6CD5"
       tweetImageContent: {fileID: 0}
       tweetID: ca5618687f8b4189820e3d54da2af3d6
-      parentAccountID: jhgfghrdafnn
+      parentAccountID: hiiiiragii0723
   - accountID: matuoka_hiroshi
     accountName: "\u677E\u5CA1\u535A"
     accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
@@ -267,5 +267,5 @@ MonoBehaviour:
     tweetList:
     - tweetContent: "\u732B\u304C\u7A93\u306E\u5916\u3092\u773A\u3081\u3066\u308B\u59FF\u304C\u53EF\u611B\u304F\u3066\u7652\u3055\u308C\u308B\u3002"
       tweetImageContent: {fileID: 0}
-      tweetID: 
-      parentAccountID: 
+      tweetID: d4a6a4d608384ca49848960b64d9e947
+      parentAccountID: nakamura_takashi
