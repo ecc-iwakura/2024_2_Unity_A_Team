@@ -41,37 +41,66 @@ public class GameManager : MonoBehaviour
     // フォロワー数とfollowerThresholdを比較し、イベントを実行する
     public void CheckFollowerThreshold()
     {
-        if(followPlusScript.followers <= 0)
+        // followPlusScript が Null の場合は処理を中断する
+        if (followPlusScript == null)
         {
-            if(!IsGameover)
+            Debug.LogError("followPlusScript is null in CheckFollowerThreshold!");
+            return;
+        }
+
+        // followers が 0以下の場合、ゲームオーバー処理を実行する
+        if (followPlusScript.followers <= 0)
+        {
+            if (!IsGameover)
             {
                 GameOver();
                 IsGameover = true;
             }
-
         }
         else if (currentEventIndex < difficultyEvents.Count)
         {
+            // difficultyEvents が Null の場合は処理を中断する
+            if (difficultyEvents == null)
+            {
+                Debug.LogError("difficultyEvents is null in CheckFollowerThreshold!");
+                return;
+            }
+
             var eventInfo = difficultyEvents[currentEventIndex];
+
+            // eventInfo が Null の場合は処理を中断する
+            if (eventInfo == null)
+            {
+                Debug.LogError($"eventInfo at index {currentEventIndex} is null in CheckFollowerThreshold!");
+                return;
+            }
 
             if (followPlusScript.maxFollowers > eventInfo.followerThreshold)
             {
-                if(!eventInfo.IsExecuted)
+                if (!eventInfo.IsExecuted)
                 {
+                    eventInfo.IsExecuted = true;
                     // イベントを実行する
                     ExecuteEvent(eventInfo);
 
-                    eventInfo.IsExecuted = true;
+                    Debug.LogError($"イベント実行");
                 }
-                    // 次のイベントに進む
-                    currentEventIndex++;
+
+                // 次のイベントに進む
+                currentEventIndex++;
             }
         }
     }
 
+
     // イベントを実行する関数
     public void ExecuteEvent(DifficultyEvent eventInfo)
     {
+        if (eventInfo == null)
+        {
+            Debug.LogError("EventInfo is null!");
+            return;
+        }
         // ツイート間隔とスピードの減少
         if (eventInfo.tweetCooldownReduction != 0)
         {
@@ -91,10 +120,9 @@ public class GameManager : MonoBehaviour
             timelineManager.stackTweetIDs.Add(addRuleTweet); // AddRuleTweet を適切に追加
         }
 
-        // キーワードの追加
-        if (!string.IsNullOrEmpty(eventInfo.keyWord))
+        if (eventInfo.keyWord != null && !string.IsNullOrEmpty(eventInfo.keyWord))
         {
-            keywordChecker.keywords.Add(eventInfo.keyWord);
+            keywordChecker.AddKeyword(eventInfo.keyWord);
         }
 
         Debug.Log($"Event executed: {eventInfo.ruleFunctionName} added with action {eventInfo.actionFlag}");
