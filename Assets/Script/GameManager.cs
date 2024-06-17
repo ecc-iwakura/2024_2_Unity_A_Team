@@ -73,12 +73,29 @@ public class GameManager : MonoBehaviour
     public void ExecuteEvent(DifficultyEvent eventInfo)
     {
         // ツイート間隔とスピードの減少
-        timelineManager.tweetCooldown += eventInfo.tweetCooldownReduction;
-        timelineManager.tweetSpeedTime += eventInfo.tweetSpeedReduction;
+        if (eventInfo.tweetCooldownReduction != 0)
+        {
+            timelineManager.tweetCooldown += eventInfo.tweetCooldownReduction;
+        }
 
-        // AddRuleTweet オブジェクトを作成して追加
-        AddRuleTweet addRuleTweet = new AddRuleTweet(eventInfo.tweetIDToAdd, eventInfo.ruleFunctionName, eventInfo.actionFlag);
-        timelineManager.stackTweetIDs.Add(addRuleTweet);
+        if (eventInfo.tweetSpeedReduction != 0)
+        {
+            timelineManager.tweetSpeedTime += eventInfo.tweetSpeedReduction;
+        }
+
+        // ルールの追加が必要な場合
+        if (!string.IsNullOrEmpty(eventInfo.ruleFunctionName) && eventInfo.actionFlag != null)
+        {
+            // AddRuleTweet オブジェクトを作成して追加
+            AddRuleTweet addRuleTweet = new AddRuleTweet(eventInfo.tweetIDToAdd, eventInfo.ruleFunctionName, eventInfo.actionFlag);
+            timelineManager.stackTweetIDs.Add(addRuleTweet); // AddRuleTweet を適切に追加
+        }
+
+        // キーワードの追加
+        if (!string.IsNullOrEmpty(eventInfo.keyWord))
+        {
+            keywordChecker.keywords.Add(eventInfo.keyWord);
+        }
 
         Debug.Log($"Event executed: {eventInfo.ruleFunctionName} added with action {eventInfo.actionFlag}");
     }
@@ -101,16 +118,18 @@ public class DifficultyEvent
     public float tweetSpeedReduction;       // ツイートスピードの減少量
     public string tweetIDToAdd;             // 追加するツイートID
     public string ruleFunctionName;         // 追加するルール関数名
+    public string keyWord;         // 追加するルール関数名
     public RuleChecker.ButtonFlag actionFlag; // ButtonFlag
     public bool IsExecuted;                 // イベントが実行されたかどうか
 
-    public DifficultyEvent(int followerThreshold, float tweetCooldownReduction, float tweetSpeedReduction, string tweetIDToAdd, string ruleFunctionName, RuleChecker.ButtonFlag actionFlag)
+    public DifficultyEvent(int followerThreshold, float tweetCooldownReduction, float tweetSpeedReduction, string tweetIDToAdd, string ruleFunctionName, string keyWord, RuleChecker.ButtonFlag actionFlag)
     {
         this.followerThreshold = followerThreshold;
         this.tweetCooldownReduction = tweetCooldownReduction;
         this.tweetSpeedReduction = tweetSpeedReduction;
         this.tweetIDToAdd = tweetIDToAdd;
         this.ruleFunctionName = ruleFunctionName;
+        this.keyWord = keyWord;
         this.actionFlag = actionFlag;
         this.IsExecuted = false; // 初期状態では実行されていない
     }

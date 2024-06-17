@@ -175,10 +175,12 @@
 using UnityEngine;
 using System.Text;
 using TMPro;
+using System.Collections;
+using System.Collections.Generic;
 
 public class KeywordChecker : MonoBehaviour
 {
-    public string[] keywords; // 判定するキーワードの配列
+    public List<string> keywords; // 判定するキーワードの配列
     public TMP_Text KeywordDisplayText;
 
     // ツイート文にキーワードが含まれているかどうかを判定するメソッド
