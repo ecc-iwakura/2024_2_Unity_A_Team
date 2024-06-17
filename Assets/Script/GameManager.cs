@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public followplus followPlusScript; // followplusスクリプトへの参照
     public TimelineManager timelineManager; // TimelineManagerスクリプトへの参照
     public RuleChecker ruleChecker; // RuleCheckerスクリプトへの参照
+    public KeywordChecker keywordChecker; // キーワードチェッカーへの参照
 
     public List<DifficultyEvent> difficultyEvents = new List<DifficultyEvent>();
     private bool IsGameover = false;
@@ -21,8 +22,12 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         if (followPlusScript == null) { Debug.LogWarning("フォロープラスがありません！"); }
+
         if (timelineManager == null) { Debug.LogWarning("タイムラインマネージャーがありません！"); }
+
         if (ruleChecker == null) { Debug.LogWarning("ルールチェッカーがありません！"); }
+
+        if (keywordChecker == null) { Debug.LogWarning("キーワードチェッカーがありません！"); }
 
         // followerThresholdの少ない順に並び替える
         difficultyEvents.Sort((x, y) => x.followerThreshold.CompareTo(y.followerThreshold));
@@ -68,8 +73,8 @@ public class GameManager : MonoBehaviour
     public void ExecuteEvent(DifficultyEvent eventInfo)
     {
         // ツイート間隔とスピードの減少
-        timelineManager.tweetCooldown -= eventInfo.tweetCooldownReduction;
-        timelineManager.tweetSpeedTime -= eventInfo.tweetSpeedReduction;
+        timelineManager.tweetCooldown += eventInfo.tweetCooldownReduction;
+        timelineManager.tweetSpeedTime += eventInfo.tweetSpeedReduction;
 
         // AddRuleTweet オブジェクトを作成して追加
         AddRuleTweet addRuleTweet = new AddRuleTweet(eventInfo.tweetIDToAdd, eventInfo.ruleFunctionName, eventInfo.actionFlag);
