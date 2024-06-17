@@ -1,0 +1,303 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5940705169911421547
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5940705169911421544}
+  - component: {fileID: 5940705169911421545}
+  m_Layer: 0
+  m_Name: TweetDatabase
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5940705169911421544
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5940705169911421547}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5940705169911421545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5940705169911421547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20f24daae1550514983dd969671c7be6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  accountList:
+  - accountID: Tutorial
+    accountName: "\u30C1\u30E5\u30FC\u30C8\u30EA\u30A2\u30EB"
+    accountImage: {fileID: 21300000, guid: abc8d21db0d049b4588b8cb1e8c309da, type: 3}
+    IsExclusion: 1
+    tweetList:
+    - tweetContent: "\u3053\u308C\u306F\u30C1\u30E5\u30FC\u30C8\u30EA\u30A2\u30EB\u3067\u3059\u3002"
+      tweetImageContent: {fileID: 0}
+      tweetID: ad5f07ba0a2940cfbc3c7f4bc5e26a57
+      parentAccountID: Tutorial
+    - tweetContent: "\u3053\u306ESNS\u3067\u306F\u30C4\u30A4\u30FC\u30C8\u304C\u81EA\u52D5\u7684\u306B\u6D41\u308C\u3066\u304D\u307E\u3059\u3002"
+      tweetImageContent: {fileID: 0}
+      tweetID: 9edfb1cdf4404e49b7e55ca9f6aa66e1
+      parentAccountID: Tutorial
+    - tweetContent: "\u300C\u30EB\u30FC\u30EB\u300D\u306B\u5F93\u3063\u3066\u3044\u3044\u306D\u306A\u3069\u306E\u30DC\u30BF\u30F3\u3092\u62BC\u3059\u3053\u3068\u3067\u30D5\u30A9\u30ED\u30EF\u30FC\u304C\u5897\u3048\u3066\u3044\u304D\u307E\u3059\u3002"
+      tweetImageContent: {fileID: 0}
+      tweetID: 88bba737c4194af481f7c860eab1ab59
+      parentAccountID: Tutorial
+    - tweetContent: "\u30D5\u30A9\u30ED\u30EF\u30FC\u304C\u4E00\u5B9A\u6570\u3092\u5897\u3048\u308B\u3068\u65B0\u3057\u3044\u300C\u30EB\u30FC\u30EB\u300D\u304C\u8FFD\u52A0\u3055\u308C\u307E\u3059"
+      tweetImageContent: {fileID: 0}
+      tweetID: 9d69c28e702c455ea6558ef3d89889a4
+      parentAccountID: Tutorial
+    - tweetContent: "\u305D\u3057\u3066\u5931\u6557\u3059\u308B\u3068\u30D5\u30A9\u30ED\u30EF\u30FC\u304C\u4E00\u6C17\u306B\u6E1B\u3063\u3066\u3057\u307E\u3044"
+      tweetImageContent: {fileID: 0}
+      tweetID: 1efb67384fe042589eb22c4fe9f99ffa
+      parentAccountID: Tutorial
+    - tweetContent: "\u30D5\u30A9\u30ED\u30EF\u30FC\u6570\u304C\uFF10\u306B\u306A\u3063\u3066\u3057\u307E\u3046\u3068\u30A2\u30AB\u30A6\u30F3\u30C8\u304C\u51CD\u7D50\u3055\u308C\u3066\u3057\u307E\u3046\u306E\u3067\u7D20\u65E9\u304F\u5224\u65AD\u3092\u3057\u307E\u3057\u3087\u3046"
+      tweetImageContent: {fileID: 0}
+      tweetID: db505c2577e641c595b2ac8534718149
+      parentAccountID: Tutorial
+    - tweetContent: "\u3069\u3053\u307E\u3067\u30D5\u30A9\u30ED\u30EF\u30FC\u3092\u4F38\u3070\u305B\u308B\u306E\u304B\u3092\u697D\u3057\u307F\u306B\u3057\u3066\u304A\u308A\u307E\u3059"
+      tweetImageContent: {fileID: 0}
+      tweetID: 8b2dc43a3cb243268cfa59b3be3c1105
+      parentAccountID: Tutorial
+  - accountID: AddRule
+    accountName: "\u30EB\u30FC\u30EB\u8FFD\u52A0\uFF01"
+    accountImage: {fileID: 21300000, guid: db1838025d6d22541a0384730eb3d8c3, type: 3}
+    IsExclusion: 1
+    tweetList:
+    - tweetContent: "\u30EB\u30FC\u30EB\u300C\u30D5\u30A9\u30ED\u30FC\u3057\u3066\u3044\u305F\u3089\u3044\u3044\u306D\u300D\u304C\u8FFD\u52A0\u3055\u308C\u307E\u3059\uFF01"
+      tweetImageContent: {fileID: 0}
+      tweetID: 7cdf161a13ae4c8ea1e3fee75b2a305d
+      parentAccountID: AddRule
+    - tweetContent: "\u30EB\u30FC\u30EB\u300C\u6295\u7A3F\u304C\uFF11\uFF10\u5206\u4EE5\u5185\u306A\u3089\u30EA\u30C4\u30A4\u30FC\u30C8\u300D\u304C\u8FFD\u52A0\u3055\u308C\u307E\u3059\uFF01"
+      tweetImageContent: {fileID: 0}
+      tweetID: d62c0fe36d6b4d06b8567f8c493767de
+      parentAccountID: AddRule
+    - tweetContent: "\u30EB\u30FC\u30EB\u300C\u30AD\u30FC\u30EF\u30FC\u30C9\u304C\u3042\u3063\u305F\u3089\u901A\u5831\u300D\u304C\u8FFD\u52A0\u3055\u308C\u307E\u3059\uFF01"
+      tweetImageContent: {fileID: 0}
+      tweetID: d0d05bd52abf400f99ab98453c73908c
+      parentAccountID: AddRule
+    - tweetContent: "\u30EB\u30FC\u30EB\u300C\u753B\u50CF\u304C\u3042\u3063\u305F\u3089\u30D6\u30C3\u30AF\u30DE\u30FC\u30AF\u300D\u304C\u8FFD\u52A0\u3055\u308C\u307E\u3059\uFF01"
+      tweetImageContent: {fileID: 0}
+      tweetID: 286487fb8afd41e2ad78f1fad7d7f497
+      parentAccountID: AddRule
+  - accountID: test
+    accountName: "\u30C6\u30B9\u30C8\u30A2\u30AB\u30A6\u30F3\u30C8"
+    accountImage: {fileID: 21300000, guid: 0016af889a7cdb3418d558d1e5f174c2, type: 3}
+    IsExclusion: 0
+    tweetList:
+    - tweetContent: "\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01"
+      tweetImageContent: {fileID: 0}
+      tweetID: ee1639a54b844b398517cf692c122c18
+      parentAccountID: test
+    - tweetContent: "\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01"
+      tweetImageContent: {fileID: 0}
+      tweetID: ddbf212dfacb4797b861d1d7998efd2e
+      parentAccountID: test
+    - tweetContent: "\u30EC\u30BF\u30FC\u30D1\u30C3\u30AF\u3067\u73FE\u91D1\u9001\u308C\u306F\u3059\u3079\u3066\u8A50\u6B3A\u3067\u3059\uFF01"
+      tweetImageContent: {fileID: 0}
+      tweetID: 123123bac40a4ddebb83d37611308f76
+      parentAccountID: test
+  - accountID: ayah
+    accountName: holo_chan
+    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
+    IsExclusion: 0
+    tweetList:
+    - tweetContent: "\u5C0F\u5B66\u6821\u306E\u904B\u52D5\u4F1A\u3067\u300C\u7D05\u7D44\u30FB\u767D\u7D44\u3092\u5EC3\u6B62\u300D\u306E\u52D5\u304D\u3000\u201C\u52DD\u3061\u8CA0\u3051\u3092\u3064\u3051\u306A\u3044\u201D\u65B9\u91DD\u306B"
+      tweetImageContent: {fileID: 0}
+      tweetID: ba136bb47cf146968175b9d34dd2b8b2
+      parentAccountID: ayah
+  - accountID: afgh
+    accountName: opopo
+    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
+    IsExclusion: 0
+    tweetList:
+    - tweetContent: "\u3010\u8A34\u3048\u3011\u30D2\u30B0\u30DE\u99C6\u9664\u300C\u7C73\u8ECD\u306E\u7279\u6B8A\u90E8\u968A\u3068\u68EE\u306E\u4E2D\u3067\u6226\u3046\u3088\u3046\u306A\u3082\u306E\u300D\u3001\u5317\u6D77\u9053\u306E\u731F\u53CB\u4F1A\u304C\u5354\u529B\u8F9E\u9000 "
+      tweetImageContent: {fileID: 0}
+      tweetID: dface6d9f6d9491a9c3ec80f44a28661
+      parentAccountID: afgh
+  - accountID: haha
+    accountName: rein
+    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
+    IsExclusion: 0
+    tweetList:
+    - tweetContent: "\u300C\u3044\u3058\u3081\u300D10\u4EBA\u306E\u52A0\u5BB3\u8005\u30681\u4EBA\u306E\u88AB\u5BB3\u8005\u3069\u3063\u3061\u306E\u672A\u6765\u304C\u5927\u5207\u3067\u3059\u304B\u300210\u4EBA\u3067\u3059\u3088\u3002"
+      tweetImageContent: {fileID: 0}
+      tweetID: a17de06cf65241fb8ad315888492073a
+      parentAccountID: haha
+  - accountID: pljk
+    accountName: ruto__8
+    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
+    IsExclusion: 0
+    tweetList:
+    - tweetContent: "\U0001F447\u4ECA\u3059\u305050\u4E07\u5186\u501F\u308A\u305F\u3044\u306A\u3089\u30B3\u30EC\U0001F447
+        http://ma-net.kd/card-gomi/grousexsitai/?utm_source=xads"
+      tweetImageContent: {fileID: 0}
+      tweetID: 7cd0351607cc4e0cb1040c39ff9d96c8
+      parentAccountID: pljk
+  - accountID: yara
+    accountName: _bouen
+    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
+    IsExclusion: 0
+    tweetList:
+    - tweetContent: "\u307E\u308B\u3067\u5F3E\u4E38\u306E\u3088\u3046\u306A\u30B7\u30DE\u30A8\u30CA\u30AC"
+      tweetImageContent: {fileID: 21300000, guid: 9ccb8f33d54a6404b9b74ce82d82e225, type: 3}
+      tweetID: f3b478c92ba14aab906e5acfb63896b4
+      parentAccountID: yara
+  - accountID: odtd
+    accountName: noulvlu
+    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
+    IsExclusion: 0
+    tweetList:
+    - tweetContent: "\u6708\u66DC\u65E5\u304C\u306F\u3058\u30DE\u30F3\u30C7\u30FCwwwwwwwwwwwwwwwwwwwwwwww"
+      tweetImageContent: {fileID: 0}
+      tweetID: f641255f0e5b4521b471aac8d6ddf615
+      parentAccountID: odtd
+  - accountID: sdfghuy
+    accountName: uls3m
+    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
+    IsExclusion: 0
+    tweetList:
+    - tweetContent: "\u8179\u6E1B\u3063\u305F"
+      tweetImageContent: {fileID: 0}
+      tweetID: 8d32c470bbc245adb1a6184c7a4b0df5
+      parentAccountID: sdfghuy
+  - accountID: jvtdga
+    accountName: prove_qui
+    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
+    IsExclusion: 0
+    tweetList:
+    - tweetContent: "\u3010\u901F\u5831\u3011\u4E5D\u5DDE\u5317\u90E8\u3000\u3000\u6885\u96E8\u5165\u308A"
+      tweetImageContent: {fileID: 0}
+      tweetID: 9f64614b50874845ab8577fc35a96b01
+      parentAccountID: jvtdga
+  - accountID: tinko
+    accountName: clover968
+    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
+    IsExclusion: 0
+    tweetList:
+    - tweetContent: "\u30D0\u30A4\u30C8\u304A\u308F\u305F\uFF01"
+      tweetImageContent: {fileID: 0}
+      tweetID: 74908f021d1148208f57b8d080f83d2f
+      parentAccountID: tinko
+  - accountID: taaaydfh
+    accountName: reiru0141
+    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
+    IsExclusion: 0
+    tweetList:
+    - tweetContent: "\u30E6\u30CB\u30BB\u30D5\u52DF\u91D1\u3092\u304A\u9858\u3044\u3057\u307E\u3059"
+      tweetImageContent: {fileID: 0}
+      tweetID: db5e3982d85d4b46a9f0331d742a1ec3
+      parentAccountID: taaaydfh
+  - accountID: jhgfghrdafnn
+    accountName: hiiiiragii0723
+    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
+    IsExclusion: 0
+    tweetList:
+    - tweetContent: "\u3010\u60B2\u5831\u3011\u5F31\u8005\u7537\u6027\u304C\u5973\u6027\u3092\u898B\u308B\u306E\u306F\u9055\u6CD5"
+      tweetImageContent: {fileID: 0}
+      tweetID: ca5618687f8b4189820e3d54da2af3d6
+      parentAccountID: jhgfghrdafnn
+  - accountID: 
+    accountName: 
+    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
+    IsExclusion: 0
+    tweetList: []
+  - accountID: 
+    accountName: 
+    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
+    IsExclusion: 0
+    tweetList: []
+  - accountID: 
+    accountName: 
+    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
+    IsExclusion: 0
+    tweetList: []
+  - accountID: 
+    accountName: 
+    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
+    IsExclusion: 0
+    tweetList: []
+  - accountID: 
+    accountName: 
+    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
+    IsExclusion: 0
+    tweetList: []
+  - accountID: 
+    accountName: 
+    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
+    IsExclusion: 0
+    tweetList: []
+  - accountID: 
+    accountName: 
+    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
+    IsExclusion: 0
+    tweetList: []
+  - accountID: 
+    accountName: 
+    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
+    IsExclusion: 0
+    tweetList: []
+  - accountID: 
+    accountName: 
+    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
+    IsExclusion: 0
+    tweetList: []
+  - accountID: 
+    accountName: 
+    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
+    IsExclusion: 0
+    tweetList: []
+  - accountID: 
+    accountName: 
+    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
+    IsExclusion: 0
+    tweetList: []
+  - accountID: 
+    accountName: 
+    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
+    IsExclusion: 0
+    tweetList: []
+  - accountID: 
+    accountName: 
+    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
+    IsExclusion: 0
+    tweetList: []
+  - accountID: 
+    accountName: 
+    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
+    IsExclusion: 0
+    tweetList: []
+  - accountID: 
+    accountName: 
+    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
+    IsExclusion: 0
+    tweetList: []
+  - accountID: 
+    accountName: 
+    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
+    IsExclusion: 0
+    tweetList: []
+  - accountID: 
+    accountName: 
+    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
+    IsExclusion: 0
+    tweetList: []
