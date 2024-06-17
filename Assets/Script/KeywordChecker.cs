@@ -257,4 +257,10 @@ public class KeywordChecker : MonoBehaviour
         bool result = CheckForKeyword(convertedTweet);
         Debug.Log($"ツイート文にキーワードが含まれているか: {result}");
     }
+
+    public void AddKeyword(string keyword)
+    {
+        keywords.Add(keyword);
+        DisplayKeyword();
+    }
 }
