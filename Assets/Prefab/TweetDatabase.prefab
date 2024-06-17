@@ -288,5 +288,14 @@ MonoBehaviour:
     tweetList:
     - tweetContent: "\u732B\u304C\u7A93\u306E\u5916\u3092\u773A\u3081\u3066\u308B\u59FF\u304C\u53EF\u611B\u304F\u3066\u7652\u3055\u308C\u308B\u3002"
       tweetImageContent: {fileID: 0}
-      tweetID: 
-      parentAccountID: 
+      tweetID: 55364885883649cdb667fe3362c1d56e
+      parentAccountID: nakamura_takashi
+  - accountID: "\u30B3\u30DF\u30C3\u30C8\u30DE\u30FC\u30B8\u78BA\u8A8D"
+    accountName: "\u30B3\u30DF\u30C3\u30C8\u30DE\u30FC\u30B8\u78BA\u8A8D"
+    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
+    IsExclusion: 0
+    tweetList:
+    - tweetContent: "\u732B\u304C\u7A93\u306E\u5916\u3092\u773A\u3081\u3066\u308B\u59FF\u304C\u53EF\u611B\u304F\u3066\u7652\u3055\u308C\u308B\u3002"
+      tweetImageContent: {fileID: 0}
+      tweetID: 55364885883649cdb667fe3362c1d56e
+      parentAccountID: nakamura_takashi
