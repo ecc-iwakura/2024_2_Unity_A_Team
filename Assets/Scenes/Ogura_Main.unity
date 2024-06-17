@@ -905,8 +905,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 144831684}
   m_LocalRotation: {x: 0.138747, y: 0.049083013, z: -0.0005685489, w: 0.98911065}
-  m_LocalPosition: {x: 0, y: 0, z: -65.99998}
-  m_LocalScale: {x: 1.1415153, y: 1.1415153, z: 1.1415153}
+  m_LocalPosition: {x: 0, y: 0, z: -63.99998}
+  m_LocalScale: {x: 1.0446577, y: 1.0446577, z: 1.0446577}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1205128903}
@@ -914,7 +914,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 15.934, y: 5.786, z: 0.745}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -94.000015, y: -110}
+  m_AnchoredPosition: {x: -116.000015, y: -110}
   m_SizeDelta: {x: 1000, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!65 &144831686
@@ -944,13 +944,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 42959b944a3c20b4caa6364a2ccda3df, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c3bd244fbb339e946b8716b67575a435, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1791,6 +1791,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1229956061}
+        m_TargetAssemblyTypeName: AudioController, Assembly-CSharp
+        m_MethodName: PlayThemeBGM
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &491228250
 GameObject:
   m_ObjectHideFlags: 0
@@ -2111,8 +2123,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 539107813}
   m_LocalRotation: {x: 0.138747, y: 0.049083013, z: -0.0005685489, w: 0.98911065}
-  m_LocalPosition: {x: 0, y: 0, z: -57}
-  m_LocalScale: {x: 1.1415153, y: 1.1415153, z: 1.1415153}
+  m_LocalPosition: {x: 0, y: 0, z: -55.000004}
+  m_LocalScale: {x: 1.0446577, y: 1.0446577, z: 1.0446577}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1205128903}
@@ -2120,7 +2132,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 15.934, y: 5.786, z: 0.745}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -185, y: -111}
+  m_AnchoredPosition: {x: -207, y: -111}
   m_SizeDelta: {x: 1000, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!65 &539107815
@@ -2150,13 +2162,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3920742963dc2df45837af7e1781ca9e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ec1c6fd4b52021d49b909db1ea750bec, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4758,8 +4770,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1957905211}
   m_LocalRotation: {x: 0.138747, y: 0.049083013, z: -0.0005685489, w: 0.98911065}
-  m_LocalPosition: {x: 0, y: 0, z: -57}
-  m_LocalScale: {x: 1.1415153, y: 1.1415153, z: 1.1415153}
+  m_LocalPosition: {x: 0, y: 0, z: -55}
+  m_LocalScale: {x: 1.0446577, y: 1.0446577, z: 1.0446577}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1205128903}
@@ -4767,7 +4779,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 15.934, y: 5.786, z: 0.745}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -185, y: -111}
+  m_AnchoredPosition: {x: -207, y: -111}
   m_SizeDelta: {x: 1000, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!65 &1957905213
@@ -4797,7 +4809,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
