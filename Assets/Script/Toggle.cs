@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Toggle : MonoBehaviour
 {
@@ -27,5 +28,11 @@ public class Toggle : MonoBehaviour
     {
         // このオブジェクトのアクティブ状態をトグル（反転）する
         gameObject.SetActive(IsActive);
+    }
+
+    public void Reset()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Debug.LogWarning("リトライ！");
     }
 }

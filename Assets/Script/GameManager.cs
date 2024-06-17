@@ -5,6 +5,7 @@ using System.Collections;
 using static RuleChecker;
 using static TimelineManager;
 using UnityEngine.Events;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     public List<DifficultyEvent> difficultyEvents = new List<DifficultyEvent>();
     private bool IsGameover = false;
     private int currentEventIndex = 0; // 現在のイベントインデックス
+    public TMP_Text GameOverText;
     public UnityEvent GameOverEvent;
 
 
@@ -130,6 +132,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        GameOverText.text = followPlusScript.maxFollowers.ToString() + "フォロワー";
         timelineManager.IsStop = true;
         GameOverEvent.Invoke();
     }
