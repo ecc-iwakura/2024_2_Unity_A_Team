@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.IO;
 
 // ツイート情報を表すクラス
 [System.Serializable]
@@ -36,7 +37,6 @@ public class AccountInfo
     public Sprite accountImage;             // アカウント画像
     public bool IsExclusion;
     public List<TweetInfo> tweetList;      // ツイートリスト
-
 
     public AccountInfo(string id, string name, Sprite image)
     {
@@ -189,6 +189,31 @@ public class TweetDatabase : MonoBehaviour
     // 乱数のインデックスを生成する関数
     private int GenerateRandomIndex(int count)
     {
-        return Random.Range(0, count);
+        return UnityEngine.Random.Range(0, count);
+    }
+
+    // JSONデータをTweetDatabaseにインポートする静的メソッド
+    public void ImportFromJson(string filePath)
+    {
+        if (File.Exists(filePath))
+        {
+            string json = File.ReadAllText(filePath);
+            JsonUtility.FromJsonOverwrite(json, this); // this は TweetDatabase インスタンスを表す
+
+            // 辞書を更新
+            UpdateDictionariesFromList();
+        }
+        else
+        {
+            Debug.LogError("File not found: " + filePath);
+        }
+    }
+
+    // JSONデータにTweetDatabaseをエクスポートするメソッド
+    public void ExportToJson(string filePath)
+    {
+        string json = JsonUtility.ToJson(this, true);
+        File.WriteAllText(filePath, json);
+        Debug.Log("TweetDatabase exported to JSON successfully.");
     }
 }

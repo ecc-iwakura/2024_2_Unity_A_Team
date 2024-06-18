@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 using System;
+using System.IO;
 
 [CustomEditor(typeof(TweetDatabase))]
 public class TweetDatabaseEditor : Editor
@@ -39,6 +40,30 @@ public class TweetDatabaseEditor : Editor
         {
             SetParentAccountIDs(tweetDatabase);
         }
+
+        EditorGUILayout.Space();
+
+        // エクスポートボタンを表示
+        if (GUILayout.Button("Export to JSON"))
+        {
+            string filePath = EditorUtility.SaveFilePanel("Export Tweet Data to JSON", "", "TweetDatabase.json", "json");
+            if (!string.IsNullOrEmpty(filePath))
+            {
+                tweetDatabase.ExportToJson(filePath);
+            }
+        }
+
+        EditorGUILayout.Space();
+
+        // インポートボタンを表示
+        if (GUILayout.Button("Import from JSON"))
+        {
+            string filePath = EditorUtility.OpenFilePanel("Import Tweet Data from JSON", "", "json");
+            if (!string.IsNullOrEmpty(filePath))
+            {
+                tweetDatabase.ImportFromJson(filePath);
+            }
+        }
     }
 
     private void GenerateTweetIDs(TweetDatabase tweetDatabase)
@@ -47,10 +72,8 @@ public class TweetDatabaseEditor : Editor
         {
             foreach (var tweetInfo in accountInfo.tweetList)
             {
-                // ツイートIDがまだ入力されていない場合のみ新しいIDを生成
                 if (string.IsNullOrEmpty(tweetInfo.tweetID))
                 {
-                    // UUID形式のツイートIDを生成する
                     tweetInfo.tweetID = Guid.NewGuid().ToString("N");
                 }
             }
@@ -63,7 +86,6 @@ public class TweetDatabaseEditor : Editor
         {
             foreach (var tweetInfo in accountInfo.tweetList)
             {
-                // 各ツイートに親のアカウントID を設定する
                 tweetInfo.parentAccountID = accountInfo.accountID;
             }
         }
