@@ -239,8 +239,15 @@ public class RuleChecker : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
 
         // 現在のログを分割
-        string[] currentLog = Log.text.Split('\n');
+        string[] currentLog = Log.text.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
         List<string> updatedLog = new List<string>(currentLog);
+
+        // デバッグメッセージ
+        Debug.Log("Before adding new log:");
+        foreach (var log in updatedLog)
+        {
+            Debug.Log(log);
+        }
 
         // 新しいログを追加
         updatedLog.Add(newLog);
@@ -249,9 +256,19 @@ public class RuleChecker : MonoBehaviour
             updatedLog.RemoveAt(0);
         }
 
+        // デバッグメッセージ
+        Debug.Log("After adding new log:");
+        foreach (var log in updatedLog)
+        {
+            Debug.Log(log);
+        }
+
         // ログを再表示
         Log.text = string.Join("\n", updatedLog);
         Log.enabled = true;
+
+        // デバッグメッセージ
+        Debug.Log("Final log text: " + Log.text);
     }
 
     public void AddRule(string conditionName, ButtonFlag actionFlag)

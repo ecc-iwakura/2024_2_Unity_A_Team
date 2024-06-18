@@ -56,7 +56,6 @@ public class GameManager : MonoBehaviour
             if (!IsGameover)
             {
                 GameOver();
-                IsGameover = true;
             }
         }
         else if (currentEventIndex < difficultyEvents.Count)
@@ -135,6 +134,7 @@ public class GameManager : MonoBehaviour
         GameOverText.text = followPlusScript.maxFollowers.ToString() + "ƒtƒHƒƒ[";
         timelineManager.IsStop = true;
         GameOverEvent.Invoke();
+        IsGameover = true;
     }
 
 
