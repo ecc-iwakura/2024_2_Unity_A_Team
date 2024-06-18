@@ -1491,139 +1491,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 269191436}
   m_CullTransparentMesh: 1
---- !u!1 &373353065
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 373353066}
-  - component: {fileID: 373353067}
-  m_Layer: 0
-  m_Name: TweetDatabase
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &373353066
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 373353065}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &373353067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 373353065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20f24daae1550514983dd969671c7be6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  accountList:
-  - accountID: Tutorial
-    accountName: "\u30C1\u30E5\u30FC\u30C8\u30EA\u30A2\u30EB"
-    accountImage: {fileID: 21300000, guid: abc8d21db0d049b4588b8cb1e8c309da, type: 3}
-    IsExclusion: 1
-    tweetList:
-    - tweetContent: "\u3053\u308C\u306F\u30C1\u30E5\u30FC\u30C8\u30EA\u30A2\u30EB\u3067\u3059\u3002"
-      tweetImageContent: {fileID: 0}
-      tweetID: ad5f07ba0a2940cfbc3c7f4bc5e26a57
-      parentAccountID: Tutorial
-    - tweetContent: "\u3053\u306ESNS\u3067\u306F\u30C4\u30A4\u30FC\u30C8\u304C\u81EA\u52D5\u7684\u306B\u6D41\u308C\u3066\u304D\u307E\u3059\u3002"
-      tweetImageContent: {fileID: 0}
-      tweetID: 9edfb1cdf4404e49b7e55ca9f6aa66e1
-      parentAccountID: Tutorial
-    - tweetContent: "\u300C\u30EB\u30FC\u30EB\u300D\u306B\u5F93\u3063\u3066\u3044\u3044\u306D\u306A\u3069\u306E\u30DC\u30BF\u30F3\u3092\u62BC\u3059\u3053\u3068\u3067\u30D5\u30A9\u30ED\u30EF\u30FC\u304C\u5897\u3048\u3066\u3044\u304D\u307E\u3059\u3002"
-      tweetImageContent: {fileID: 0}
-      tweetID: 88bba737c4194af481f7c860eab1ab59
-      parentAccountID: Tutorial
-    - tweetContent: "\u30D5\u30A9\u30ED\u30EF\u30FC\u304C\u4E00\u5B9A\u6570\u3092\u5897\u3048\u308B\u3068\u65B0\u3057\u3044\u300C\u30EB\u30FC\u30EB\u300D\u304C\u8FFD\u52A0\u3055\u308C\u307E\u3059"
-      tweetImageContent: {fileID: 0}
-      tweetID: 9d69c28e702c455ea6558ef3d89889a4
-      parentAccountID: Tutorial
-    - tweetContent: "\u305D\u3057\u3066\u5931\u6557\u3059\u308B\u3068\u30D5\u30A9\u30ED\u30EF\u30FC\u304C\u4E00\u6C17\u306B\u6E1B\u3063\u3066\u3057\u307E\u3044"
-      tweetImageContent: {fileID: 0}
-      tweetID: 1efb67384fe042589eb22c4fe9f99ffa
-      parentAccountID: Tutorial
-    - tweetContent: "\u30D5\u30A9\u30ED\u30EF\u30FC\u6570\u304C\uFF10\u306B\u306A\u3063\u3066\u3057\u307E\u3046\u3068\u30A2\u30AB\u30A6\u30F3\u30C8\u304C\u51CD\u7D50\u3055\u308C\u3066\u3057\u307E\u3046\u306E\u3067\u7D20\u65E9\u304F\u5224\u65AD\u3092\u3057\u307E\u3057\u3087\u3046"
-      tweetImageContent: {fileID: 0}
-      tweetID: db505c2577e641c595b2ac8534718149
-      parentAccountID: Tutorial
-    - tweetContent: "\u3069\u3053\u307E\u3067\u30D5\u30A9\u30ED\u30EF\u30FC\u3092\u4F38\u3070\u305B\u308B\u306E\u304B\u3092\u697D\u3057\u307F\u306B\u3057\u3066\u304A\u308A\u307E\u3059"
-      tweetImageContent: {fileID: 0}
-      tweetID: 8b2dc43a3cb243268cfa59b3be3c1105
-      parentAccountID: Tutorial
-  - accountID: AddRule
-    accountName: "\u30EB\u30FC\u30EB\u8FFD\u52A0\uFF01"
-    accountImage: {fileID: 21300000, guid: db1838025d6d22541a0384730eb3d8c3, type: 3}
-    IsExclusion: 1
-    tweetList:
-    - tweetContent: "\u30EB\u30FC\u30EB\u300C\u30D5\u30A9\u30ED\u30FC\u3057\u3066\u3044\u305F\u3089\u3044\u3044\u306D\u300D\u304C\u8FFD\u52A0\u3055\u308C\u307E\u3059\uFF01"
-      tweetImageContent: {fileID: 0}
-      tweetID: 7cdf161a13ae4c8ea1e3fee75b2a305d
-      parentAccountID: AddRule
-    - tweetContent: "\u30EB\u30FC\u30EB\u300C\u6295\u7A3F\u304C\uFF11\uFF10\u5206\u4EE5\u5185\u306A\u3089\u30EA\u30C4\u30A4\u30FC\u30C8\u300D\u304C\u8FFD\u52A0\u3055\u308C\u307E\u3059\uFF01"
-      tweetImageContent: {fileID: 0}
-      tweetID: d62c0fe36d6b4d06b8567f8c493767de
-      parentAccountID: AddRule
-    - tweetContent: "\u30EB\u30FC\u30EB\u300C\u30AD\u30FC\u30EF\u30FC\u30C9\u304C\u3042\u3063\u305F\u3089\u901A\u5831\u300D\u304C\u8FFD\u52A0\u3055\u308C\u307E\u3059\uFF01"
-      tweetImageContent: {fileID: 0}
-      tweetID: d0d05bd52abf400f99ab98453c73908c
-      parentAccountID: AddRule
-    - tweetContent: "\u30EB\u30FC\u30EB\u300C\u753B\u50CF\u304C\u3042\u3063\u305F\u3089\u30D6\u30C3\u30AF\u30DE\u30FC\u30AF\u300D\u304C\u8FFD\u52A0\u3055\u308C\u307E\u3059\uFF01"
-      tweetImageContent: {fileID: 0}
-      tweetID: 286487fb8afd41e2ad78f1fad7d7f497
-      parentAccountID: AddRule
-  - accountID: test
-    accountName: "\u30C6\u30B9\u30C8\u30A2\u30AB\u30A6\u30F3\u30C8"
-    accountImage: {fileID: 21300000, guid: 0016af889a7cdb3418d558d1e5f174c2, type: 3}
-    IsExclusion: 0
-    tweetList:
-    - tweetContent: "\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01"
-      tweetImageContent: {fileID: 0}
-      tweetID: ee1639a54b844b398517cf692c122c18
-      parentAccountID: test
-    - tweetContent: "\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01\u3053\u308C\u306F\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01"
-      tweetImageContent: {fileID: 0}
-      tweetID: ddbf212dfacb4797b861d1d7998efd2e
-      parentAccountID: test
-    - tweetContent: "\u30EC\u30BF\u30FC\u30D1\u30C3\u30AF\u3067\u73FE\u91D1\u9001\u308C\u306F\u3059\u3079\u3066\u8A50\u6B3A\u3067\u3059\uFF01"
-      tweetImageContent: {fileID: 0}
-      tweetID: 123123bac40a4ddebb83d37611308f76
-      parentAccountID: test
-  - accountID: TestTest
-    accountName: "\u30C6\u30B9\u30C8\u30A2\u30AB\u30A6\u30F3\u30C8\uFF12"
-    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
-    IsExclusion: 0
-    tweetList:
-    - tweetContent: "\u3053\u308C\u3082\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01"
-      tweetImageContent: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
-      tweetID: 6c39061c50eb401ca8bd14081a015461
-      parentAccountID: TestTest
-    - tweetContent: "\u3053\u308C\u3082\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01\u3053\u308C\u3082\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01\u3053\u308C\u3082\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01"
-      tweetImageContent: {fileID: 21300000, guid: 0016af889a7cdb3418d558d1e5f174c2, type: 3}
-      tweetID: 09dac85928144265a803adc75c84a2d8
-      parentAccountID: TestTest
-    - tweetContent: "\u3053\u308C\u3082\u30C6\u30B9\u30C8\u30C4\u30A4\u30FC\u30C8\u3067\u3059\uFF01\u753B\u50CF\u3082\u3042\u308B\u3088\uFF01"
-      tweetImageContent: {fileID: 21300000, guid: cd6b683baccf751418fec0a9ec6228ab, type: 3}
-      tweetID: 9791f20fe9b54736a4714ef3346203ca
-      parentAccountID: TestTest
 --- !u!1 &392365591
 GameObject:
   m_ObjectHideFlags: 0
@@ -1813,14 +1680,6 @@ MonoBehaviour:
   ruleChecker: {fileID: 740130131}
   keywordChecker: {fileID: 950172716}
   difficultyEvents:
-  - followerThreshold: 1
-    tweetCooldownReduction: -0.1
-    tweetSpeedReduction: 0
-    tweetIDToAdd: 286487fb8afd41e2ad78f1fad7d7f497
-    ruleFunctionName: 
-    keyWord: "\u9053\u5FB3"
-    actionFlag: 0
-    IsExecuted: 0
   - followerThreshold: 30
     tweetCooldownReduction: -0.1
     tweetSpeedReduction: -0.1
@@ -1840,12 +1699,28 @@ MonoBehaviour:
   - followerThreshold: 1000
     tweetCooldownReduction: -0.1
     tweetSpeedReduction: 0
-    tweetIDToAdd: 286487fb8afd41e2ad78f1fad7d7f497
+    tweetIDToAdd: cc31016a9d1d4b5db11ebfa585e12411
     ruleFunctionName: 
     keyWord: 
     actionFlag: 0
     IsExecuted: 0
-  - followerThreshold: 3000
+  - followerThreshold: 5000
+    tweetCooldownReduction: -0.1
+    tweetSpeedReduction: -0.1
+    tweetIDToAdd: 286487fb8afd41e2ad78f1fad7d7f497
+    ruleFunctionName: "\u300C\u30AD\u30FC\u30EF\u30FC\u30C9\u300D\u304C\u3042\u3063\u305F\u3089\u305D\u308C\u4EE5\u5916\u3092\u62BC\u3055\u305A\u306B"
+    keyWord: 
+    actionFlag: 8
+    IsExecuted: 0
+  - followerThreshold: 200000
+    tweetCooldownReduction: -0.1
+    tweetSpeedReduction: 0
+    tweetIDToAdd: b2e8e754786b4f6ca3575a3ee7ad96e7
+    ruleFunctionName: 
+    keyWord: "\u72AF\u7F6A"
+    actionFlag: 0
+    IsExecuted: 0
+  - followerThreshold: 50000
     tweetCooldownReduction: -0.1
     tweetSpeedReduction: -0.1
     tweetIDToAdd: d0d05bd52abf400f99ab98453c73908c
@@ -1853,28 +1728,36 @@ MonoBehaviour:
     keyWord: 
     actionFlag: 4
     IsExecuted: 0
-  - followerThreshold: 50000
-    tweetCooldownReduction: -0.1
-    tweetSpeedReduction: -0.1
-    tweetIDToAdd: 286487fb8afd41e2ad78f1fad7d7f497
-    ruleFunctionName: "\u300C\u30AD\u30FC\u30EF\u30FC\u30C9\u300D\u304C\u3042\u3063\u305F\u3089\u305D\u308C\u4EE5\u5916\u3092\u62BC\u3055\u305A\u306B"
-    keyWord: 
-    actionFlag: 8
-    IsExecuted: 0
   - followerThreshold: 100000
     tweetCooldownReduction: -0.1
     tweetSpeedReduction: -0.1
-    tweetIDToAdd: 286487fb8afd41e2ad78f1fad7d7f497
-    ruleFunctionName: "\u300C\u30AD\u30FC\u30EF\u30FC\u30C9\u300D\u304C\u3042\u3063\u305F\u3089\u305D\u308C\u4EE5\u5916\u3092\u62BC\u3055\u305A\u306B"
-    keyWord: "\u73FE\u91D1"
-    actionFlag: 8
+    tweetIDToAdd: cc31016a9d1d4b5db11ebfa585e12411
+    ruleFunctionName: 
+    keyWord: 
+    actionFlag: 0
     IsExecuted: 0
   - followerThreshold: 200000
     tweetCooldownReduction: -0.1
-    tweetSpeedReduction: 0
-    tweetIDToAdd: 286487fb8afd41e2ad78f1fad7d7f497
+    tweetSpeedReduction: -0.1
+    tweetIDToAdd: cc31016a9d1d4b5db11ebfa585e12411
     ruleFunctionName: 
-    keyWord: "\u72AF\u7F6A"
+    keyWord: 
+    actionFlag: 0
+    IsExecuted: 0
+  - followerThreshold: 300000
+    tweetCooldownReduction: -0.1
+    tweetSpeedReduction: -0.1
+    tweetIDToAdd: cc31016a9d1d4b5db11ebfa585e12411
+    ruleFunctionName: 
+    keyWord: 
+    actionFlag: 0
+    IsExecuted: 0
+  - followerThreshold: 1000000
+    tweetCooldownReduction: -0.5
+    tweetSpeedReduction: -0.1
+    tweetIDToAdd: 8fb659633a5546338b3978f82301ede9
+    ruleFunctionName: 
+    keyWord: 
     actionFlag: 0
     IsExecuted: 0
   GameOverText: {fileID: 44865034}
@@ -2812,6 +2695,665 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
+--- !u!1001 &901578207
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5940705169911421544, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421544, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421544, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421544, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421544, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421544, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421544, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421544, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421544, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421544, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421544, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.size
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[2].accountID
+      value: SpeedUp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[3].accountID
+      value: AddKeyWord
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[4].accountID
+      value: Omedeto!
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[5].accountID
+      value: ayah
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[6].accountID
+      value: NEJnews
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[7].accountID
+      value: pljk
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[8].accountID
+      value: yara
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[9].accountID
+      value: odtd
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[10].accountID
+      value: uls3m
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[11].accountID
+      value: fknews
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[12].accountID
+      value: clover968
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[13].accountID
+      value: reiru0141
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[14].accountID
+      value: hiiiiragii0723
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[15].accountID
+      value: matuoka_hiroshi
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[16].accountID
+      value: kawasaki_reiko
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[17].accountID
+      value: ozora_yuya
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[18].accountID
+      value: takahashi_ken
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[19].accountID
+      value: satou_masami
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[20].accountID
+      value: ishikawa_kana
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[21].accountID
+      value: miyamoto_taku
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[22].accountID
+      value: hayashi_yuji
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[23].accountID
+      value: ueno_ayaka
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[24].accountID
+      value: nakamura_takashi
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[2].IsExclusion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[2].accountName
+      value: "\u30B9\u30D4\u30FC\u30C9\u30A2\u30C3\u30D7"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[3].IsExclusion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[3].accountName
+      value: "\u30AD\u30FC\u30EF\u30FC\u30C9\u8FFD\u52A0\uFF01"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[4].accountName
+      value: "\uFF11\uFF10\uFF10\u4E07\u30D5\u30A9\u30ED\u30EF\u30FC\u9054\u6210\u8A18\u5FF5"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[5].accountName
+      value: holo_chan
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[6].accountName
+      value: "NEJ\u30CB\u30E5\u30FC\u30B9\u65E5\u672C\u652F\u90E8"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[7].accountName
+      value: ruto__8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[8].accountName
+      value: _bouen
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[9].accountName
+      value: noulvlu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[10].accountName
+      value: "\u3046\u3064(\u9B31)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[11].accountName
+      value: "FK\u30CB\u30E5\u30FC\u30B9"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[12].accountName
+      value: "\u304F\u308D\u30FC\u3070\u30FC"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[13].accountName
+      value: "\u308C\u3044\u3093"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[14].accountName
+      value: "\u3086\u304D\u3068"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[15].accountName
+      value: "\u677E\u5CA1\u535A"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[16].accountName
+      value: "\u30AB\u30EF\u30B5\u30AD\u30EC\u30A4\u30B3"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[17].accountName
+      value: "\u5927\u7A7A\u88D5\u4E5F"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[18].accountName
+      value: "\u30BF\u30AB\u30CF\u30B7\u30B1\u30F3"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[19].accountName
+      value: "\u30B5\u30C8\u30A6\u30DE\u30B5\u30DF"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[20].accountName
+      value: "\u30A4\u30B7\u30AB\u30EF\u30AB\u30CA"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[21].accountName
+      value: "\u30DF\u30E4\u30E2\u30C8\u30BF\u30AF"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[22].accountName
+      value: "\u30CF\u30E4\u30B7\u30E6\u30A6\u30B8"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[23].accountName
+      value: "\u30A6\u30A8\u30CE\u30A2\u30E4\u30AB"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[24].accountName
+      value: "\u30CA\u30AB\u30E0\u30E9\u30BF\u30AB\u30B7"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[4].accountImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 78d51b8198c0a8845a41cbecd632e3ae, type: 3}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[5].accountImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 6538a3cec3c5dc04189b7341db9e8de9, type: 3}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[6].accountImage
+      value: 
+      objectReference: {fileID: 21300000, guid: a9b83241cd407a8419bf26c13ad2ede2, type: 3}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[7].accountImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 35eb83f7f5a99a74ebb2b0dc8a8f9169, type: 3}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[8].accountImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[9].accountImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 9b1479a126e1d5f4f94d6d13e296e519, type: 3}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[10].accountImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 6771976e2d2ffbf468c5e3bc5d500ec3, type: 3}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[11].accountImage
+      value: 
+      objectReference: {fileID: 21300000, guid: f409f153dda422c4c9664c225d3a8574, type: 3}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[12].accountImage
+      value: 
+      objectReference: {fileID: 21300000, guid: a9b83241cd407a8419bf26c13ad2ede2, type: 3}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[13].accountImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 6a4ce03f5b6668640be3bf33a84a76bc, type: 3}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[14].accountImage
+      value: 
+      objectReference: {fileID: 21300000, guid: d03b13f923220e94f90c0c1f6e551919, type: 3}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[15].accountImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 794e1162d7d4d524c8655215bc825b7a, type: 3}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[16].accountImage
+      value: 
+      objectReference: {fileID: 21300000, guid: a53df160756b81043b184f9747019c27, type: 3}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[17].accountImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 06776e0d162d6b046be5f6b7878771de, type: 3}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[18].accountImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 587a4fc894881cf4bbf0e23d79082507, type: 3}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[19].accountImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 97d775273c8155f46b1f71e31573d6cc, type: 3}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[20].accountImage
+      value: 
+      objectReference: {fileID: 21300000, guid: b6270e75cf8d311419ce4a0c3f52e11c, type: 3}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[21].accountImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 12e1af03892696e4a9a373602005c972, type: 3}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[22].accountImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 5e531fdc1e47aec45a7ec42400c78cd8, type: 3}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[23].accountImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 12e1af03892696e4a9a373602005c972, type: 3}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[24].accountImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 35eb83f7f5a99a74ebb2b0dc8a8f9169, type: 3}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[4].tweetList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[22].tweetList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[23].tweetList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[24].tweetList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[2].tweetList.Array.data[0].tweetID
+      value: cc31016a9d1d4b5db11ebfa585e12411
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[3].tweetList.Array.data[0].tweetID
+      value: b2e8e754786b4f6ca3575a3ee7ad96e7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[4].tweetList.Array.data[0].tweetID
+      value: 8fb659633a5546338b3978f82301ede9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[4].tweetList.Array.data[1].tweetID
+      value: d4a6a4d608384ca49848960b64d9e947
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[5].tweetList.Array.data[0].tweetID
+      value: ba136bb47cf146968175b9d34dd2b8b2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[6].tweetList.Array.data[0].tweetID
+      value: dface6d9f6d9491a9c3ec80f44a28661
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[7].tweetList.Array.data[0].tweetID
+      value: 7cd0351607cc4e0cb1040c39ff9d96c8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[8].tweetList.Array.data[0].tweetID
+      value: f3b478c92ba14aab906e5acfb63896b4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[9].tweetList.Array.data[0].tweetID
+      value: f641255f0e5b4521b471aac8d6ddf615
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[10].tweetList.Array.data[0].tweetID
+      value: 8d32c470bbc245adb1a6184c7a4b0df5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[11].tweetList.Array.data[0].tweetID
+      value: 9f64614b50874845ab8577fc35a96b01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[12].tweetList.Array.data[0].tweetID
+      value: 74908f021d1148208f57b8d080f83d2f
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[13].tweetList.Array.data[0].tweetID
+      value: db5e3982d85d4b46a9f0331d742a1ec3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[14].tweetList.Array.data[0].tweetID
+      value: ca5618687f8b4189820e3d54da2af3d6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[15].tweetList.Array.data[0].tweetID
+      value: 86133d091ac049178a2acd0eccb6861c
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[16].tweetList.Array.data[0].tweetID
+      value: 981739bdc4074771a66dad4c0f539fe8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[17].tweetList.Array.data[0].tweetID
+      value: 7d3a13d20a834a0ca55b4e6bb0c84a2d
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[18].tweetList.Array.data[0].tweetID
+      value: 067ae11e67954e0fa6933a0c0022a9ae
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[19].tweetList.Array.data[0].tweetID
+      value: ff0598fb0bf249a395b784221b63b4e6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[20].tweetList.Array.data[0].tweetID
+      value: c4dbef81228c45e7a3bd0a1e129335f9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[21].tweetList.Array.data[0].tweetID
+      value: ced1919665794c688921b97fb336c15c
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[22].tweetList.Array.data[0].tweetID
+      value: 9ddc4268578842cdbd88b9e70ca6836a
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[23].tweetList.Array.data[0].tweetID
+      value: a5b016bb9a444eee8e97236d3c988b3e
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[24].tweetList.Array.data[0].tweetID
+      value: d4a6a4d608384ca49848960b64d9e947
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[2].tweetList.Array.data[0].tweetContent
+      value: "\u30BF\u30A4\u30E0\u30E9\u30A4\u30F3\u306E\u901F\u5EA6\u304C\u4E0A\u6607\u3057\u307E\u3059\uFF01"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[3].tweetList.Array.data[0].tweetContent
+      value: "\u30AD\u30FC\u30EF\u30FC\u30C9\u3092\u8FFD\u52A0\u3057\u307E\u3059\uFF01"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[4].tweetList.Array.data[0].tweetContent
+      value: "\uFF11\uFF10\uFF10\u4E07\u30D5\u30A9\u30ED\u30EF\u30FC\u9054\u6210\u304A\u3081\u3067\u3068\u3046\uFF01"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[4].tweetList.Array.data[1].tweetContent
+      value: "\u732B\u304C\u7A93\u306E\u5916\u3092\u773A\u3081\u3066\u308B\u59FF\u304C\u53EF\u611B\u304F\u3066\u7652\u3055\u308C\u308B\u3002"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[5].tweetList.Array.data[0].tweetContent
+      value: "\u5C0F\u5B66\u6821\u306E\u904B\u52D5\u4F1A\u3067\u300C\u7D05\u7D44\u30FB\u767D\u7D44\u3092\u5EC3\u6B62\u300D\u306E\u52D5\u304D\u3000\u201C\u52DD\u3061\u8CA0\u3051\u3092\u3064\u3051\u306A\u3044\u201D\u65B9\u91DD\u306B"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[6].tweetList.Array.data[0].tweetContent
+      value: "\u3010\u8A34\u3048\u3011\u30D2\u30B0\u30DE\u99C6\u9664\u300C\u7C73\u8ECD\u306E\u7279\u6B8A\u90E8\u968A\u3068\u68EE\u306E\u4E2D\u3067\u6226\u3046\u3088\u3046\u306A\u3082\u306E\u300D\u3001\u5317\u6D77\u9053\u306E\u731F\u53CB\u4F1A\u304C\u5354\u529B\u8F9E\u9000 "
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[7].tweetList.Array.data[0].tweetContent
+      value: "\U0001F447\u4ECA\u3059\u305050\u4E07\u5186\u501F\u308A\u305F\u3044\u306A\u3089\u30B3\u30EC\U0001F447
+        http://ma-net.kd/card-gomi/grousexsitai/?utm_source=xads"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[8].tweetList.Array.data[0].tweetContent
+      value: "\u307E\u308B\u3067\u5F3E\u4E38\u306E\u3088\u3046\u306A\u30B7\u30DE\u30A8\u30CA\u30AC"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[9].tweetList.Array.data[0].tweetContent
+      value: "\u6708\u66DC\u65E5\u304C\u306F\u3058\u30DE\u30F3\u30C7\u30FCwwwwwwwwwwwwwwwwwwwwwwww"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[10].tweetList.Array.data[0].tweetContent
+      value: "\u8179\u6E1B\u3063\u305F"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[11].tweetList.Array.data[0].tweetContent
+      value: "\u3010\u901F\u5831\u3011\u4E5D\u5DDE\u5317\u90E8\u3000\u3000\u6885\u96E8\u5165\u308A"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[12].tweetList.Array.data[0].tweetContent
+      value: "\u30D0\u30A4\u30C8\u304A\u308F\u305F\uFF01"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[13].tweetList.Array.data[0].tweetContent
+      value: "\u30E6\u30CB\u30BB\u30D5\u52DF\u91D1\u3092\u304A\u9858\u3044\u3057\u307E\u3059"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[14].tweetList.Array.data[0].tweetContent
+      value: "\u3010\u60B2\u5831\u3011\u5F31\u8005\u7537\u6027\u304C\u5973\u6027\u3092\u898B\u308B\u306E\u306F\u9055\u6CD5"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[15].tweetList.Array.data[0].tweetContent
+      value: "\u5BCC\u58EB\u5C71\u306E\u9802\u4E0A\u304B\u3089\u898B\u308B\u65E5\u306E\u51FA\u306F\u672C\u5F53\u306B\u611F\u52D5\u7684\u3067\u3057\u305F\uFF01#\u65E5\u672C
+        #\u5BCC\u58EB\u5C71 #\u65E5\u306E\u51FA"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[16].tweetList.Array.data[0].tweetContent
+      value: "\u6700\u8FD1\u3001\u4F55\u3092\u3084\u3063\u3066\u3082\u4E0A\u624B\u304F\u3044\u304B\u306A\u3044\u306A\u3041\u3002"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[17].tweetList.Array.data[0].tweetContent
+      value: "\u4ECA\u65E5\u3082\u30B8\u30E0\u3067\u6C57\u3092\u6D41\u3057\u3066\u304D\u305F\u3002\u6020\u3051\u8005\u306B\u306F\u7121\u7406\u3060\u308D\u3046\u306A\u3002"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[18].tweetList.Array.data[0].tweetContent
+      value: "\u671D\u98DF\u306B\u30C8\u30FC\u30B9\u30C8\u3068\u30B3\u30FC\u30D2\u30FC\u3092\u697D\u3057\u3093\u3060\u3002\u306A\u3093\u3066\u3053\u3068\u306A\u3044\u3051\u3069\u3001\u5E78\u305B\u3002"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[19].tweetList.Array.data[0].tweetContent
+      value: "\u671D5\u6642\u306B\u8D77\u304D\u3066\u30E9\u30F3\u30CB\u30F3\u30B0\u3002\u3084\u3063\u3071\u308A\u6210\u529F\u8005\u306F\u65E9\u8D77\u304D\u3060\u3088\u306D\u3002"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[20].tweetList.Array.data[0].tweetContent
+      value: "\u307E\u305F\u5F7C\u304C\u81EA\u6162\u8A71\u3070\u3063\u304B\u308A\u3057\u3066\u308B\u3002\u307B\u3093\u3068\u306B\u5ACC\u306B\u306A\u308B\u3002"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[21].tweetList.Array.data[0].tweetContent
+      value: "\u307E\u305F\u4E00\u65E5\u304C\u904E\u304E\u305F\u3002\u7279\u306B\u4F55\u3082\u306A\u304B\u3063\u305F\u306A\u3041\u3002"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[22].tweetList.Array.data[0].tweetContent
+      value: "\u4ED5\u4E8B\u3067\u307E\u305F\u5927\u6210\u529F\uFF01\u3053\u308C\u304C\u672C\u5F53\u306E\u5B9F\u529B\u3063\u3066\u3084\u3064\u3060\u3088\u3002"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[23].tweetList.Array.data[0].tweetContent
+      value: "\u3053\u3093\u306A\u306B\u9811\u5F35\u3063\u3066\u308B\u306E\u306B\u3001\u306A\u3093\u3067\u8AB0\u3082\u8A8D\u3081\u3066\u304F\u308C\u306A\u3044\u306E\uFF1F"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[24].tweetList.Array.data[0].tweetContent
+      value: "\u732B\u304C\u7A93\u306E\u5916\u3092\u773A\u3081\u3066\u308B\u59FF\u304C\u53EF\u611B\u304F\u3066\u7652\u3055\u308C\u308B\u3002"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[2].tweetList.Array.data[0].parentAccountID
+      value: SpeedUp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[3].tweetList.Array.data[0].parentAccountID
+      value: AddKeyWord
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[4].tweetList.Array.data[0].parentAccountID
+      value: Omedeto!
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[4].tweetList.Array.data[1].parentAccountID
+      value: nakamura_takashi
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[5].tweetList.Array.data[0].parentAccountID
+      value: ayah
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[6].tweetList.Array.data[0].parentAccountID
+      value: NEJnews
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[7].tweetList.Array.data[0].parentAccountID
+      value: pljk
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[8].tweetList.Array.data[0].parentAccountID
+      value: yara
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[9].tweetList.Array.data[0].parentAccountID
+      value: odtd
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[10].tweetList.Array.data[0].parentAccountID
+      value: uls3m
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[11].tweetList.Array.data[0].parentAccountID
+      value: fknews
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[12].tweetList.Array.data[0].parentAccountID
+      value: clover968
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[13].tweetList.Array.data[0].parentAccountID
+      value: reiru0141
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[14].tweetList.Array.data[0].parentAccountID
+      value: hiiiiragii0723
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[15].tweetList.Array.data[0].parentAccountID
+      value: matuoka_hiroshi
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[16].tweetList.Array.data[0].parentAccountID
+      value: kawasaki_reiko
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[17].tweetList.Array.data[0].parentAccountID
+      value: ozora_yuya
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[18].tweetList.Array.data[0].parentAccountID
+      value: takahashi_ken
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[19].tweetList.Array.data[0].parentAccountID
+      value: satou_masami
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[20].tweetList.Array.data[0].parentAccountID
+      value: ishikawa_kana
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[21].tweetList.Array.data[0].parentAccountID
+      value: miyamoto_taku
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[22].tweetList.Array.data[0].parentAccountID
+      value: hayashi_yuji
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[23].tweetList.Array.data[0].parentAccountID
+      value: ueno_ayaka
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[24].tweetList.Array.data[0].parentAccountID
+      value: nakamura_takashi
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[5].tweetList.Array.data[0].tweetImageContent
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[6].tweetList.Array.data[0].tweetImageContent
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[7].tweetList.Array.data[0].tweetImageContent
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[8].tweetList.Array.data[0].tweetImageContent
+      value: 
+      objectReference: {fileID: 21300000, guid: 9ccb8f33d54a6404b9b74ce82d82e225, type: 3}
+    - target: {fileID: 5940705169911421547, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: m_Name
+      value: TweetDatabase
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
 --- !u!1 &950172715
 GameObject:
   m_ObjectHideFlags: 0
@@ -4171,7 +4713,7 @@ MonoBehaviour:
   tweetPrefab: {fileID: 2732472929934927127, guid: e46c749adee439f478fe0e8a8ad78ab9, type: 3}
   timeline: {fileID: 1617694668}
   spawnPoint: {fileID: 2145114486}
-  tweetDatabase: {fileID: 373353067}
+  tweetDatabase: {fileID: 1961798298}
   keywordChecker: {fileID: 950172716}
   ruleChecker: {fileID: 740130131}
   maxTweets: 4
@@ -5335,6 +5877,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1957905211}
   m_CullTransparentMesh: 1
+--- !u!114 &1961798298 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+  m_PrefabInstance: {fileID: 901578207}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20f24daae1550514983dd969671c7be6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1972627064
 GameObject:
   m_ObjectHideFlags: 0
