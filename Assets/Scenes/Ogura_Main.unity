@@ -605,6 +605,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "\u57A2\u30ED\u30B0\u30A4\u30F3\u753B\u9762"
       objectReference: {fileID: 0}
+    - target: {fileID: 715134797562301397, guid: 38509b19427084a47a1dd318985142e7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 715134797944494461, guid: 38509b19427084a47a1dd318985142e7, type: 3}
       propertyPath: m_fontSize
       value: 16.9
@@ -1382,8 +1386,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 269191436}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
-  m_LocalScale: {x: 0.41600695, y: 1.1750605, z: 0.41600695}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.45132595, y: 1.2748232, z: 0.45132595}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1034551097}
@@ -1391,7 +1395,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 70.3, y: -18.8}
+  m_AnchoredPosition: {x: 71.7, y: -12.6}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &269191438
@@ -1447,7 +1451,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 0
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -3587,8 +3591,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1164824087}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
-  m_LocalScale: {x: 0.41600695, y: 1.1750605, z: 0.41600695}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.6762832, y: 1.9102414, z: 0.6762832}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1034551097}
@@ -3596,7 +3600,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 12.7, y: -15.9}
+  m_AnchoredPosition: {x: 1.3, y: 3.9}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1164824089
@@ -3652,7 +3656,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
