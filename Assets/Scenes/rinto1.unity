@@ -1463,6 +1463,7 @@ MonoBehaviour:
     tweetSpeedReduction: -0.1
     tweetIDToAdd: 7cdf161a13ae4c8ea1e3fee75b2a305d
     ruleFunctionName: "\u30D5\u30A9\u30ED\u30FC\u3092\u3057\u3066\u3044\u305F\u3089"
+    keyWord: 
     actionFlag: 1
     IsExecuted: 0
   - followerThreshold: 200
@@ -1470,6 +1471,7 @@ MonoBehaviour:
     tweetSpeedReduction: -0.1
     tweetIDToAdd: d62c0fe36d6b4d06b8567f8c493767de
     ruleFunctionName: "\uFF11\uFF10\u5206\u4EE5\u5185\u306A\u3089"
+    keyWord: 
     actionFlag: 2
     IsExecuted: 0
   - followerThreshold: 3000
@@ -1477,6 +1479,7 @@ MonoBehaviour:
     tweetSpeedReduction: -0.1
     tweetIDToAdd: d0d05bd52abf400f99ab98453c73908c
     ruleFunctionName: "\u753B\u50CF\u304C\u3042\u3063\u305F\u3089"
+    keyWord: 
     actionFlag: 4
     IsExecuted: 0
   - followerThreshold: 50000
@@ -1484,6 +1487,7 @@ MonoBehaviour:
     tweetSpeedReduction: -0.1
     tweetIDToAdd: 286487fb8afd41e2ad78f1fad7d7f497
     ruleFunctionName: "\u300C\u30AD\u30FC\u30EF\u30FC\u30C9\u300D\u304C\u3042\u3063\u305F\u3089\u305D\u308C\u4EE5\u5916\u3092\u62BC\u3055\u305A\u306B"
+    keyWord: 
     actionFlag: 8
     IsExecuted: 0
   GameOverEvent:
@@ -4898,6 +4902,46 @@ PrefabInstance:
     - target: {fileID: 5940705169911421544, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[1].accountID
+      value: holo_chan
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[3].accountID
+      value: rein
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[4].accountID
+      value: ruto__8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[5].accountID
+      value: _bouen
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[6].accountID
+      value: noulvlu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[1].accountName
+      value: "\u307B\u308D\u3061\u3083\u3093\uFF01"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[3].accountName
+      value: "\u308C"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[4].accountName
+      value: "\u307E\u3088\u306F\u3080"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[5].accountName
+      value: "\u3084\u3054"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940705169911421545, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
+      propertyPath: accountList.Array.data[6].accountName
+      value: "\u30CE\u30A6\u30E0"
       objectReference: {fileID: 0}
     - target: {fileID: 5940705169911421547, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
       propertyPath: m_Name
