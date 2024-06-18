@@ -15,7 +15,7 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.182
+    m_Value: 0.245
 --- !u!114 &-7360867979581802481
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -31,7 +31,7 @@ MonoBehaviour:
   active: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: -0.38
   xMultiplier:
     m_OverrideState: 1
     m_Value: 0
@@ -175,7 +175,7 @@ MonoBehaviour:
   active: 1
   distance:
     m_OverrideState: 1
-    m_Value: 0.119
+    m_Value: 0
   cropToFit:
     m_OverrideState: 1
     m_Value: 1
@@ -541,7 +541,7 @@ MonoBehaviour:
   active: 0
   color:
     m_OverrideState: 1
-    m_Value: {r: 0.9924528, g: 0.2902455, b: 0.2902455, a: 1}
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
   center:
     m_OverrideState: 1
     m_Value: {x: 0.5, y: 0.5}

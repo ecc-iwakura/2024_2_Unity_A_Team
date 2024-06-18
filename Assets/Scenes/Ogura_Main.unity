@@ -1245,17 +1245,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 224452609}
-  m_LocalRotation: {x: -0.00050384086, y: 0.00023399293, z: 0.026805684, w: 0.9996405}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalRotation: {x: -0.10546139, y: -0.15192129, z: 0.047730554, w: 0.9815904}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 790998532}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -0.058, y: 0.025, z: 3.072}
+  m_LocalEulerAnglesHint: {x: -11.101, y: -18.312, z: 7.362}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 12.9, y: -32}
+  m_AnchoredPosition: {x: 9, y: -29}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &224452611
@@ -1278,7 +1278,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: waaaa
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 817d872a293a9bd4aa1813676fabe804, type: 2}
   m_sharedMaterial: {fileID: -2458743268801026041, guid: 817d872a293a9bd4aa1813676fabe804, type: 2}
@@ -1317,7 +1317,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: -20
   m_wordSpacing: 0
-  m_lineSpacing: 30
+  m_lineSpacing: -62.8
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -1341,7 +1341,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -22.413216, y: 0, z: 15.020622, w: -99.0023}
+  m_margin: {x: -32.357414, y: 0, z: -7.087967, w: -99.0023}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4421,7 +4421,7 @@ MonoBehaviour:
   m_IsGlobal: 1
   priority: 0
   blendDistance: 0
-  weight: 1
+  weight: 0.781
   sharedProfile: {fileID: 11400000, guid: 65d46ef5a09b7fb4789b0f757de94db0, type: 2}
 --- !u!4 &1301501416
 Transform:
@@ -4851,8 +4851,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28.1
-  m_fontSizeBase: 28.1
+  m_fontSize: 28.68
+  m_fontSizeBase: 28.68
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
