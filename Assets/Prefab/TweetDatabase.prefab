@@ -78,24 +78,6 @@ MonoBehaviour:
       tweetImageContent: {fileID: 0}
       tweetID: 8b2dc43a3cb243268cfa59b3be3c1105
       parentAccountID: Tutorial
-  - accountID: ayah
-    accountName: holo_chan
-    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
-    IsExclusion: 0
-    tweetList:
-    - tweetContent: "\u5C0F\u5B66\u6821\u306E\u904B\u52D5\u4F1A\u3067\u300C\u7D05\u7D44\u30FB\u767D\u7D44\u3092\u5EC3\u6B62\u300D\u306E\u52D5\u304D\u3000\u201C\u52DD\u3061\u8CA0\u3051\u3092\u3064\u3051\u306A\u3044\u201D\u65B9\u91DD\u306B"
-      tweetImageContent: {fileID: 0}
-      tweetID: ba136bb47cf146968175b9d34dd2b8b2
-      parentAccountID: ayah
-  - accountID: NEJnews
-    accountName: "NEJ\u30CB\u30E5\u30FC\u30B9\u65E5\u672C\u652F\u90E8"
-    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
-    IsExclusion: 0
-    tweetList:
-    - tweetContent: "\u3010\u8A34\u3048\u3011\u30D2\u30B0\u30DE\u99C6\u9664\u300C\u7C73\u8ECD\u306E\u7279\u6B8A\u90E8\u968A\u3068\u68EE\u306E\u4E2D\u3067\u6226\u3046\u3088\u3046\u306A\u3082\u306E\u300D\u3001\u5317\u6D77\u9053\u306E\u731F\u53CB\u4F1A\u304C\u5354\u529B\u8F9E\u9000 "
-      tweetImageContent: {fileID: 0}
-      tweetID: dface6d9f6d9491a9c3ec80f44a28661
-      parentAccountID: NEJnews
   - accountID: AddRule
     accountName: "\u30EB\u30FC\u30EB\u8FFD\u52A0\uFF01"
     accountImage: {fileID: 21300000, guid: db1838025d6d22541a0384730eb3d8c3, type: 3}
@@ -117,6 +99,24 @@ MonoBehaviour:
       tweetImageContent: {fileID: 0}
       tweetID: 286487fb8afd41e2ad78f1fad7d7f497
       parentAccountID: AddRule
+  - accountID: ayah
+    accountName: holo_chan
+    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
+    IsExclusion: 0
+    tweetList:
+    - tweetContent: "\u5C0F\u5B66\u6821\u306E\u904B\u52D5\u4F1A\u3067\u300C\u7D05\u7D44\u30FB\u767D\u7D44\u3092\u5EC3\u6B62\u300D\u306E\u52D5\u304D\u3000\u201C\u52DD\u3061\u8CA0\u3051\u3092\u3064\u3051\u306A\u3044\u201D\u65B9\u91DD\u306B"
+      tweetImageContent: {fileID: 0}
+      tweetID: ba136bb47cf146968175b9d34dd2b8b2
+      parentAccountID: ayah
+  - accountID: NEJnews
+    accountName: "NEJ\u30CB\u30E5\u30FC\u30B9\u65E5\u672C\u652F\u90E8"
+    accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
+    IsExclusion: 0
+    tweetList:
+    - tweetContent: "\u3010\u8A34\u3048\u3011\u30D2\u30B0\u30DE\u99C6\u9664\u300C\u7C73\u8ECD\u306E\u7279\u6B8A\u90E8\u968A\u3068\u68EE\u306E\u4E2D\u3067\u6226\u3046\u3088\u3046\u306A\u3082\u306E\u300D\u3001\u5317\u6D77\u9053\u306E\u731F\u53CB\u4F1A\u304C\u5354\u529B\u8F9E\u9000 "
+      tweetImageContent: {fileID: 0}
+      tweetID: dface6d9f6d9491a9c3ec80f44a28661
+      parentAccountID: NEJnews
   - accountID: pljk
     accountName: ruto__8
     accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}
