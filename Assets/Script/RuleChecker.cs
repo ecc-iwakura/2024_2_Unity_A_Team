@@ -305,7 +305,7 @@ public class RuleChecker : MonoBehaviour
         string rulesText = "";
         foreach (var rule in selectedRules)
         {
-            rulesText += $" {rule.conditionName}{rule.actionFlag}\n";
+            rulesText += $" {rule.conditionName}{rule.actionFlag}\n\n";
         }
         ruleDisplayText.text = rulesText;
     }

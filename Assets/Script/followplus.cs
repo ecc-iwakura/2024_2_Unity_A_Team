@@ -181,7 +181,7 @@ public class followplus : MonoBehaviour
     // UIを更新する関数
     private void UpdateUI(int changeAmount)
     {
-        totalFollowersText.text = $"{followers}<color=#708090><size=10>フォロワー</size></color>";
+        totalFollowersText.text = $"{followers}";
         if (changeAmount >= 0)
         {
             changeInFollowersText.text = $"UP: +{changeAmount}";
