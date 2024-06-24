@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
-using System.Collections;
-using static RuleChecker;
-using static TimelineManager;
+using System.Collections.Generic;
 using UnityEngine.Events;
 using TMPro;
 
@@ -20,15 +16,11 @@ public class GameManager : MonoBehaviour
     public TMP_Text GameOverText;
     public UnityEvent GameOverEvent;
 
-
     void Start()
     {
         if (followPlusScript == null) { Debug.LogWarning("フォロープラスがありません！"); }
-
         if (timelineManager == null) { Debug.LogWarning("タイムラインマネージャーがありません！"); }
-
         if (ruleChecker == null) { Debug.LogWarning("ルールチェッカーがありません！"); }
-
         if (keywordChecker == null) { Debug.LogWarning("キーワードチェッカーがありません！"); }
 
         // followerThresholdの少ない順に並び替える
@@ -76,7 +68,7 @@ public class GameManager : MonoBehaviour
                 return;
             }
 
-            if (followPlusScript.maxFollowers > eventInfo.followerThreshold)
+            if (followPlusScript.maxFollowers > (ulong)eventInfo.followerThreshold)
             {
                 if (!eventInfo.IsExecuted)
                 {
@@ -84,7 +76,7 @@ public class GameManager : MonoBehaviour
                     // イベントを実行する
                     ExecuteEvent(eventInfo);
 
-                    Debug.LogError($"イベント実行");
+                    Debug.Log($"イベント実行");
                 }
 
                 // 次のイベントに進む
@@ -92,7 +84,6 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
 
     // イベントを実行する関数
     public void ExecuteEvent(DifficultyEvent eventInfo)
@@ -102,16 +93,10 @@ public class GameManager : MonoBehaviour
             Debug.LogError("EventInfo is null!");
             return;
         }
-        // ツイート間隔とスピードの減少
-        if (eventInfo.tweetCooldownReduction != 0)
-        {
-            timelineManager.tweetCooldown += eventInfo.tweetCooldownReduction;
-        }
 
-        if (eventInfo.tweetSpeedReduction != 0)
-        {
-            timelineManager.tweetSpeedTime += eventInfo.tweetSpeedReduction;
-        }
+        // ツイート間隔とスピードの減少
+        timelineManager.tweetCooldown += eventInfo.tweetCooldownReduction;
+        timelineManager.tweetSpeedTime += eventInfo.tweetSpeedReduction;
 
         // ルールの追加が必要な場合
         if (!string.IsNullOrEmpty(eventInfo.ruleFunctionName) && eventInfo.actionFlag != null)
@@ -121,7 +106,7 @@ public class GameManager : MonoBehaviour
             timelineManager.stackTweetIDs.Add(addRuleTweet); // AddRuleTweet を適切に追加
         }
 
-        if (eventInfo.keyWord != null && !string.IsNullOrEmpty(eventInfo.keyWord))
+        if (!string.IsNullOrEmpty(eventInfo.keyWord))
         {
             keywordChecker.AddKeyword(eventInfo.keyWord);
         }
@@ -136,24 +121,21 @@ public class GameManager : MonoBehaviour
         GameOverEvent.Invoke();
         IsGameover = true;
     }
-
-
 }
-
 
 [System.Serializable]
 public class DifficultyEvent
 {
-    public int followerThreshold;           // フォロワー数がこの数を超えたらイベントを開始する
+    public ulong followerThreshold;           // フォロワー数がこの数を超えたらイベントを開始する
     public float tweetCooldownReduction;    // ツイート間隔の減少量
     public float tweetSpeedReduction;       // ツイートスピードの減少量
     public string tweetIDToAdd;             // 追加するツイートID
     public string ruleFunctionName;         // 追加するルール関数名
-    public string keyWord;         // 追加するルール関数名
+    public string keyWord;                  // 追加するキーワード
     public RuleChecker.ButtonFlag actionFlag; // ButtonFlag
     public bool IsExecuted;                 // イベントが実行されたかどうか
 
-    public DifficultyEvent(int followerThreshold, float tweetCooldownReduction, float tweetSpeedReduction, string tweetIDToAdd, string ruleFunctionName, string keyWord, RuleChecker.ButtonFlag actionFlag)
+    public DifficultyEvent(ulong followerThreshold, float tweetCooldownReduction, float tweetSpeedReduction, string tweetIDToAdd, string ruleFunctionName, string keyWord, RuleChecker.ButtonFlag actionFlag)
     {
         this.followerThreshold = followerThreshold;
         this.tweetCooldownReduction = tweetCooldownReduction;
