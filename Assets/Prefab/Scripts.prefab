@@ -1,0 +1,458 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1560581034292361729
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1560581034292361743}
+  - component: {fileID: 1560581034292361742}
+  m_Layer: 0
+  m_Name: FollowPlus
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1560581034292361743
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560581034292361729}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 13.400083, y: -82.75516, z: 606.99243}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1560581035409129687}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1560581034292361742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560581034292361729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa08f1404a3fe9d4396225f08f21eabc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followers: 1
+  maxFollowers: 0
+  minIncreaseRate: 0.05
+  maxIncreaseRate: 0.1
+  minFixedIncrease: 1
+  maxFixedIncrease: 10
+  minDecreaseRate: 0.4
+  maxDecreaseRate: 0.5
+  totalFollowersText: {fileID: 0}
+  changeInFollowersText: {fileID: 0}
+--- !u!1 &1560581034413489059
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1560581034413489056}
+  - component: {fileID: 1560581034413489057}
+  m_Layer: 5
+  m_Name: TimeLineManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1560581034413489056
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560581034413489059}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -41.282932}
+  m_LocalScale: {x: 0.031861182, y: 0.031861182, z: 0.031861182}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1560581035409129687}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.19344035, y: 4.0387}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1560581034413489057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560581034413489059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5bada5a30a7eab4e83c0cf4f176d759, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweetPrefab: {fileID: 2732472929934927127, guid: e46c749adee439f478fe0e8a8ad78ab9, type: 3}
+  timeline: {fileID: 0}
+  spawnPoint: {fileID: 0}
+  tweetDatabase: {fileID: 0}
+  keywordChecker: {fileID: 1560581034846939962}
+  ruleChecker: {fileID: 1560581034657737285}
+  maxTweets: 4
+  IsStop: 0
+  AddTweetSE:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: AudioController, Assembly-CSharp
+        m_MethodName: PlayOnSound
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  tweetObjectList: []
+  stackTweetIDs:
+  - tweetID: ad5f07ba0a2940cfbc3c7f4bc5e26a57
+    ruleFunctionName: 
+    ruleFlag: 0
+  - tweetID: 9edfb1cdf4404e49b7e55ca9f6aa66e1
+    ruleFunctionName: 
+    ruleFlag: 0
+  - tweetID: 88bba737c4194af481f7c860eab1ab59
+    ruleFunctionName: 
+    ruleFlag: 0
+  - tweetID: 9d69c28e702c455ea6558ef3d89889a4
+    ruleFunctionName: 
+    ruleFlag: 0
+  - tweetID: 1efb67384fe042589eb22c4fe9f99ffa
+    ruleFunctionName: 
+    ruleFlag: 0
+  - tweetID: db505c2577e641c595b2ac8534718149
+    ruleFunctionName: 
+    ruleFlag: 0
+  - tweetID: 8b2dc43a3cb243268cfa59b3be3c1105
+    ruleFunctionName: 
+    ruleFlag: 0
+  tweetCooldown: 3
+  tweetSpeedTime: 0.7
+--- !u!1 &1560581034657737287
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1560581034657737284}
+  - component: {fileID: 1560581034657737285}
+  m_Layer: 0
+  m_Name: RuleChecker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1560581034657737284
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560581034657737287}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1560581035409129687}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1560581034657737285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560581034657737287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc60f5f7e01656048a2d0cd9db7a1798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keywordChecker: {fileID: 1560581034846939962}
+  Log: {fileID: 0}
+  ruleDisplayText: {fileID: 0}
+  Followplus: {fileID: 1560581034292361742}
+  CorrectSE:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: AudioController, Assembly-CSharp
+        m_MethodName: PlayOnSound
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  IncorrectSE:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: AudioController, Assembly-CSharp
+        m_MethodName: PlayOnSound
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Logs: 0
+  availableConditions:
+  - conditionName: "\u30D5\u30A9\u30ED\u30FC\u3092\u3057\u3066\u3044\u305F\u3089"
+  - conditionName: "\uFF11\uFF10\u5206\u4EE5\u5185\u306A\u3089"
+  - conditionName: "\u300C\u30AD\u30FC\u30EF\u30FC\u30C9\u300D\u304C\u3042\u3063\u305F\u3089\u305D\u308C\u4EE5\u5916\u3092\u62BC\u3055\u305A\u306B"
+  - conditionName: "\u753B\u50CF\u304C\u3042\u3063\u305F\u3089"
+  selectedRules: []
+--- !u!1 &1560581034846939965
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1560581034846939963}
+  - component: {fileID: 1560581034846939962}
+  m_Layer: 0
+  m_Name: KeywordChecker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1560581034846939963
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560581034846939965}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.175286, y: -69.6086, z: 128.88976}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1560581035409129687}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1560581034846939962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560581034846939965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33c330bbd56e73841808de793ea14ed0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keywords:
+  - "\u8A50\u6B3A"
+  KeywordDisplayText: {fileID: 0}
+--- !u!1 &1560581035409129686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1560581035409129687}
+  - component: {fileID: 1560581035409129684}
+  m_Layer: 0
+  m_Name: Scripts
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1560581035409129687
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560581035409129686}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.7, y: -4.0387, z: 61.08293}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1560581034657737284}
+  - {fileID: 1560581034413489056}
+  - {fileID: 1560581034846939963}
+  - {fileID: 1560581034292361743}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1560581035409129684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560581035409129686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fc30b63638dc3b4ca4f2106de09a278, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followPlusScript: {fileID: 1560581034292361742}
+  timelineManager: {fileID: 1560581034413489057}
+  ruleChecker: {fileID: 1560581034657737285}
+  keywordChecker: {fileID: 1560581034846939962}
+  difficultyEvents:
+  - followerThreshold: 30
+    tweetCooldownReduction: -0.1
+    tweetSpeedReduction: -0.1
+    tweetIDToAdd: 7cdf161a13ae4c8ea1e3fee75b2a305d
+    ruleFunctionName: "\u30D5\u30A9\u30ED\u30FC\u3092\u3057\u3066\u3044\u305F\u3089"
+    keyWord: 
+    actionFlag: 1
+    IsExecuted: 0
+  - followerThreshold: 200
+    tweetCooldownReduction: -0.1
+    tweetSpeedReduction: -0.1
+    tweetIDToAdd: d62c0fe36d6b4d06b8567f8c493767de
+    ruleFunctionName: "\uFF11\uFF10\u5206\u4EE5\u5185\u306A\u3089"
+    keyWord: 
+    actionFlag: 2
+    IsExecuted: 0
+  - followerThreshold: 1000
+    tweetCooldownReduction: -0.1
+    tweetSpeedReduction: 0
+    tweetIDToAdd: cc31016a9d1d4b5db11ebfa585e12411
+    ruleFunctionName: 
+    keyWord: 
+    actionFlag: 0
+    IsExecuted: 0
+  - followerThreshold: 5000
+    tweetCooldownReduction: -0.1
+    tweetSpeedReduction: -0.1
+    tweetIDToAdd: 286487fb8afd41e2ad78f1fad7d7f497
+    ruleFunctionName: "\u300C\u30AD\u30FC\u30EF\u30FC\u30C9\u300D\u304C\u3042\u3063\u305F\u3089\u305D\u308C\u4EE5\u5916\u3092\u62BC\u3055\u305A\u306B"
+    keyWord: 
+    actionFlag: 8
+    IsExecuted: 0
+  - followerThreshold: 200000
+    tweetCooldownReduction: -0.1
+    tweetSpeedReduction: 0
+    tweetIDToAdd: b2e8e754786b4f6ca3575a3ee7ad96e7
+    ruleFunctionName: 
+    keyWord: "\u72AF\u7F6A"
+    actionFlag: 0
+    IsExecuted: 0
+  - followerThreshold: 50000
+    tweetCooldownReduction: -0.1
+    tweetSpeedReduction: -0.1
+    tweetIDToAdd: d0d05bd52abf400f99ab98453c73908c
+    ruleFunctionName: "\u753B\u50CF\u304C\u3042\u3063\u305F\u3089"
+    keyWord: 
+    actionFlag: 4
+    IsExecuted: 0
+  - followerThreshold: 100000
+    tweetCooldownReduction: -0.1
+    tweetSpeedReduction: -0.1
+    tweetIDToAdd: cc31016a9d1d4b5db11ebfa585e12411
+    ruleFunctionName: 
+    keyWord: 
+    actionFlag: 0
+    IsExecuted: 0
+  - followerThreshold: 200000
+    tweetCooldownReduction: -0.1
+    tweetSpeedReduction: -0.1
+    tweetIDToAdd: cc31016a9d1d4b5db11ebfa585e12411
+    ruleFunctionName: 
+    keyWord: 
+    actionFlag: 0
+    IsExecuted: 0
+  - followerThreshold: 300000
+    tweetCooldownReduction: -0.1
+    tweetSpeedReduction: -0.1
+    tweetIDToAdd: cc31016a9d1d4b5db11ebfa585e12411
+    ruleFunctionName: 
+    keyWord: 
+    actionFlag: 0
+    IsExecuted: 0
+  - followerThreshold: 1000000
+    tweetCooldownReduction: -0.5
+    tweetSpeedReduction: -0.1
+    tweetIDToAdd: 8fb659633a5546338b3978f82301ede9
+    ruleFunctionName: 
+    keyWord: 
+    actionFlag: 0
+    IsExecuted: 0
+  GameOverText: {fileID: 0}
+  GameOverEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: AudioController, Assembly-CSharp
+        m_MethodName: PlayOnSound
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: AudioController, Assembly-CSharp
+        m_MethodName: PlayThemeBGM
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2

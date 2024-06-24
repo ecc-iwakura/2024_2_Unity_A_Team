@@ -1631,179 +1631,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 392365591}
   m_CullTransparentMesh: 1
---- !u!1 &455399360
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 455399361}
-  - component: {fileID: 455399362}
-  m_Layer: 0
-  m_Name: Scripts
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &455399361
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 455399360}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.7, y: -4.0387, z: 61.08293}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 740130130}
-  - {fileID: 1586261174}
-  - {fileID: 950172717}
-  - {fileID: 1507077401}
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &455399362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 455399360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fc30b63638dc3b4ca4f2106de09a278, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  followPlusScript: {fileID: 1507077400}
-  timelineManager: {fileID: 1586261175}
-  ruleChecker: {fileID: 740130131}
-  keywordChecker: {fileID: 950172716}
-  difficultyEvents:
-  - followerThreshold: 30
-    tweetCooldownReduction: -0.1
-    tweetSpeedReduction: -0.1
-    tweetIDToAdd: 7cdf161a13ae4c8ea1e3fee75b2a305d
-    ruleFunctionName: "\u30D5\u30A9\u30ED\u30FC\u3092\u3057\u3066\u3044\u305F\u3089"
-    keyWord: 
-    actionFlag: 1
-    IsExecuted: 0
-  - followerThreshold: 200
-    tweetCooldownReduction: -0.1
-    tweetSpeedReduction: -0.1
-    tweetIDToAdd: d62c0fe36d6b4d06b8567f8c493767de
-    ruleFunctionName: "\uFF11\uFF10\u5206\u4EE5\u5185\u306A\u3089"
-    keyWord: 
-    actionFlag: 2
-    IsExecuted: 0
-  - followerThreshold: 1000
-    tweetCooldownReduction: -0.1
-    tweetSpeedReduction: 0
-    tweetIDToAdd: cc31016a9d1d4b5db11ebfa585e12411
-    ruleFunctionName: 
-    keyWord: 
-    actionFlag: 0
-    IsExecuted: 0
-  - followerThreshold: 5000
-    tweetCooldownReduction: -0.1
-    tweetSpeedReduction: -0.1
-    tweetIDToAdd: 286487fb8afd41e2ad78f1fad7d7f497
-    ruleFunctionName: "\u300C\u30AD\u30FC\u30EF\u30FC\u30C9\u300D\u304C\u3042\u3063\u305F\u3089\u305D\u308C\u4EE5\u5916\u3092\u62BC\u3055\u305A\u306B"
-    keyWord: 
-    actionFlag: 8
-    IsExecuted: 0
-  - followerThreshold: 200000
-    tweetCooldownReduction: -0.1
-    tweetSpeedReduction: 0
-    tweetIDToAdd: b2e8e754786b4f6ca3575a3ee7ad96e7
-    ruleFunctionName: 
-    keyWord: "\u72AF\u7F6A"
-    actionFlag: 0
-    IsExecuted: 0
-  - followerThreshold: 50000
-    tweetCooldownReduction: -0.1
-    tweetSpeedReduction: -0.1
-    tweetIDToAdd: d0d05bd52abf400f99ab98453c73908c
-    ruleFunctionName: "\u753B\u50CF\u304C\u3042\u3063\u305F\u3089"
-    keyWord: 
-    actionFlag: 4
-    IsExecuted: 0
-  - followerThreshold: 100000
-    tweetCooldownReduction: -0.1
-    tweetSpeedReduction: -0.1
-    tweetIDToAdd: cc31016a9d1d4b5db11ebfa585e12411
-    ruleFunctionName: 
-    keyWord: 
-    actionFlag: 0
-    IsExecuted: 0
-  - followerThreshold: 200000
-    tweetCooldownReduction: -0.1
-    tweetSpeedReduction: -0.1
-    tweetIDToAdd: cc31016a9d1d4b5db11ebfa585e12411
-    ruleFunctionName: 
-    keyWord: 
-    actionFlag: 0
-    IsExecuted: 0
-  - followerThreshold: 300000
-    tweetCooldownReduction: -0.1
-    tweetSpeedReduction: -0.1
-    tweetIDToAdd: cc31016a9d1d4b5db11ebfa585e12411
-    ruleFunctionName: 
-    keyWord: 
-    actionFlag: 0
-    IsExecuted: 0
-  - followerThreshold: 1000000
-    tweetCooldownReduction: -0.5
-    tweetSpeedReduction: -0.1
-    tweetIDToAdd: 8fb659633a5546338b3978f82301ede9
-    ruleFunctionName: 
-    keyWord: 
-    actionFlag: 0
-    IsExecuted: 0
-  GameOverText: {fileID: 44865034}
-  GameOverEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1291791973}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1229956061}
-        m_TargetAssemblyTypeName: AudioController, Assembly-CSharp
-        m_MethodName: PlayOnSound
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1229956061}
-        m_TargetAssemblyTypeName: AudioController, Assembly-CSharp
-        m_MethodName: PlayThemeBGM
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
 --- !u!1 &491228250
 GameObject:
   m_ObjectHideFlags: 0
@@ -2383,91 +2210,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 717226010}
   m_CullTransparentMesh: 1
---- !u!1 &740130129
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 740130130}
-  - component: {fileID: 740130131}
-  m_Layer: 0
-  m_Name: RuleChecker
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &740130130
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 740130129}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 455399361}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &740130131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 740130129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc60f5f7e01656048a2d0cd9db7a1798, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keywordChecker: {fileID: 950172716}
-  Log: {fileID: 1795759888}
-  ruleDisplayText: {fileID: 224452611}
-  Followplus: {fileID: 1507077400}
-  CorrectSE:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1229956061}
-        m_TargetAssemblyTypeName: AudioController, Assembly-CSharp
-        m_MethodName: PlayOnSound
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  IncorrectSE:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1229956061}
-        m_TargetAssemblyTypeName: AudioController, Assembly-CSharp
-        m_MethodName: PlayOnSound
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  Logs: 0
-  availableConditions:
-  - conditionName: "\u30D5\u30A9\u30ED\u30FC\u3092\u3057\u3066\u3044\u305F\u3089"
-  - conditionName: "\uFF11\uFF10\u5206\u4EE5\u5185\u306A\u3089"
-  - conditionName: "\u300C\u30AD\u30FC\u30EF\u30FC\u30C9\u300D\u304C\u3042\u3063\u305F\u3089\u305D\u308C\u4EE5\u5916\u3092\u62BC\u3055\u305A\u306B"
-  - conditionName: "\u753B\u50CF\u304C\u3042\u3063\u305F\u3089"
-  selectedRules: []
 --- !u!1 &790998531
 GameObject:
   m_ObjectHideFlags: 0
@@ -3394,53 +3136,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61eb6ea429f37824ba8fdbccf6d81092, type: 3}
---- !u!1 &950172715
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 950172717}
-  - component: {fileID: 950172716}
-  m_Layer: 0
-  m_Name: KeywordChecker
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &950172716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 950172715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33c330bbd56e73841808de793ea14ed0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keywords:
-  - "\u8A50\u6B3A"
-  KeywordDisplayText: {fileID: 491299392}
---- !u!4 &950172717
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 950172715}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.175286, y: -69.6086, z: 128.88976}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 455399361}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1034551096
 GameObject:
   m_ObjectHideFlags: 0
@@ -3791,7 +3486,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0000000
+  m_text: 000000000000000000000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 817d872a293a9bd4aa1813676fabe804, type: 2}
   m_sharedMaterial: {fileID: -2458743268801026041, guid: 817d872a293a9bd4aa1813676fabe804, type: 2}
@@ -3818,7 +3513,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14.8
+  m_fontSize: 5.4
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4013,7 +3708,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -4106,10 +3801,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -4715,60 +4410,6 @@ Transform:
   m_Father: {fileID: 70658264992823073}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1507077399
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1507077401}
-  - component: {fileID: 1507077400}
-  m_Layer: 0
-  m_Name: FollowPlus
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1507077400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1507077399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa08f1404a3fe9d4396225f08f21eabc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  followers: 1
-  maxFollowers: 0
-  minIncreaseRate: 0.05
-  maxIncreaseRate: 0.1
-  minFixedIncrease: 1
-  maxFixedIncrease: 10
-  minDecreaseRate: 0.4
-  maxDecreaseRate: 0.5
-  totalFollowersText: {fileID: 1164824089}
-  changeInFollowersText: {fileID: 269191438}
---- !u!4 &1507077401
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1507077399}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.400083, y: -82.75516, z: 606.99243}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 455399361}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1574415229
 GameObject:
   m_ObjectHideFlags: 0
@@ -4837,103 +4478,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1586261173
+--- !u!1 &1586261173 stripped
 GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 1560581034413489059, guid: b4e5208372d86044c97de1fb82e3b667, type: 3}
+  m_PrefabInstance: {fileID: 1560581035259926294}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1586261174}
-  - component: {fileID: 1586261175}
-  m_Layer: 5
-  m_Name: TimeLineManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &1586261174
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1586261173}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -41.282932}
-  m_LocalScale: {x: 0.031861182, y: 0.031861182, z: 0.031861182}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 455399361}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.19344035, y: 4.0387}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1586261175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1586261173}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5bada5a30a7eab4e83c0cf4f176d759, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tweetPrefab: {fileID: 2732472929934927127, guid: e46c749adee439f478fe0e8a8ad78ab9, type: 3}
-  timeline: {fileID: 1617694668}
-  spawnPoint: {fileID: 2145114486}
-  tweetDatabase: {fileID: 1961798298}
-  keywordChecker: {fileID: 950172716}
-  ruleChecker: {fileID: 740130131}
-  maxTweets: 4
-  IsStop: 0
-  AddTweetSE:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1229956061}
-        m_TargetAssemblyTypeName: AudioController, Assembly-CSharp
-        m_MethodName: PlayOnSound
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  tweetObjectList: []
-  stackTweetIDs:
-  - tweetID: ad5f07ba0a2940cfbc3c7f4bc5e26a57
-    ruleFunctionName: 
-    ruleFlag: 0
-  - tweetID: 9edfb1cdf4404e49b7e55ca9f6aa66e1
-    ruleFunctionName: 
-    ruleFlag: 0
-  - tweetID: 88bba737c4194af481f7c860eab1ab59
-    ruleFunctionName: 
-    ruleFlag: 0
-  - tweetID: 9d69c28e702c455ea6558ef3d89889a4
-    ruleFunctionName: 
-    ruleFlag: 0
-  - tweetID: 1efb67384fe042589eb22c4fe9f99ffa
-    ruleFunctionName: 
-    ruleFlag: 0
-  - tweetID: db505c2577e641c595b2ac8534718149
-    ruleFunctionName: 
-    ruleFlag: 0
-  - tweetID: 8b2dc43a3cb243268cfa59b3be3c1105
-    ruleFunctionName: 
-    ruleFlag: 0
-  tweetCooldown: 3
-  tweetSpeedTime: 0.7
 --- !u!1 &1611166421
 GameObject:
   m_ObjectHideFlags: 0
@@ -5544,7 +5093,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b02db3a1f6e731945b3ec27c7d91faa6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: be5ff0976933cc04b8b0f78fa939f51e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6695,3 +6244,120 @@ MonoBehaviour:
   followSpeed: 17.21
   animator: {fileID: 70658264992823072}
   mainCamera: {fileID: 1826542915}
+--- !u!1001 &1560581035259926294
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1560581034292361742, guid: b4e5208372d86044c97de1fb82e3b667, type: 3}
+      propertyPath: totalFollowersText
+      value: 
+      objectReference: {fileID: 1164824089}
+    - target: {fileID: 1560581034292361742, guid: b4e5208372d86044c97de1fb82e3b667, type: 3}
+      propertyPath: changeInFollowersText
+      value: 
+      objectReference: {fileID: 269191438}
+    - target: {fileID: 1560581034413489057, guid: b4e5208372d86044c97de1fb82e3b667, type: 3}
+      propertyPath: timeline
+      value: 
+      objectReference: {fileID: 1617694668}
+    - target: {fileID: 1560581034413489057, guid: b4e5208372d86044c97de1fb82e3b667, type: 3}
+      propertyPath: spawnPoint
+      value: 
+      objectReference: {fileID: 2145114486}
+    - target: {fileID: 1560581034413489057, guid: b4e5208372d86044c97de1fb82e3b667, type: 3}
+      propertyPath: tweetDatabase
+      value: 
+      objectReference: {fileID: 1961798298}
+    - target: {fileID: 1560581034413489057, guid: b4e5208372d86044c97de1fb82e3b667, type: 3}
+      propertyPath: AddTweetSE.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1229956061}
+    - target: {fileID: 1560581034657737285, guid: b4e5208372d86044c97de1fb82e3b667, type: 3}
+      propertyPath: Log
+      value: 
+      objectReference: {fileID: 1795759888}
+    - target: {fileID: 1560581034657737285, guid: b4e5208372d86044c97de1fb82e3b667, type: 3}
+      propertyPath: ruleDisplayText
+      value: 
+      objectReference: {fileID: 224452611}
+    - target: {fileID: 1560581034657737285, guid: b4e5208372d86044c97de1fb82e3b667, type: 3}
+      propertyPath: CorrectSE.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1229956061}
+    - target: {fileID: 1560581034657737285, guid: b4e5208372d86044c97de1fb82e3b667, type: 3}
+      propertyPath: IncorrectSE.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1229956061}
+    - target: {fileID: 1560581034846939962, guid: b4e5208372d86044c97de1fb82e3b667, type: 3}
+      propertyPath: KeywordDisplayText
+      value: 
+      objectReference: {fileID: 491299392}
+    - target: {fileID: 1560581035409129684, guid: b4e5208372d86044c97de1fb82e3b667, type: 3}
+      propertyPath: GameOverText
+      value: 
+      objectReference: {fileID: 44865034}
+    - target: {fileID: 1560581035409129684, guid: b4e5208372d86044c97de1fb82e3b667, type: 3}
+      propertyPath: GameOverEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1291791973}
+    - target: {fileID: 1560581035409129684, guid: b4e5208372d86044c97de1fb82e3b667, type: 3}
+      propertyPath: GameOverEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1229956061}
+    - target: {fileID: 1560581035409129684, guid: b4e5208372d86044c97de1fb82e3b667, type: 3}
+      propertyPath: GameOverEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1229956061}
+    - target: {fileID: 1560581035409129686, guid: b4e5208372d86044c97de1fb82e3b667, type: 3}
+      propertyPath: m_Name
+      value: Scripts
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560581035409129687, guid: b4e5208372d86044c97de1fb82e3b667, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560581035409129687, guid: b4e5208372d86044c97de1fb82e3b667, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560581035409129687, guid: b4e5208372d86044c97de1fb82e3b667, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.0387
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560581035409129687, guid: b4e5208372d86044c97de1fb82e3b667, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 61.08293
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560581035409129687, guid: b4e5208372d86044c97de1fb82e3b667, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560581035409129687, guid: b4e5208372d86044c97de1fb82e3b667, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560581035409129687, guid: b4e5208372d86044c97de1fb82e3b667, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560581035409129687, guid: b4e5208372d86044c97de1fb82e3b667, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560581035409129687, guid: b4e5208372d86044c97de1fb82e3b667, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560581035409129687, guid: b4e5208372d86044c97de1fb82e3b667, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560581035409129687, guid: b4e5208372d86044c97de1fb82e3b667, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b4e5208372d86044c97de1fb82e3b667, type: 3}
