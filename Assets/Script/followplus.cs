@@ -13,9 +13,9 @@ public class followplus : MonoBehaviour
     [Tooltip("フォロワー数が増加する最大割合")]
     public float maxIncreaseRate = 0.10f; // 最大増加率
     [Tooltip("フォロワー数が増加する最小固定値")]
-    public ulong minFixedIncrease = 1; // 最小固定増加値
+    public int minFixedIncrease = 1; // 最小固定増加値
     [Tooltip("フォロワー数が増加する最大固定値")]
-    public ulong maxFixedIncrease = 10; // 最大固定増加値
+    public int maxFixedIncrease = 10; // 最大固定増加値
 
     [Header("フォロワー減少設定")]
     [Tooltip("最高到達点のフォロワー数から減少する最小割合")]
@@ -29,7 +29,7 @@ public class followplus : MonoBehaviour
 
     void Start()
     {
-        UpdateUI(0); // 初期状態を更新
+        UpdateUI(0, false); // 初期状態を更新
     }
 
     // 正しい行動をした時に呼び出される関数
@@ -62,7 +62,7 @@ public class followplus : MonoBehaviour
         }
 
         Debug.Log($"正しい行動が実行されました！フォロワー数: {followers} (増加数: {increaseAmount})");
-        UpdateUI((int)increaseAmount);
+        UpdateUI((ulong)increaseAmount,false);
     }
 
     // 間違った行動をした時に呼び出される関数
@@ -79,7 +79,7 @@ public class followplus : MonoBehaviour
         followers -= (ulong)decreaseAmount;
 
         Debug.Log($"間違った行動が実行されました...フォロワー数: {followers} (減少数: {decreaseAmount})");
-        UpdateUI(-(int)decreaseAmount);
+        UpdateUI((ulong)decreaseAmount, true);
     }
 
     // 行動を評価する関数
@@ -96,17 +96,17 @@ public class followplus : MonoBehaviour
     }
 
     // UIを更新する関数
-    private void UpdateUI(int changeAmount)
+    private void UpdateUI(ulong changeAmount,bool m)
     {
         totalFollowersText.text = $"{followers}";
-        if (changeAmount >= 0)
+        if (!m)
         {
             changeInFollowersText.text = $"UP: +{changeAmount}";
             changeInFollowersText.color = Color.blue; // 青色に設定
         }
         else
         {
-            changeInFollowersText.text = $"DOWN: {changeAmount}";
+            changeInFollowersText.text = $"DOWN: -{changeAmount}";
             changeInFollowersText.color = Color.red; // 赤色に設定
         }
     }
