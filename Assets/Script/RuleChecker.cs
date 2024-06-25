@@ -208,7 +208,11 @@ public class RuleChecker : MonoBehaviour
 
         Debug.LogWarning(finalLogMessage);
 
-        UpdateLog(logMessage);
+        if(Log != null)
+        {
+            UpdateLog(logMessage);
+        }
+
 
         if (isCorrect)
         {
