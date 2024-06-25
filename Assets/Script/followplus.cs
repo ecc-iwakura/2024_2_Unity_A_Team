@@ -3,6 +3,7 @@ using TMPro;
 
 public class followplus : MonoBehaviour
 {
+    public NixieTube nixieTube;
     public ulong followers = 0; // フォロワー数を管理する変数
     public ulong maxFollowers = 0; // 最高到達点のフォロワー数
     private bool firstCorrectAction = true; // 初めて正しい行動が行われたかどうかを管理するフラグ
@@ -23,13 +24,16 @@ public class followplus : MonoBehaviour
     [Tooltip("最高到達点のフォロワー数から減少する最大割合")]
     public float maxDecreaseRate = 0.50f; // 最大減少率
 
-    // UIテキストコンポーネントへの参照
-    public TMP_Text totalFollowersText;
+
     public TMP_Text changeInFollowersText;
 
     void Start()
     {
         UpdateUI(0, false); // 初期状態を更新
+        if(nixieTube == null)
+        {
+            UnityEngine.Debug.LogError("nixieTubeがありません！");
+        }
     }
 
     // 正しい行動をした時に呼び出される関数
@@ -48,11 +52,11 @@ public class followplus : MonoBehaviour
         {
             // フォロワーが5%～10%で増加し、さらに1～10の固定値を追加
             float increaseRate = Random.Range(minIncreaseRate, maxIncreaseRate); // 5%～10%の増加率
-            ulong increaseAmountFromRate = (ulong)Mathf.CeilToInt(followers * increaseRate); // 増加する割合部分のフォロワー数
+            ulong increaseAmountFromRate = (ulong)(followers * increaseRate); // 増加する割合部分のフォロワー数
             ulong fixedIncrease = (ulong)Random.Range((int)minFixedIncrease, (int)(maxFixedIncrease + 1)); // 1～10の固定値
             increaseAmount = (ulong)increaseAmountFromRate + (ulong)fixedIncrease; // 合計増加フォロワー数
-
             followers += (ulong)increaseAmount;
+            Debug.LogWarning($"increaseRate {increaseAmountFromRate} (固定値: {fixedIncrease}) 合計加算値{increaseAmount}");
         }
 
         // 最高到達点の更新
@@ -60,6 +64,7 @@ public class followplus : MonoBehaviour
         {
             maxFollowers = followers;
         }
+
 
         Debug.Log($"正しい行動が実行されました！フォロワー数: {followers} (増加数: {increaseAmount})");
         UpdateUI((ulong)increaseAmount,false);
@@ -95,19 +100,50 @@ public class followplus : MonoBehaviour
         }
     }
 
-    // UIを更新する関数
-    private void UpdateUI(ulong changeAmount,bool m)
+    private void UpdateUI(ulong changeAmount, bool isDecrease)
     {
-        totalFollowersText.text = $"{followers}";
-        if (!m)
+
+        string formattedFollowers = FormatNumber(followers);
+        nixieTube.UpdateDisplay(followers);
+
+        if (!isDecrease)
         {
-            changeInFollowersText.text = $"UP: +{changeAmount}";
+            string changeText = FormatNumber(changeAmount);
+            changeInFollowersText.text = $"UP: +{changeText}";
             changeInFollowersText.color = Color.blue; // 青色に設定
         }
         else
         {
-            changeInFollowersText.text = $"DOWN: -{changeAmount}";
+            string changeText = FormatNumber(changeAmount);
+            changeInFollowersText.text = $"DOWN: -{changeText}";
             changeInFollowersText.color = Color.red; // 赤色に設定
+        }
+    }
+
+
+    // 数字をK, M, B, Tなどの表記にフォーマットする関数
+    private string FormatNumber(ulong number)
+    {
+        // 1000以上の数に対して、適切な接尾辞を付けてフォーマットする
+        if (number >= 1000000000000) // 兆 (T)
+        {
+            return $"{number / 1000000000000f:F1}T";
+        }
+        else if (number >= 1000000000) // 十億 (B)
+        {
+            return $"{number / 1000000000f:F1}B";
+        }
+        else if (number >= 1000000) // 百万 (M)
+        {
+            return $"{number / 1000000f:F1}M";
+        }
+        else if (number >= 1000) // 千 (K)
+        {
+            return $"{number / 1000f:F1}K";
+        }
+        else // 1000未満はそのまま表示
+        {
+            return number.ToString();
         }
     }
 }
