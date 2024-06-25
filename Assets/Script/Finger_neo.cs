@@ -34,7 +34,7 @@ public class Finger_neo : MonoBehaviour
         // ターゲットオブジェクトとのレイキャストをチェック
         if (Physics.Raycast(ray, out hit))
         {
-            Debug.Log("当たっているオブジェクト: " + hit.transform.name); // レイキャストが当たったオブジェクトをログに出力
+            //Debug.Log("当たっているオブジェクト: " + hit.transform.name); // レイキャストが当たったオブジェクトをログに出力
             if (hit.transform.CompareTag("Target"))
             {
                 Vector3 hitPosition = hit.point;

@@ -103,7 +103,12 @@ public class TweetScript : MonoBehaviour
         // Update the account name and ID
         accountName.text = tweetAccountName;
         accountID.text = "@" + tweetAccountID;
-        accountImage.sprite = tweetAccountImage;
+
+        if(tweetAccountID != null)
+        {
+            accountImage.sprite = tweetAccountImage;
+        }
+
 
         RandomTweetInfo();
         // Adjust the size of the tweet container
