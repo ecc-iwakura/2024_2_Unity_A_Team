@@ -6302,6 +6302,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 44865034}
     - target: {fileID: 1560581035409129684, guid: b4e5208372d86044c97de1fb82e3b667, type: 3}
+      propertyPath: difficultyEvents.Array.data[0].keyWord
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560581035409129684, guid: b4e5208372d86044c97de1fb82e3b667, type: 3}
       propertyPath: GameOverEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1291791973}
