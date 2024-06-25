@@ -325,6 +325,10 @@ MonoBehaviour:
       tweetImageContent: {fileID: 0}
       tweetID: d4a6a4d608384ca49848960b64d9e947
       parentAccountID: nakamura_takashi
+    - tweetContent: "\u732B\u304C"
+      tweetImageContent: {fileID: 0}
+      tweetID: 
+      parentAccountID: nakamura_takashi
   - accountID: naru__sleep
     accountName: "\u304A\u3082\u3057\u308C\u30FC\u5973"
     accountImage: {fileID: 21300000, guid: 85ca473b71563e34cbab556473f54c13, type: 3}

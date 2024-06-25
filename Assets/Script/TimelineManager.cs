@@ -256,6 +256,12 @@ public class TimelineManager : MonoBehaviour
             return ("null", null, null, "null", "null"); // 要素数を5つに修正
         }
 
+        if(accountInfo == null)
+        {
+            Debug.LogWarning("アカウント情報が取得できませんでした。ID: " + accountID);
+            return ("アカウント情報が取得できませんでした", null, null, accountID, accountID); // 要素数を5つに修正
+        }
+
         string text = tweetInfo.tweetContent;
         Sprite image = tweetInfo.tweetImageContent;
         Sprite accountImage = accountInfo.accountImage; // フィールドを修正
