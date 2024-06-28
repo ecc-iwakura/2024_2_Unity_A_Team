@@ -29,7 +29,6 @@ public class followplus : MonoBehaviour
 
     void Start()
     {
-        UpdateUI(0, false); // 初期状態を更新
         if(nixieTube == null)
         {
             UnityEngine.Debug.LogError("nixieTubeがありません！");
@@ -110,13 +109,13 @@ public class followplus : MonoBehaviour
         {
             string changeText = FormatNumber(changeAmount);
             changeInFollowersText.text = $"UP: +{changeText}";
-            changeInFollowersText.color = Color.blue; // 青色に設定
+            changeInFollowersText.color = Color.green; // 青色に設定
         }
         else
         {
             string changeText = FormatNumber(changeAmount);
             changeInFollowersText.text = $"DOWN: -{changeText}";
-            changeInFollowersText.color = Color.red; // 赤色に設定
+            changeInFollowersText.color = new Color(243f / 255f, 152f / 255f, 0f / 255f, 1f); // オレンジ色に設定
         }
     }
 
