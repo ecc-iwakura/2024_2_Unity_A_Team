@@ -4,7 +4,7 @@
             "accountID": "Tutorial",
             "accountName": "チュートリアル",
             "accountImage": {
-                "instanceID": 29072
+                "instanceID": 69830
             },
             "IsExclusion": true,
             "tweetList": [
@@ -70,7 +70,7 @@
             "accountID": "AddRule",
             "accountName": "ルール追加！",
             "accountImage": {
-                "instanceID": 28614
+                "instanceID": 69818
             },
             "IsExclusion": true,
             "tweetList": [
