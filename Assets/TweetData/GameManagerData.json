@@ -1,0 +1,104 @@
+{
+    "Items": [
+        {
+            "followerThreshold": 30,
+            "tweetCooldownReduction": -0.10000000149011612,
+            "tweetSpeedReduction": -0.10000000149011612,
+            "tweetIDToAdd": "7cdf161a13ae4c8ea1e3fee75b2a305d",
+            "ruleFunctionName": "フォローをしていたら",
+            "keyWord": "",
+            "actionFlag": 1,
+            "IsExecuted": false
+        },
+        {
+            "followerThreshold": 200,
+            "tweetCooldownReduction": -0.10000000149011612,
+            "tweetSpeedReduction": -0.10000000149011612,
+            "tweetIDToAdd": "d62c0fe36d6b4d06b8567f8c493767de",
+            "ruleFunctionName": "１０分以内なら",
+            "keyWord": "",
+            "actionFlag": 2,
+            "IsExecuted": false
+        },
+        {
+            "followerThreshold": 1000,
+            "tweetCooldownReduction": -0.10000000149011612,
+            "tweetSpeedReduction": 0.0,
+            "tweetIDToAdd": "cc31016a9d1d4b5db11ebfa585e12411",
+            "ruleFunctionName": "",
+            "keyWord": "",
+            "actionFlag": 0,
+            "IsExecuted": false
+        },
+        {
+            "followerThreshold": 5000,
+            "tweetCooldownReduction": -0.10000000149011612,
+            "tweetSpeedReduction": -0.10000000149011612,
+            "tweetIDToAdd": "286487fb8afd41e2ad78f1fad7d7f497",
+            "ruleFunctionName": "「キーワード」があったらそれ以外を押さずに",
+            "keyWord": "",
+            "actionFlag": 8,
+            "IsExecuted": false
+        },
+        {
+            "followerThreshold": 200000,
+            "tweetCooldownReduction": -0.10000000149011612,
+            "tweetSpeedReduction": 0.0,
+            "tweetIDToAdd": "b2e8e754786b4f6ca3575a3ee7ad96e7",
+            "ruleFunctionName": "",
+            "keyWord": "弱者男性",
+            "actionFlag": 0,
+            "IsExecuted": false
+        },
+        {
+            "followerThreshold": 50000,
+            "tweetCooldownReduction": -0.10000000149011612,
+            "tweetSpeedReduction": -0.10000000149011612,
+            "tweetIDToAdd": "d0d05bd52abf400f99ab98453c73908c",
+            "ruleFunctionName": "画像があったら",
+            "keyWord": "",
+            "actionFlag": 4,
+            "IsExecuted": false
+        },
+        {
+            "followerThreshold": 100000,
+            "tweetCooldownReduction": -0.10000000149011612,
+            "tweetSpeedReduction": -0.10000000149011612,
+            "tweetIDToAdd": "cc31016a9d1d4b5db11ebfa585e12411",
+            "ruleFunctionName": "",
+            "keyWord": "",
+            "actionFlag": 0,
+            "IsExecuted": false
+        },
+        {
+            "followerThreshold": 200000,
+            "tweetCooldownReduction": -0.10000000149011612,
+            "tweetSpeedReduction": -0.10000000149011612,
+            "tweetIDToAdd": "cc31016a9d1d4b5db11ebfa585e12411",
+            "ruleFunctionName": "",
+            "keyWord": "",
+            "actionFlag": 0,
+            "IsExecuted": false
+        },
+        {
+            "followerThreshold": 300000,
+            "tweetCooldownReduction": -0.10000000149011612,
+            "tweetSpeedReduction": -0.10000000149011612,
+            "tweetIDToAdd": "cc31016a9d1d4b5db11ebfa585e12411",
+            "ruleFunctionName": "",
+            "keyWord": "",
+            "actionFlag": 0,
+            "IsExecuted": false
+        },
+        {
+            "followerThreshold": 1000000,
+            "tweetCooldownReduction": -0.5,
+            "tweetSpeedReduction": -0.10000000149011612,
+            "tweetIDToAdd": "8fb659633a5546338b3978f82301ede9",
+            "ruleFunctionName": "",
+            "keyWord": "",
+            "actionFlag": 0,
+            "IsExecuted": false
+        }
+    ]
+}

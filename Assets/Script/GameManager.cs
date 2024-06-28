@@ -2,19 +2,22 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Events;
 using TMPro;
+using System.IO;
 
 public class GameManager : MonoBehaviour
 {
-    public followplus followPlusScript; // followplusスクリプトへの参照
-    public TimelineManager timelineManager; // TimelineManagerスクリプトへの参照
-    public RuleChecker ruleChecker; // RuleCheckerスクリプトへの参照
-    public KeywordChecker keywordChecker; // キーワードチェッカーへの参照
+    public followplus followPlusScript;
+    public TimelineManager timelineManager;
+    public RuleChecker ruleChecker;
+    public KeywordChecker keywordChecker;
 
     public List<DifficultyEvent> difficultyEvents = new List<DifficultyEvent>();
     private bool IsGameover = false;
-    private int currentEventIndex = 0; // 現在のイベントインデックス
+    private int currentEventIndex = 0;
     public TMP_Text GameOverText;
     public UnityEvent GameOverEvent;
+    public AudioSource audioSource; // オーディオソースを追加
+    private float initialTweetSpeedTime; // 初期のtweetSpeedTimeを保持する変数
 
     void Start()
     {
@@ -23,8 +26,8 @@ public class GameManager : MonoBehaviour
         if (ruleChecker == null) { Debug.LogWarning("ルールチェッカーがありません！"); }
         if (keywordChecker == null) { Debug.LogWarning("キーワードチェッカーがありません！"); }
 
-        // followerThresholdの少ない順に並び替える
         difficultyEvents.Sort((x, y) => x.followerThreshold.CompareTo(y.followerThreshold));
+        initialTweetSpeedTime = timelineManager.tweetSpeedTime; // 初期値を記録
     }
 
     void Update()
@@ -32,17 +35,14 @@ public class GameManager : MonoBehaviour
         CheckFollowerThreshold();
     }
 
-    // フォロワー数とfollowerThresholdを比較し、イベントを実行する
     public void CheckFollowerThreshold()
     {
-        // followPlusScript が Null の場合は処理を中断する
         if (followPlusScript == null)
         {
             Debug.LogError("followPlusScript is null in CheckFollowerThreshold!");
             return;
         }
 
-        // followers が 0以下の場合、ゲームオーバー処理を実行する
         if (followPlusScript.followers <= 0)
         {
             if (!IsGameover)
@@ -52,7 +52,6 @@ public class GameManager : MonoBehaviour
         }
         else if (currentEventIndex < difficultyEvents.Count)
         {
-            // difficultyEvents が Null の場合は処理を中断する
             if (difficultyEvents == null)
             {
                 Debug.LogError("difficultyEvents is null in CheckFollowerThreshold!");
@@ -61,7 +60,6 @@ public class GameManager : MonoBehaviour
 
             var eventInfo = difficultyEvents[currentEventIndex];
 
-            // eventInfo が Null の場合は処理を中断する
             if (eventInfo == null)
             {
                 Debug.LogError($"eventInfo at index {currentEventIndex} is null in CheckFollowerThreshold!");
@@ -73,19 +71,15 @@ public class GameManager : MonoBehaviour
                 if (!eventInfo.IsExecuted)
                 {
                     eventInfo.IsExecuted = true;
-                    // イベントを実行する
                     ExecuteEvent(eventInfo);
-
                     Debug.Log($"イベント実行");
                 }
 
-                // 次のイベントに進む
                 currentEventIndex++;
             }
         }
     }
 
-    // イベントを実行する関数
     public void ExecuteEvent(DifficultyEvent eventInfo)
     {
         if (eventInfo == null)
@@ -94,16 +88,19 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        // ツイート間隔とスピードの減少
-        timelineManager.tweetCooldown += eventInfo.tweetCooldownReduction;
-        timelineManager.tweetSpeedTime += eventInfo.tweetSpeedReduction;
+        // Adjust tweet cooldown reduction
+        timelineManager.tweetCooldown *= (1.0f + eventInfo.tweetCooldownReduction);
 
-        // ルールの追加が必要な場合
+        // Adjust tweet speed reduction
+        timelineManager.tweetSpeedTime *= (1.0f + eventInfo.tweetSpeedReduction);
+
+        float speedRatio = initialTweetSpeedTime / timelineManager.tweetSpeedTime;
+        audioSource.pitch = speedRatio;
+
         if (!string.IsNullOrEmpty(eventInfo.ruleFunctionName) && eventInfo.actionFlag != null)
         {
-            // AddRuleTweet オブジェクトを作成して追加
             AddRuleTweet addRuleTweet = new AddRuleTweet(eventInfo.tweetIDToAdd, eventInfo.ruleFunctionName, eventInfo.actionFlag);
-            timelineManager.stackTweetIDs.Add(addRuleTweet); // AddRuleTweet を適切に追加
+            timelineManager.stackTweetIDs.Add(addRuleTweet);
         }
 
         if (!string.IsNullOrEmpty(eventInfo.keyWord))
@@ -121,19 +118,53 @@ public class GameManager : MonoBehaviour
         GameOverEvent.Invoke();
         IsGameover = true;
     }
+
+    public void SaveGameData(string filePath)
+    {
+        // シリアライズするオブジェクトを配列に変換する
+        var eventArray = difficultyEvents.ToArray();
+
+        // JSONにシリアライズする
+        string jsonData = JsonHelper.ToJson(eventArray, true);
+
+        // ファイルに書き込む
+        File.WriteAllText(filePath, jsonData);
+        Debug.Log("Game data saved to: " + filePath);
+    }
+
+    public void LoadGameData(string filePath)
+    {
+        if (File.Exists(filePath))
+        {
+            // ファイルからJSONデータを読み込む
+            string jsonData = File.ReadAllText(filePath);
+
+            // JSONをデシリアライズしてオブジェクトに戻す
+            var eventArray = JsonHelper.FromJson<DifficultyEvent>(jsonData);
+
+            // リストに戻す
+            difficultyEvents = new List<DifficultyEvent>(eventArray);
+
+            Debug.Log("Game data loaded from: " + filePath);
+        }
+        else
+        {
+            Debug.LogWarning("No saved game data found at: " + filePath);
+        }
+    }
 }
 
 [System.Serializable]
 public class DifficultyEvent
 {
-    public ulong followerThreshold;           // フォロワー数がこの数を超えたらイベントを開始する
-    public float tweetCooldownReduction;    // ツイート間隔の減少量
-    public float tweetSpeedReduction;       // ツイートスピードの減少量
-    public string tweetIDToAdd;             // 追加するツイートID
-    public string ruleFunctionName;         // 追加するルール関数名
-    public string keyWord;                  // 追加するキーワード
-    public RuleChecker.ButtonFlag actionFlag; // ButtonFlag
-    public bool IsExecuted;                 // イベントが実行されたかどうか
+    public ulong followerThreshold;
+    public float tweetCooldownReduction;
+    public float tweetSpeedReduction;
+    public string tweetIDToAdd;
+    public string ruleFunctionName;
+    public string keyWord;
+    public RuleChecker.ButtonFlag actionFlag;
+    public bool IsExecuted;
 
     public DifficultyEvent(ulong followerThreshold, float tweetCooldownReduction, float tweetSpeedReduction, string tweetIDToAdd, string ruleFunctionName, string keyWord, RuleChecker.ButtonFlag actionFlag)
     {
@@ -144,6 +175,29 @@ public class DifficultyEvent
         this.ruleFunctionName = ruleFunctionName;
         this.keyWord = keyWord;
         this.actionFlag = actionFlag;
-        this.IsExecuted = false; // 初期状態では実行されていない
+        this.IsExecuted = false;
+    }
+}
+
+// JsonUtilityを使用してジェネリックなJsonHelperクラスを作成する
+public static class JsonHelper
+{
+    public static T[] FromJson<T>(string json)
+    {
+        Wrapper<T> wrapper = JsonUtility.FromJson<Wrapper<T>>(json);
+        return wrapper.Items;
+    }
+
+    public static string ToJson<T>(T[] array, bool prettyPrint)
+    {
+        Wrapper<T> wrapper = new Wrapper<T>();
+        wrapper.Items = array;
+        return JsonUtility.ToJson(wrapper, prettyPrint);
+    }
+
+    [System.Serializable]
+    private class Wrapper<T>
+    {
+        public T[] Items;
     }
 }

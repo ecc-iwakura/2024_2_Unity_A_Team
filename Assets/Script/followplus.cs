@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class followplus : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class followplus : MonoBehaviour
     public ulong followers = 0; // フォロワー数を管理する変数
     public ulong maxFollowers = 0; // 最高到達点のフォロワー数
     private bool firstCorrectAction = true; // 初めて正しい行動が行われたかどうかを管理するフラグ
+    public Image image;
+
 
     [Header("フォロワー増加設定")]
     [Tooltip("フォロワー数が増加する最小割合")]
@@ -29,7 +32,8 @@ public class followplus : MonoBehaviour
 
     void Start()
     {
-        if(nixieTube == null)
+
+        if (nixieTube == null)
         {
             UnityEngine.Debug.LogError("nixieTubeがありません！");
         }
@@ -97,6 +101,8 @@ public class followplus : MonoBehaviour
         {
             IncorrectAction();
         }
+
+        SetImageTransparency(CalculateScaling(followers, maxFollowers));
     }
 
     private void UpdateUI(ulong changeAmount, bool isDecrease)
@@ -143,6 +149,36 @@ public class followplus : MonoBehaviour
         else // 1000未満はそのまま表示
         {
             return number.ToString();
+        }
+    }
+
+    float CalculateScaling(float currentFollowers, float maxFollowers)
+    {
+        float maxOpacity = 100.0f; // 最高透明度
+        float minOpacity = 0.0f; // 最低透明度
+        float minRatio = 0.3f; // 最小比率
+        float maxRatio = 1.0f; // 最大比率
+
+        float ratio = currentFollowers / maxFollowers;
+
+        // ratioがmaxRatioを超える場合は最低透明度を返す
+        if (ratio >= maxRatio)
+        {
+            return minOpacity;
+        }
+
+        // minRatioからmaxRatioの間で線形に透明度を計算し、範囲を設定する
+        return Mathf.Clamp(maxOpacity * (1.0f - (ratio - minRatio) / (maxRatio - minRatio)), minOpacity, maxOpacity);
+    }
+
+    void SetImageTransparency(float transparency)
+    {
+        if (image != null)
+        {
+            // Imageのカラーを取得して、透明度を変更します
+            Color color = image.color;
+            color.a = transparency / 100.0f; // スケーリング値を透明度に変換します
+            image.color = color;
         }
     }
 }

@@ -216,12 +216,12 @@ public class RuleChecker : MonoBehaviour
 
         if (isCorrect)
         {
-            Followplus.CorrectAction();
+            Followplus.EvaluateAction(true);
             CorrectSE.Invoke();
         }
         else
         {
-            Followplus.IncorrectAction();
+            Followplus.EvaluateAction(false);
             IncorrectSE.Invoke();
         }
 
