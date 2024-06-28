@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
+#if UNITY_EDITOR
+using UnityEditor; // エディターモードでのみ利用可能なスプライトのパスを取得するため
+#endif
 
 // ツイート情報を表すクラス
 [System.Serializable]
@@ -36,7 +39,7 @@ public class AccountInfo
     public string accountName;              // アカウント名
     public Sprite accountImage;             // アカウント画像
     public bool IsExclusion;
-    public List<TweetInfo> tweetList;      // ツイートリスト
+    public List<TweetInfo> tweetList;       // ツイートリスト
 
     public AccountInfo(string id, string name, Sprite image)
     {
@@ -192,7 +195,36 @@ public class TweetDatabase : MonoBehaviour
         return UnityEngine.Random.Range(0, count);
     }
 
-    // JSONデータをTweetDatabaseにインポートする静的メソッド
+
+    // スプライトをロードする関数
+    private Sprite LoadSprite(string path)
+    {
+        if (string.IsNullOrEmpty(path))
+        {
+            return null; // パスが空の場合、nullを返す
+        }
+
+        if (File.Exists(path))
+        {
+            byte[] fileData = File.ReadAllBytes(path);
+            Texture2D texture = new Texture2D(2, 2);
+            texture.LoadImage(fileData);
+            return Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+        }
+        return null;
+    }
+
+    // スプライトのパスを取得する関数
+    private string GetSpritePath(Sprite sprite)
+    {
+#if UNITY_EDITOR
+        return AssetDatabase.GetAssetPath(sprite);
+#else
+        return "";
+#endif
+    }
+
+    // JSONデータをTweetDatabaseにインポートするメソッド
     public void ImportFromJson(string filePath)
     {
         if (File.Exists(filePath))
@@ -202,6 +234,17 @@ public class TweetDatabase : MonoBehaviour
 
             // 辞書を更新
             UpdateDictionariesFromList();
+
+            // アカウント画像とツイート画像をファイルパスからロード
+            foreach (var accountInfo in accountList)
+            {
+                accountInfo.accountImage = LoadSprite(accountInfo.accountImage.name);
+
+                foreach (var tweetInfo in accountInfo.tweetList)
+                {
+                    tweetInfo.tweetImageContent = LoadSprite(tweetInfo.tweetImageContent.name);
+                }
+            }
         }
         else
         {
@@ -212,6 +255,22 @@ public class TweetDatabase : MonoBehaviour
     // JSONデータにTweetDatabaseをエクスポートするメソッド
     public void ExportToJson(string filePath)
     {
+        foreach (var accountInfo in accountList)
+        {
+            if (accountInfo.accountImage != null)
+            {
+                accountInfo.accountImage.name = GetSpritePath(accountInfo.accountImage);
+            }
+
+            foreach (var tweetInfo in accountInfo.tweetList)
+            {
+                if (tweetInfo.tweetImageContent != null)
+                {
+                    tweetInfo.tweetImageContent.name = GetSpritePath(tweetInfo.tweetImageContent);
+                }
+            }
+        }
+
         string json = JsonUtility.ToJson(this, true);
         File.WriteAllText(filePath, json);
         Debug.Log("TweetDatabase exported to JSON successfully.");

@@ -13,7 +13,7 @@ public class NixieTube : MonoBehaviour
 {
     public DigitObjectArray[] digitArrays; // 各桁の1から9、0までのオブジェクトを格納する配列の配列
     public GameObject[] unitObjects;      // 単位（K、M、B、Tなど）のオブジェクトを格納する配列
-    public ulong value = 0;         // 表示する値
+
 
     // Start is called before the first frame update
     void Start()
