@@ -138,7 +138,7 @@ public class TweetScript : MonoBehaviour
         if (tweetImageContent != null)
         {
             // Add image height
-            totalHeight += LayoutUtility.GetPreferredHeight(tweetImage.rectTransform) + 250f;
+            totalHeight +=  250f;//ごめんめちゃマジックナンバーです
         }
 
         // Set the tweet container height

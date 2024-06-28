@@ -4,7 +4,7 @@
             "accountID": "Tutorial",
             "accountName": "チュートリアル",
             "accountImage": {
-                "instanceID": 69830
+                "instanceID": -194584
             },
             "IsExclusion": true,
             "tweetList": [
@@ -213,7 +213,7 @@
                 {
                     "tweetContent": "まるで弾丸のようなチバエナガ",
                     "tweetImageContent": {
-                        "instanceID": 58200
+                        "instanceID": 122808
                     },
                     "tweetID": "f3b478c92ba14aab906e5acfb63896b4",
                     "parentAccountID": "Funny_Animal"
