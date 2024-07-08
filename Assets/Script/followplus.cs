@@ -25,7 +25,7 @@ public class followplus : MonoBehaviour
     [Tooltip("最高到達点のフォロワー数から減少する最小割合")]
     public float minDecreaseRate = 0.40f; // 最小減少率
     [Tooltip("最高到達点のフォロワー数から減少する最大割合")]
-    public float maxDecreaseRate = 0.50f; // 最大減少率
+    public float maxDecreaseRate = 0.35f; // 最大減少率
 
 
     public TMP_Text changeInFollowersText;
