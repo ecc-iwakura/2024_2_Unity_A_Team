@@ -151,7 +151,10 @@ public class TimelineManager : MonoBehaviour
             // リストで１番古いツイートを取得して再利用
             var oldTweetObjectData = tweetObjectList[0];
 
-            oldTweetObjectData.tweetScript.TweetCheck();
+            if (!ruleChecker.IsQuick)
+            {
+                oldTweetObjectData.tweetScript.TweetCheck();
+            }
 
             tweetObjectList.RemoveAt(0);
 

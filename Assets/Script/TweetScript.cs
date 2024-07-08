@@ -150,26 +150,72 @@ public class TweetScript : MonoBehaviour
 
     public void LikeButtonPressed()
     {
-        shouldLike = !shouldLike;
+        if(!ruleChecker.IsQuick)
+        {
+            shouldLike = !shouldLike;
+        }
+        else
+        {
+            if (!shouldLike)
+            {
+                shouldLike = true;
+                TweetQuickCheck();
+            }
+        }
+
     }
 
     public void RetweetButtonPressed()
     {
-        shouldRetweet = !shouldRetweet;
+        if (!ruleChecker.IsQuick)
+        {
+            shouldRetweet = !shouldRetweet;
+        }
+        else
+        {
+            if (!shouldRetweet)
+            {
+                shouldRetweet = true;
+                TweetQuickCheck();
+            }
+        }
     }
 
     public void BookmarkButtonPressed()
     {
-        shouldBookmark = !shouldBookmark;
+        if (!ruleChecker.IsQuick)
+        {
+            shouldBookmark = !shouldBookmark;
+        }
+        else
+        {
+            if (!shouldBookmark)
+            {
+                shouldBookmark = true;
+                TweetQuickCheck();
+            }
+        }
     }
 
     public void ReportButtonPressed()
     {
-        if(!shouldReport)
+        if (!ruleChecker.IsQuick)
         {
-            shouldReport = true;
-            //ruleChecker.CheckAction(buttonFlag, shouldLike, shouldRetweet, shouldBookmark, shouldReport); //åªèÛÇ±Ç±ÇÕÇ®Ç¢ÇƒÇ®Ç≠
+            if (!shouldReport)
+            {
+                shouldReport = true;
+                //ruleChecker.CheckAction(buttonFlag, shouldLike, shouldRetweet, shouldBookmark, shouldReport); //åªèÛÇ±Ç±ÇÕÇ®Ç¢ÇƒÇ®Ç≠
+            }
         }
+        else
+        {
+            if (!shouldReport)
+            {
+                shouldReport = true;
+                TweetQuickCheck();
+            }
+        }
+
     }
 
     public void RandomTweetInfo()
@@ -201,5 +247,10 @@ public class TweetScript : MonoBehaviour
     public void TweetCheck()
     {
         ruleChecker.CheckAction(buttonFlag, shouldLike, shouldRetweet, shouldBookmark, shouldReport);
+    }
+
+    public void TweetQuickCheck()
+    {
+        ruleChecker.QuickCheck(buttonFlag, shouldLike, shouldRetweet, shouldBookmark, shouldReport);
     }
 }

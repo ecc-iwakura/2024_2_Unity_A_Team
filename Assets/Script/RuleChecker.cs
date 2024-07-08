@@ -85,12 +85,16 @@ public class RuleChecker : MonoBehaviour
     public TMP_Text Log;
     public TMP_Text ruleDisplayText;
 
+
     [Tooltip("シーン内の 'Followplus' オブジェクトへの参照。")]
     public followplus Followplus;
+
+    public bool IsQuick = false;
     public GameObject NoneRule; // NoneRuleというGameObjectの参照をインスペクターから設定してください
 
     public UnityEvent CorrectSE;
     public UnityEvent IncorrectSE;
+    public UnityEvent ContinueSE;
 
     public int Logs = 5;
 
@@ -182,6 +186,13 @@ public class RuleChecker : MonoBehaviour
             return ButtonFlag.None;
         }
 
+        // 選択されたルールが一つもない場合、直ちにOtherを返す
+        if (selectedRules == null || selectedRules.Count == 0)
+        {
+            Debug.LogWarning("選択されたルールがありません！");
+            return ButtonFlag.Other;
+        }
+
         ButtonFlag result = ButtonFlag.None;
 
         foreach (var selectedRule in selectedRules)
@@ -215,36 +226,32 @@ public class RuleChecker : MonoBehaviour
         return result;
     }
 
+
     public void CheckAction(ButtonFlag correctAction, bool shouldLike, bool shouldRetweet, bool shouldBookmark, bool shouldReport)
     {
-        ButtonFlag userAction = ButtonFlag.Other;
+        ButtonFlag userAction = ButtonFlag.None;
 
-        if (!shouldLike && !shouldRetweet && !shouldBookmark && !shouldReport)
+        if (shouldLike)
         {
-            userAction = ButtonFlag.None;
-        }
-        else if (shouldLike && !shouldRetweet && !shouldBookmark && !shouldReport)
-        {
-            userAction = ButtonFlag.Like;
-        }
-        else if (!shouldLike && shouldRetweet && !shouldBookmark && !shouldReport)
-        {
-            userAction = ButtonFlag.Retweet;
-        }
-        else if (shouldLike && shouldRetweet && !shouldBookmark && !shouldReport)
-        {
-            userAction = ButtonFlag.LikeRT;
-        }
-        else if (!shouldLike && !shouldRetweet && shouldBookmark && !shouldReport)
-        {
-            userAction = ButtonFlag.Bookmark;
-        }
-        else if (!shouldLike && !shouldRetweet && !shouldBookmark && shouldReport)
-        {
-            userAction = ButtonFlag.Report;
+            userAction |= ButtonFlag.Like;
         }
 
-        bool isCorrect = userAction == correctAction;
+        if (shouldRetweet)
+        {
+            userAction |= ButtonFlag.Retweet;
+        }
+
+        if (shouldBookmark)
+        {
+            userAction |= ButtonFlag.Bookmark;
+        }
+
+        if (shouldReport)
+        {
+            userAction |= ButtonFlag.Report;
+        }
+
+        bool isCorrect = correctAction == ButtonFlag.Other || userAction == correctAction;
 
         string userActionText = userAction.ToString();
         string correctActionText = correctAction.ToString();
@@ -268,6 +275,65 @@ public class RuleChecker : MonoBehaviour
         {
             Followplus.EvaluateAction(false);
             IncorrectSE.Invoke();
+        }
+    }
+
+    public void QuickCheck(ButtonFlag correctAction, bool shouldLike, bool shouldRetweet, bool shouldBookmark, bool shouldReport)
+    {
+        ButtonFlag userAction = ButtonFlag.None;
+
+        // 指定された条件に基づいてフラグを追加
+        if (shouldLike)
+        {
+            userAction |= ButtonFlag.Like;
+        }
+
+        if (shouldRetweet)
+        {
+            userAction |= ButtonFlag.Retweet;
+        }
+
+        if (shouldBookmark)
+        {
+            userAction |= ButtonFlag.Bookmark;
+        }
+
+        if (shouldReport)
+        {
+            userAction |= ButtonFlag.Report;
+        }
+
+        // 正解かどうかの最終判定
+        bool isCorrect = correctAction == ButtonFlag.Other || userAction == correctAction;
+        bool isIncorrect = !isCorrect && ((userAction & correctAction) != 0 && (userAction & ~correctAction) != 0);
+
+        string userActionText = userAction.ToString();
+        string correctActionText = correctAction.ToString();
+        string statusText = isCorrect ? "<color=green><b>TRUE!</b></color>" : (isIncorrect ? "<color=red><b>FALSE!</b></color>" : "<color=yellow><b>CONTINUE</b></color>");
+        string logMessage = $"{userActionText} == {correctActionText} => {statusText}";
+        string finalLogMessage = $"{System.DateTime.Now} - {logMessage}";
+
+        Debug.LogWarning(finalLogMessage);
+
+        if (Log != null)
+        {
+            UpdateLog(logMessage);
+        }
+
+        // 判定結果に応じて処理を分岐
+        if (isCorrect)
+        {
+            Followplus.EvaluateAction(true);
+            CorrectSE.Invoke();
+        }
+        else if (isIncorrect)
+        {
+            Followplus.EvaluateAction(false);
+            IncorrectSE.Invoke();
+        }
+        else
+        {
+            ContinueSE.Invoke();
         }
     }
 
