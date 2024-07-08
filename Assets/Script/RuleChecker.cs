@@ -1,9 +1,10 @@
 using UnityEngine;
 using System;
-using System.Collections.Generic;
 using System.Collections;
-using UnityEngine.Events;
+using System.Collections.Generic;
 using TMPro;
+using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class RuleChecker : MonoBehaviour
 {
@@ -17,6 +18,14 @@ public class RuleChecker : MonoBehaviour
         Bookmark = 1 << 2,
         Report = 1 << 3,
         Other = 1 << 4
+    }
+
+    [System.Serializable]
+    public class ButtonFlagImage
+    {
+        public ButtonFlag buttonFlag;
+        public Sprite image;
+        public string flagName; // ボタンフラグの名前を格納するためのフィールドを追加
     }
 
     public enum Terms
@@ -34,8 +43,7 @@ public class RuleChecker : MonoBehaviour
         public int Time;
         public string Text;
 
-
-        public TweetData(bool b,bool i,int t, string s)
+        public TweetData(bool b, bool i, int t, string s)
         {
             IsFollow = b;
             IsImage = i;
@@ -64,13 +72,22 @@ public class RuleChecker : MonoBehaviour
         public ButtonFlag actionFlag;
     }
 
+    [System.Serializable]
+    public class RuleDisplay
+    {
+        public TMP_Text ruleText;
+        public Image ruleImage;
+    }
+
+
 
     public KeywordChecker keywordChecker;
     public TMP_Text Log;
-    public TMP_Text ruleDisplayText; // 追加: ルールを表示するためのTMPテキスト
+    public TMP_Text ruleDisplayText;
 
     [Tooltip("シーン内の 'Followplus' オブジェクトへの参照。")]
     public followplus Followplus;
+    public GameObject NoneRule; // NoneRuleというGameObjectの参照をインスペクターから設定してください
 
     public UnityEvent CorrectSE;
     public UnityEvent IncorrectSE;
@@ -80,9 +97,14 @@ public class RuleChecker : MonoBehaviour
     [SerializeField]
     public Condition[] availableConditions;
 
-    // インスペクターから選択するためのルールリスト
     public List<RuleReference> selectedRules = new List<RuleReference>();
     private Dictionary<string, Func<TweetData, Terms>> conditionFunctions = new Dictionary<string, Func<TweetData, Terms>>();
+
+    public ButtonFlagImage[] buttonFlagImage; // インスペクターで設定するペア
+    private Dictionary<ButtonFlag, ButtonFlagImage> buttonFlagImages = new Dictionary<ButtonFlag, ButtonFlagImage>();
+
+    public RuleDisplay[] ruleDisplays;
+
 
     public void InitializeRules()
     {
@@ -91,10 +113,9 @@ public class RuleChecker : MonoBehaviour
             new Condition("フォローをしていたら", FollowCondition),
             new Condition("１０分以内なら", TimeCondition),
             new Condition("「キーワード」があったらそれ以外を押さずに", KeywordCondition),
-            new Condition("画像があったら",ImageCondition)
+            new Condition("画像があったら", ImageCondition)
         };
 
-        // 利用可能な条件を辞書に登録
         foreach (var condition in availableConditions)
         {
             if (!conditionFunctions.ContainsKey(condition.conditionName))
@@ -107,6 +128,7 @@ public class RuleChecker : MonoBehaviour
             }
         }
 
+        InitializeButtonFlagImages();
         DisplaySelectedRules();
     }
 
@@ -117,11 +139,39 @@ public class RuleChecker : MonoBehaviour
         Followplus = GameObject.Find("FollowPlus").GetComponent<followplus>();
         if (Followplus == null)
         {
-
             Debug.LogError("Followplusが見つかりませんでした！");
         }
 
         InitializeRules();
+    }
+
+
+    private void InitializeButtonFlagImages()
+    {
+        foreach (var pair in buttonFlagImage)
+        {
+            if (!buttonFlagImages.ContainsKey(pair.buttonFlag))
+            {
+                buttonFlagImages.Add(pair.buttonFlag, pair);
+            }
+            else
+            {
+                Debug.LogWarning("同じButtonFlagが複数回設定されています: " + pair.buttonFlag);
+            }
+        }
+    }
+
+    private ButtonFlagImage GetButtonFlag(ButtonFlag flag)
+    {
+        if (buttonFlagImages.TryGetValue(flag, out ButtonFlagImage outimage))
+        {
+            return outimage;
+        }
+        else
+        {
+            Debug.LogWarning("指定されたButtonFlagに対応する画像が見つかりません: " + flag);
+            return null;
+        }
     }
 
     public ButtonFlag ApplyRules(TweetData tweetData, List<RuleReference> selectedRules)
@@ -139,14 +189,13 @@ public class RuleChecker : MonoBehaviour
             if (string.IsNullOrEmpty(selectedRule.conditionName))
             {
                 Debug.LogWarning("選択されたルールに条件名がありません！");
-                continue; // ルールに条件名がない場合、次のルールに進む
+                continue;
             }
 
             if (conditionFunctions.ContainsKey(selectedRule.conditionName))
             {
                 Terms terms = conditionFunctions[selectedRule.conditionName](tweetData);
 
-                // 選択された条件の関数を取得し、条件が成立する場合のみアクションを適用する
                 if (terms == Terms.OR)
                 {
                     result |= selectedRule.actionFlag;
@@ -168,10 +217,8 @@ public class RuleChecker : MonoBehaviour
 
     public void CheckAction(ButtonFlag correctAction, bool shouldLike, bool shouldRetweet, bool shouldBookmark, bool shouldReport)
     {
-
         ButtonFlag userAction = ButtonFlag.Other;
 
-        // ユーザーの行動を設定
         if (!shouldLike && !shouldRetweet && !shouldBookmark && !shouldReport)
         {
             userAction = ButtonFlag.None;
@@ -197,7 +244,6 @@ public class RuleChecker : MonoBehaviour
             userAction = ButtonFlag.Report;
         }
 
-
         bool isCorrect = userAction == correctAction;
 
         string userActionText = userAction.ToString();
@@ -208,11 +254,10 @@ public class RuleChecker : MonoBehaviour
 
         Debug.LogWarning(finalLogMessage);
 
-        if(Log != null)
+        if (Log != null)
         {
             UpdateLog(logMessage);
         }
-
 
         if (isCorrect)
         {
@@ -224,8 +269,6 @@ public class RuleChecker : MonoBehaviour
             Followplus.EvaluateAction(false);
             IncorrectSE.Invoke();
         }
-
-
     }
 
     public void UpdateLog(string newLog)
@@ -233,45 +276,35 @@ public class RuleChecker : MonoBehaviour
         StartCoroutine(UpdateLogCoroutine(newLog));
     }
 
-
     private IEnumerator UpdateLogCoroutine(string newLog)
     {
-        // ログを一瞬消す
         Log.enabled = false;
-
-        // ログを少しの間非表示にする（例えば0.1秒）
         yield return new WaitForSeconds(0.1f);
 
-        // 現在のログを分割
         string[] currentLog = Log.text.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
         List<string> updatedLog = new List<string>(currentLog);
 
-        // デバッグメッセージ
         Debug.Log("Before adding new log:");
         foreach (var log in updatedLog)
         {
             Debug.Log(log);
         }
 
-        // 新しいログを追加
         updatedLog.Add(newLog);
         if (updatedLog.Count > Logs)
         {
             updatedLog.RemoveAt(0);
         }
 
-        // デバッグメッセージ
         Debug.Log("After adding new log:");
         foreach (var log in updatedLog)
         {
             Debug.Log(log);
         }
 
-        // ログを再表示
         Log.text = string.Join("\n", updatedLog);
         Log.enabled = true;
 
-        // デバッグメッセージ
         Debug.Log("Final log text: " + Log.text);
     }
 
@@ -290,29 +323,51 @@ public class RuleChecker : MonoBehaviour
                     }
                 }
 
-                // 条件名に対応するルールが見つかった場合、新しいルールを作成して追加
                 selectedRules.Add(new RuleReference { conditionName = conditionName, actionFlag = actionFlag });
                 Debug.LogWarning("新しくルールを追加しました！" + conditionName + actionFlag);
-                DisplaySelectedRules(); // ルールを再表示
+                DisplaySelectedRules();
                 return;
             }
         }
 
-
         Debug.LogWarning("条件名に対応する関数が見つかりませんでした: " + conditionName);
     }
 
-    // 選択されたルールを表示するメソッド
     [ContextMenu("Rules表示！")]
     public void DisplaySelectedRules()
     {
-        string rulesText = "";
-        foreach (var rule in selectedRules)
+        bool hasRules = selectedRules.Count > 0;
+
+        for (int i = 0; i < ruleDisplays.Length; i++)
         {
-            rulesText += $" {rule.conditionName}{rule.actionFlag}\n\n";
+            if (i < selectedRules.Count)
+            {
+                RuleReference rule = selectedRules[i];
+                ButtonFlagImage flagdata = GetButtonFlag(rule.actionFlag);
+                if (flagdata != null && rule != null)
+                {
+                    ruleDisplays[i].ruleText.text = $"{rule.conditionName} {flagdata.flagName}";
+                    ruleDisplays[i].ruleImage.sprite = flagdata.image;
+                }
+            }
+            else
+            {
+                // 選択されたルールがない場合の処理を記述する場合はここに追加します
+            }
         }
-        ruleDisplayText.text = rulesText;
+
+        // selectedRulesの長さが0の場合の処理
+        if (!hasRules && NoneRule != null)
+        {
+            NoneRule.SetActive(true);
+        }
+        else if (NoneRule != null)
+        {
+            NoneRule.SetActive(false);
+        }
     }
+
+
 
     private Terms FollowCondition(TweetData tweetData)
     {
