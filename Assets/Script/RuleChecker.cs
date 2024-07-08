@@ -305,7 +305,7 @@ public class RuleChecker : MonoBehaviour
 
         // ê≥âÇ©Ç«Ç§Ç©ÇÃç≈èIîªíË
         bool isCorrect = correctAction == ButtonFlag.Other || userAction == correctAction;
-        bool isIncorrect = !isCorrect && ((userAction & correctAction) != 0 && (userAction & ~correctAction) != 0);
+        bool isIncorrect = !isCorrect && ((userAction & ~correctAction) != 0);
 
         string userActionText = userAction.ToString();
         string correctActionText = correctAction.ToString();
