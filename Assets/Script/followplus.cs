@@ -1,45 +1,48 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
 public class followplus : MonoBehaviour
 {
     public NixieTube nixieTube;
-    public ulong followers = 0; // ƒtƒHƒƒ[”‚ğŠÇ—‚·‚é•Ï”
-    public ulong maxFollowers = 0; // Å‚“’B“_‚ÌƒtƒHƒƒ[”
-    private bool firstCorrectAction = true; // ‰‚ß‚Ä³‚µ‚¢s“®‚ªs‚í‚ê‚½‚©‚Ç‚¤‚©‚ğŠÇ—‚·‚éƒtƒ‰ƒO
+    public ulong followers = 0; // ãƒ•ã‚©ãƒ­ãƒ¯ãƒ¼æ•°ã‚’ç®¡ç†ã™ã‚‹å¤‰æ•°
+    public ulong maxFollowers = 0; // æœ€é«˜åˆ°é”ç‚¹ã®ãƒ•ã‚©ãƒ­ãƒ¯ãƒ¼æ•°
+    private bool firstCorrectAction = true; // åˆã‚ã¦æ­£ã—ã„è¡Œå‹•ãŒè¡Œã‚ã‚ŒãŸã‹ã©ã†ã‹ã‚’ç®¡ç†ã™ã‚‹ãƒ•ãƒ©ã‚°
     public Image image;
 
 
-    [Header("ƒtƒHƒƒ[‘‰Áİ’è")]
-    [Tooltip("ƒtƒHƒƒ[”‚ª‘‰Á‚·‚éÅ¬Š„‡")]
-    public float minIncreaseRate = 0.05f; // Å¬‘‰Á—¦
-    [Tooltip("ƒtƒHƒƒ[”‚ª‘‰Á‚·‚éÅ‘åŠ„‡")]
-    public float maxIncreaseRate = 0.10f; // Å‘å‘‰Á—¦
-    [Tooltip("ƒtƒHƒƒ[”‚ª‘‰Á‚·‚éÅ¬ŒÅ’è’l")]
-    public int minFixedIncrease = 1; // Å¬ŒÅ’è‘‰Á’l
-    [Tooltip("ƒtƒHƒƒ[”‚ª‘‰Á‚·‚éÅ‘åŒÅ’è’l")]
-    public int maxFixedIncrease = 10; // Å‘åŒÅ’è‘‰Á’l
+    [Header("ãƒ•ã‚©ãƒ­ãƒ¯ãƒ¼å¢—åŠ è¨­å®š")]
+    [Tooltip("ãƒ•ã‚©ãƒ­ãƒ¯ãƒ¼æ•°ãŒå¢—åŠ ã™ã‚‹æœ€å°å‰²åˆ")]
+    public float minIncreaseRate = 0.05f; // æœ€å°å¢—åŠ ç‡
+    [Tooltip("ãƒ•ã‚©ãƒ­ãƒ¯ãƒ¼æ•°ãŒå¢—åŠ ã™ã‚‹æœ€å¤§å‰²åˆ")]
+    public float maxIncreaseRate = 0.10f; // æœ€å¤§å¢—åŠ ç‡
+    [Tooltip("ãƒ•ã‚©ãƒ­ãƒ¯ãƒ¼æ•°ãŒå¢—åŠ ã™ã‚‹æœ€å°å›ºå®šå€¤")]
+    public int minFixedIncrease = 1; // æœ€å°å›ºå®šå¢—åŠ å€¤
+    [Tooltip("ãƒ•ã‚©ãƒ­ãƒ¯ãƒ¼æ•°ãŒå¢—åŠ ã™ã‚‹æœ€å¤§å›ºå®šå€¤")]
+    public int maxFixedIncrease = 10; // æœ€å¤§å›ºå®šå¢—åŠ å€¤
 
-    [Header("ƒtƒHƒƒ[Œ¸­İ’è")]
-    [Tooltip("Å‚“’B“_‚ÌƒtƒHƒƒ[”‚©‚çŒ¸­‚·‚éÅ¬Š„‡")]
-    public float minDecreaseRate = 0.40f; // Å¬Œ¸­—¦
-    [Tooltip("Å‚“’B“_‚ÌƒtƒHƒƒ[”‚©‚çŒ¸­‚·‚éÅ‘åŠ„‡")]
-    public float maxDecreaseRate = 0.35f; // Å‘åŒ¸­—¦
+    [Header("ãƒ•ã‚©ãƒ­ãƒ¯ãƒ¼æ¸›å°‘è¨­å®š")]
+    [Tooltip("æœ€é«˜åˆ°é”ç‚¹ã®ãƒ•ã‚©ãƒ­ãƒ¯ãƒ¼æ•°ã‹ã‚‰æ¸›å°‘ã™ã‚‹æœ€å°å‰²åˆ")]
+    public float minDecreaseRate = 0.40f; // æœ€å°æ¸›å°‘ç‡
+    [Tooltip("æœ€é«˜åˆ°é”ç‚¹ã®ãƒ•ã‚©ãƒ­ãƒ¯ãƒ¼æ•°ã‹ã‚‰æ¸›å°‘ã™ã‚‹æœ€å¤§å‰²åˆ")]
+    public float maxDecreaseRate = 0.35f; // æœ€å¤§æ¸›å°‘ç‡
 
 
     public TMP_Text changeInFollowersText;
+    public TMP_Text changeTypeText; // UPã‚„DOWNã‚’è¡¨ç¤ºã™ã‚‹ãƒ†ã‚­ã‚¹ãƒˆ
+    public Animator textAnimator; // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚’å‚ç…§ã™ã‚‹ãŸã‚ã®å¤‰æ•°
+
 
     void Start()
     {
 
         if (nixieTube == null)
         {
-            UnityEngine.Debug.LogError("nixieTube‚ª‚ ‚è‚Ü‚¹‚ñI");
+            UnityEngine.Debug.LogError("nixieTubeãŒã‚ã‚Šã¾ã›ã‚“ï¼");
         }
     }
 
-    // ³‚µ‚¢s“®‚ğ‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éŠÖ”
+    // æ­£ã—ã„è¡Œå‹•ã‚’ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹é–¢æ•°
     [ContextMenu("CorrectAction")]
     public void CorrectAction()
     {
@@ -47,50 +50,50 @@ public class followplus : MonoBehaviour
 
         if (firstCorrectAction)
         {
-            followers += 1; // ‰‚ß‚Ä‚Ì³‚µ‚¢s“®‚Ìê‡AƒtƒHƒƒ[‚ªŒÅ’è‚Å1‘‰Á
-            firstCorrectAction = false; // ‰‚ß‚Ä‚Ì³‚µ‚¢s“®‚ªs‚í‚ê‚½ƒtƒ‰ƒO‚ğfalse‚Éİ’è
+            followers += 1; // åˆã‚ã¦ã®æ­£ã—ã„è¡Œå‹•ã®å ´åˆã€ãƒ•ã‚©ãƒ­ãƒ¯ãƒ¼ãŒå›ºå®šã§1å¢—åŠ 
+            firstCorrectAction = false; // åˆã‚ã¦ã®æ­£ã—ã„è¡Œå‹•ãŒè¡Œã‚ã‚ŒãŸãƒ•ãƒ©ã‚°ã‚’falseã«è¨­å®š
             increaseAmount = 1;
         }
         else
         {
-            // ƒtƒHƒƒ[‚ª5%`10%‚Å‘‰Á‚µA‚³‚ç‚É1`10‚ÌŒÅ’è’l‚ğ’Ç‰Á
-            float increaseRate = Random.Range(minIncreaseRate, maxIncreaseRate); // 5%`10%‚Ì‘‰Á—¦
-            ulong increaseAmountFromRate = (ulong)(followers * increaseRate); // ‘‰Á‚·‚éŠ„‡•”•ª‚ÌƒtƒHƒƒ[”
-            ulong fixedIncrease = (ulong)Random.Range((int)minFixedIncrease, (int)(maxFixedIncrease + 1)); // 1`10‚ÌŒÅ’è’l
-            increaseAmount = (ulong)increaseAmountFromRate + (ulong)fixedIncrease; // ‡Œv‘‰ÁƒtƒHƒƒ[”
+            // ãƒ•ã‚©ãƒ­ãƒ¯ãƒ¼ãŒ5%ï½10%ã§å¢—åŠ ã—ã€ã•ã‚‰ã«1ï½10ã®å›ºå®šå€¤ã‚’è¿½åŠ 
+            float increaseRate = Random.Range(minIncreaseRate, maxIncreaseRate); // 5%ï½10%ã®å¢—åŠ ç‡
+            ulong increaseAmountFromRate = (ulong)(followers * increaseRate); // å¢—åŠ ã™ã‚‹å‰²åˆéƒ¨åˆ†ã®ãƒ•ã‚©ãƒ­ãƒ¯ãƒ¼æ•°
+            ulong fixedIncrease = (ulong)Random.Range((int)minFixedIncrease, (int)(maxFixedIncrease + 1)); // 1ï½10ã®å›ºå®šå€¤
+            increaseAmount = (ulong)increaseAmountFromRate + (ulong)fixedIncrease; // åˆè¨ˆå¢—åŠ ãƒ•ã‚©ãƒ­ãƒ¯ãƒ¼æ•°
             followers += (ulong)increaseAmount;
-            Debug.LogWarning($"increaseRate {increaseAmountFromRate} (ŒÅ’è’l: {fixedIncrease}) ‡Œv‰ÁZ’l{increaseAmount}");
+            Debug.LogWarning($"increaseRate {increaseAmountFromRate} (å›ºå®šå€¤: {fixedIncrease}) åˆè¨ˆåŠ ç®—å€¤{increaseAmount}");
         }
 
-        // Å‚“’B“_‚ÌXV
+        // æœ€é«˜åˆ°é”ç‚¹ã®æ›´æ–°
         if (followers > maxFollowers)
         {
             maxFollowers = followers;
         }
 
 
-        Debug.Log($"³‚µ‚¢s“®‚ªÀs‚³‚ê‚Ü‚µ‚½IƒtƒHƒƒ[”: {followers} (‘‰Á”: {increaseAmount})");
+        Debug.Log($"æ­£ã—ã„è¡Œå‹•ãŒå®Ÿè¡Œã•ã‚Œã¾ã—ãŸï¼ãƒ•ã‚©ãƒ­ãƒ¯ãƒ¼æ•°: {followers} (å¢—åŠ æ•°: {increaseAmount})");
         UpdateUI((ulong)increaseAmount,false);
     }
 
-    // ŠÔˆá‚Á‚½s“®‚ğ‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éŠÖ”
+    // é–“é•ã£ãŸè¡Œå‹•ã‚’ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹é–¢æ•°
     [ContextMenu("IncorrectAction")]
     public void IncorrectAction()
     {
-        // Å‚“’B“_‚ÌƒtƒHƒƒ[”‚Ì40%`50%‚ÅŒ¸­
-        float decreaseRate = Random.Range(minDecreaseRate, maxDecreaseRate); // 40%`50%‚ÌŒ¸­—¦
-        ulong decreaseAmount = (ulong)Mathf.CeilToInt(maxFollowers * decreaseRate); // Œ¸­‚·‚éƒtƒHƒƒ[”
+        // æœ€é«˜åˆ°é”ç‚¹ã®ãƒ•ã‚©ãƒ­ãƒ¯ãƒ¼æ•°ã®40%ï½50%ã§æ¸›å°‘
+        float decreaseRate = Random.Range(minDecreaseRate, maxDecreaseRate); // 40%ï½50%ã®æ¸›å°‘ç‡
+        ulong decreaseAmount = (ulong)Mathf.CeilToInt(maxFollowers * decreaseRate); // æ¸›å°‘ã™ã‚‹ãƒ•ã‚©ãƒ­ãƒ¯ãƒ¼æ•°
         if (decreaseAmount > followers)
         {
-            decreaseAmount = followers; // ƒtƒHƒƒ[”‚æ‚èŒ¸­—Ê‚ª‘½‚¢ê‡‚Í‘S‚ÄŒ¸‚ç‚·
+            decreaseAmount = followers; // ãƒ•ã‚©ãƒ­ãƒ¯ãƒ¼æ•°ã‚ˆã‚Šæ¸›å°‘é‡ãŒå¤šã„å ´åˆã¯å…¨ã¦æ¸›ã‚‰ã™
         }
         followers -= (ulong)decreaseAmount;
 
-        Debug.Log($"ŠÔˆá‚Á‚½s“®‚ªÀs‚³‚ê‚Ü‚µ‚½...ƒtƒHƒƒ[”: {followers} (Œ¸­”: {decreaseAmount})");
+        Debug.Log($"é–“é•ã£ãŸè¡Œå‹•ãŒå®Ÿè¡Œã•ã‚Œã¾ã—ãŸ...ãƒ•ã‚©ãƒ­ãƒ¯ãƒ¼æ•°: {followers} (æ¸›å°‘æ•°: {decreaseAmount})");
         UpdateUI((ulong)decreaseAmount, true);
     }
 
-    // s“®‚ğ•]‰¿‚·‚éŠÖ”
+    // è¡Œå‹•ã‚’è©•ä¾¡ã™ã‚‹é–¢æ•°
     public void EvaluateAction(bool isCorrect)
     {
         if (isCorrect)
@@ -107,67 +110,77 @@ public class followplus : MonoBehaviour
 
     private void UpdateUI(ulong changeAmount, bool isDecrease)
     {
-
-        string formattedFollowers = FormatNumber(followers);
+        (int intValue, string unit) = FormatNumber(changeAmount);
         nixieTube.UpdateDisplay(followers);
+        float changeRatio = (float)changeAmount / followers; // å¤‰åŒ–ã—ãŸãƒ•ã‚©ãƒ­ãƒ¯ãƒ¼æ•°ã®å‰²åˆ
 
         if (!isDecrease)
         {
-            string changeText = FormatNumber(changeAmount);
-            changeInFollowersText.text = $"UP: +{changeText}";
-            changeInFollowersText.color = Color.green; // ÂF‚Éİ’è
+            changeTypeText.text = "UP"; // UPã‚’è¡¨ç¤º
+            changeInFollowersText.text = $"+{intValue}{unit}";
+            changeInFollowersText.color = Color.green; // é’è‰²ã«è¨­å®š
+            changeTypeText.color = Color.green; // é’è‰²ã«è¨­å®š
         }
         else
         {
-            string changeText = FormatNumber(changeAmount);
-            changeInFollowersText.text = $"DOWN: -{changeText}";
-            changeInFollowersText.color = new Color(243f / 255f, 152f / 255f, 0f / 255f, 1f); // ƒIƒŒƒ“ƒWF‚Éİ’è
+            changeTypeText.text = "DOWN"; // DOWNã‚’è¡¨ç¤º
+            changeInFollowersText.text = $"-{intValue}{unit}";
+            changeInFollowersText.color = new Color(243f / 255f, 152f / 255f, 0f / 255f, 1f); // ã‚ªãƒ¬ãƒ³ã‚¸è‰²ã«è¨­
+            changeTypeText.color = new Color(243f / 255f, 152f / 255f, 0f / 255f, 1f); // ã‚ªãƒ¬ãƒ³ã‚¸è‰²ã«è¨­
+
         }
+
+        float weight = Mathf.Clamp01(changeRatio); // å¤‰åŒ–ã—ãŸãƒ•ã‚©ãƒ­ãƒ¯ãƒ¼ã®å‰²åˆã‚’0ã€œ1ã«ã‚¯ãƒ©ãƒ³ãƒ—ã™ã‚‹
+        textAnimator.SetLayerWeight(1, weight); // ãƒ¬ã‚¤ãƒ¤ãƒ¼1ã®ã‚¦ã‚§ã‚¤ãƒˆã‚’1ã«è¨­å®š
+        textAnimator.SetTrigger("Change"); // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒˆãƒªã‚¬ãƒ¼ã‚’å®Ÿè¡Œ
     }
 
 
-    // ”š‚ğK, M, B, T‚È‚Ç‚Ì•\‹L‚ÉƒtƒH[ƒ}ƒbƒg‚·‚éŠÖ”
-    private string FormatNumber(ulong number)
+    // æ•°å­—ã‚’K, M, B, Tãªã©ã®è¡¨è¨˜ã«ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã™ã‚‹é–¢æ•°
+    private (int, string) FormatNumber(ulong number)
     {
-        // 1000ˆÈã‚Ì”‚É‘Î‚µ‚ÄA“KØ‚ÈÚ”ö«‚ğ•t‚¯‚ÄƒtƒH[ƒ}ƒbƒg‚·‚é
-        if (number >= 1000000000000) // ’› (T)
+        if (number >= 1000000000000) // å…† (T)
         {
-            return $"{number / 1000000000000f:F1}T";
+            float value = number / 1000000000000f;
+            return ((int)value, "T");
         }
-        else if (number >= 1000000000) // \‰­ (B)
+        else if (number >= 1000000000) // åå„„ (B)
         {
-            return $"{number / 1000000000f:F1}B";
+            float value = number / 1000000000f;
+            return ((int)value, "B");
         }
-        else if (number >= 1000000) // •S–œ (M)
+        else if (number >= 1000000) // ç™¾ä¸‡ (M)
         {
-            return $"{number / 1000000f:F1}M";
+            float value = number / 1000000f;
+            return ((int)value, "M");
         }
-        else if (number >= 1000) // ç (K)
+        else if (number >= 1000) // åƒ (K)
         {
-            return $"{number / 1000f:F1}K";
+            float value = number / 1000f;
+            return ((int)value, "K");
         }
-        else // 1000–¢–‚Í‚»‚Ì‚Ü‚Ü•\¦
+        else // 1000æœªæº€ã¯ãã®ã¾ã¾è¡¨ç¤º
         {
-            return number.ToString();
+            return ((int)number, "");
         }
     }
 
     float CalculateScaling(float currentFollowers, float maxFollowers)
     {
-        float maxOpacity = 100.0f; // Å‚“§–¾“x
-        float minOpacity = 0.0f; // Å’á“§–¾“x
-        float minRatio = 0.3f; // Å¬”ä—¦
-        float maxRatio = 1.0f; // Å‘å”ä—¦
+        float maxOpacity = 100.0f; // æœ€é«˜é€æ˜åº¦
+        float minOpacity = 0.0f; // æœ€ä½é€æ˜åº¦
+        float minRatio = 0.3f; // æœ€å°æ¯”ç‡
+        float maxRatio = 1.0f; // æœ€å¤§æ¯”ç‡
 
         float ratio = currentFollowers / maxFollowers;
 
-        // ratio‚ªmaxRatio‚ğ’´‚¦‚éê‡‚ÍÅ’á“§–¾“x‚ğ•Ô‚·
+        // ratioãŒmaxRatioã‚’è¶…ãˆã‚‹å ´åˆã¯æœ€ä½é€æ˜åº¦ã‚’è¿”ã™
         if (ratio >= maxRatio)
         {
             return minOpacity;
         }
 
-        // minRatio‚©‚çmaxRatio‚ÌŠÔ‚ÅüŒ`‚É“§–¾“x‚ğŒvZ‚µA”ÍˆÍ‚ğİ’è‚·‚é
+        // minRatioã‹ã‚‰maxRatioã®é–“ã§ç·šå½¢ã«é€æ˜åº¦ã‚’è¨ˆç®—ã—ã€ç¯„å›²ã‚’è¨­å®šã™ã‚‹
         return Mathf.Clamp(maxOpacity * (1.0f - (ratio - minRatio) / (maxRatio - minRatio)), minOpacity, maxOpacity);
     }
 
@@ -175,9 +188,9 @@ public class followplus : MonoBehaviour
     {
         if (image != null)
         {
-            // Image‚ÌƒJƒ‰[‚ğæ“¾‚µ‚ÄA“§–¾“x‚ğ•ÏX‚µ‚Ü‚·
+            // Imageã®ã‚«ãƒ©ãƒ¼ã‚’å–å¾—ã—ã¦ã€é€æ˜åº¦ã‚’å¤‰æ›´ã—ã¾ã™
             Color color = image.color;
-            color.a = transparency / 100.0f; // ƒXƒP[ƒŠƒ“ƒO’l‚ğ“§–¾“x‚É•ÏŠ·‚µ‚Ü‚·
+            color.a = transparency / 100.0f; // ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°å€¤ã‚’é€æ˜åº¦ã«å¤‰æ›ã—ã¾ã™
             image.color = color;
         }
     }

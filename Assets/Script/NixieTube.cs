@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 [System.Serializable]
 public class DigitObjectArray
 {
@@ -14,6 +13,8 @@ public class NixieTube : MonoBehaviour
     public DigitObjectArray[] digitArrays; // 各桁の1から9、0までのオブジェクトを格納する配列の配列
     public GameObject[] unitObjects;      // 単位（K、M、B、Tなど）のオブジェクトを格納する配列
 
+    public ulong currentValue = 0; // 現在表示している値
+    private Coroutine currentCoroutine; // 現在実行中のコルーチン
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,52 @@ public class NixieTube : MonoBehaviour
     // 数値に応じて表示を更新するメソッド
     [ContextMenu("UpdateDisplay")]
     public void UpdateDisplay(ulong valueToShow)
+    {
+        // 既存のコルーチンが実行中であれば停止する
+        if (currentCoroutine != null)
+        {
+            StopCoroutine(currentCoroutine);
+        }
+
+        // 新しい値でコルーチンを開始して、値を順番に更新する
+        currentCoroutine = StartCoroutine(AnimateDisplayChange(valueToShow));
+    }
+
+    // 数値の変更をアニメーションで行うコルーチン
+    private IEnumerator AnimateDisplayChange(ulong targetValue)
+    {
+        while (currentValue != targetValue)
+        {
+            // 目標値と現在の値の差に基づいて待ち時間と増加量を調整
+            ulong valueDifference = targetValue > currentValue ? targetValue - currentValue : currentValue - targetValue;
+            int magnitudeDifference = Mathf.FloorToInt(Mathf.Log10((float)valueDifference));
+            int divisionFactor = magnitudeDifference / 3;
+            int remainderFactor = magnitudeDifference % 3 + 1;
+
+            ulong increment = (ulong)Mathf.Pow(10, 3 * divisionFactor);
+            float waitTime = Mathf.Pow(0.1f, remainderFactor);
+
+            // 現在の値を適切な増加量で目標値に近づける
+            if (currentValue < targetValue)
+            {
+                currentValue = (ulong)Mathf.Min(currentValue + increment, targetValue);
+            }
+            else if (currentValue > targetValue)
+            {
+                currentValue = (ulong)Mathf.Max(currentValue - increment, targetValue);
+            }
+
+            // 現在の値を表示する
+            DisplayValue(currentValue);
+
+            // 少し待ってから次の更新を行う
+            yield return new WaitForSeconds(waitTime);
+        }
+    }
+
+
+    // 実際に表示を更新するメソッド
+    private void DisplayValue(ulong valueToShow)
     {
         // 表示する単位のインデックスを初期化
         int unitIndex = 0;
