@@ -37,6 +37,7 @@ public class TweetScript : MonoBehaviour
 
     public TMP_Text ElapsedTime;        // アカウント名を表示するTextMeshProコンポーネント
     public GameObject IsFollow;        // アカウント名を表示するTextMeshProコンポーネント
+    public Image IsLock;        // IsLock表示するTextMeshProコンポーネント
 
     [Space(10)] // 10のスペースを追加
 
@@ -81,7 +82,7 @@ public class TweetScript : MonoBehaviour
 
         if (ruleChecker == null) { 
             
-            Debug.LogError("RuleCheckerが見つかりませんでした！");
+            Debug.LogError("RuleCheckerが見つかりませんでした！追加します！");
             ruleChecker = GameObject.Find("RuleChecker").GetComponent<RuleChecker>();
         }
 
@@ -251,6 +252,21 @@ public class TweetScript : MonoBehaviour
 
     public void TweetQuickCheck()
     {
-        ruleChecker.QuickCheck(buttonFlag, shouldLike, shouldRetweet, shouldBookmark, shouldReport);
+        int value = ruleChecker.QuickCheck(buttonFlag, shouldLike, shouldRetweet, shouldBookmark, shouldReport);
+
+        if (value == 1)
+        {
+            IsLock.gameObject.SetActive(true); // IsLockをアクティブにする
+            IsLock.color = new Color(0f, 1f, 0f, 0.2f); // 色を緑に設定し、アルファ値を0.5に設定（半透明）
+        }
+        else if (value == 2)
+        {
+            IsLock.gameObject.SetActive(true); // IsLockをアクティブにする
+            IsLock.color = new Color(1f, 0f, 0f, 0.2f); // 色を赤に設定し、アルファ値を0.5に設定（半透明）
+        }
+        else
+        {
+            IsLock.gameObject.SetActive(false); // その他の場合は非アクティブにする
+        }
     }
 }

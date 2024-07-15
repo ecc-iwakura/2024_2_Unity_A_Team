@@ -278,7 +278,7 @@ public class RuleChecker : MonoBehaviour
         }
     }
 
-    public void QuickCheck(ButtonFlag correctAction, bool shouldLike, bool shouldRetweet, bool shouldBookmark, bool shouldReport)
+    public int QuickCheck(ButtonFlag correctAction, bool shouldLike, bool shouldRetweet, bool shouldBookmark, bool shouldReport)
     {
         ButtonFlag userAction = ButtonFlag.None;
 
@@ -325,15 +325,18 @@ public class RuleChecker : MonoBehaviour
         {
             Followplus.EvaluateAction(true);
             CorrectSE.Invoke();
+            return 1;
         }
         else if (isIncorrect)
         {
             Followplus.EvaluateAction(false);
             IncorrectSE.Invoke();
+            return 2;
         }
         else
         {
             ContinueSE.Invoke();
+            return 0;
         }
     }
 

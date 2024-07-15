@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections; // これを追加
+using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
@@ -10,6 +11,10 @@ public class followplus : MonoBehaviour
     private bool firstCorrectAction = true; // 初めて正しい行動が行われたかどうかを管理するフラグ
     public Image image;
 
+    [Header("HPバー")]
+    public Image orangeHPBar; // オレンジのHPバー
+    public Image greenHPBar; // 緑のHPバー
+    public float updateDuration = 0.5f; // バーの更新にかける時間
 
     [Header("フォロワー増加設定")]
     [Tooltip("フォロワー数が増加する最小割合")]
@@ -20,6 +25,8 @@ public class followplus : MonoBehaviour
     public int minFixedIncrease = 1; // 最小固定増加値
     [Tooltip("フォロワー数が増加する最大固定値")]
     public int maxFixedIncrease = 10; // 最大固定増加値
+    [Tooltip("最高到達点のフォロワー数の割合で増加する値")]
+    public float maxFollowersIncreaseRate = 0.02f; // maxFollowersの割合で増加する割合
 
     [Header("フォロワー減少設定")]
     [Tooltip("最高到達点のフォロワー数から減少する最小割合")]
@@ -56,13 +63,14 @@ public class followplus : MonoBehaviour
         }
         else
         {
-            // フォロワーが5%～10%で増加し、さらに1～10の固定値を追加
+            // フォロワーが5%～10%で増加し、さらに1～10の固定値を追加し、maxFollowersの2%を追加
             float increaseRate = Random.Range(minIncreaseRate, maxIncreaseRate); // 5%～10%の増加率
             ulong increaseAmountFromRate = (ulong)(followers * increaseRate); // 増加する割合部分のフォロワー数
             ulong fixedIncrease = (ulong)Random.Range((int)minFixedIncrease, (int)(maxFixedIncrease + 1)); // 1～10の固定値
-            increaseAmount = (ulong)increaseAmountFromRate + (ulong)fixedIncrease; // 合計増加フォロワー数
-            followers += (ulong)increaseAmount;
-            Debug.LogWarning($"increaseRate {increaseAmountFromRate} (固定値: {fixedIncrease}) 合計加算値{increaseAmount}");
+            ulong increaseAmountFromMaxFollowers = (ulong)(maxFollowers * maxFollowersIncreaseRate); // maxFollowersの割合で増加するフォロワー数
+            increaseAmount = increaseAmountFromRate + fixedIncrease + increaseAmountFromMaxFollowers; // 合計増加フォロワー数
+            followers += increaseAmount;
+            Debug.LogWarning($"increaseRate {increaseAmountFromRate} (固定値: {fixedIncrease}) maxFollowers増加: {increaseAmountFromMaxFollowers} 合計加算値{increaseAmount}");
         }
 
         // 最高到達点の更新
@@ -71,11 +79,9 @@ public class followplus : MonoBehaviour
             maxFollowers = followers;
         }
 
-
         Debug.Log($"正しい行動が実行されました！フォロワー数: {followers} (増加数: {increaseAmount})");
-        UpdateUI((ulong)increaseAmount,false);
+        UpdateUI(increaseAmount, false);
     }
-
     // 間違った行動をした時に呼び出される関数
     [ContextMenu("IncorrectAction")]
     public void IncorrectAction()
@@ -116,25 +122,63 @@ public class followplus : MonoBehaviour
 
         if (!isDecrease)
         {
-            changeTypeText.text = "UP"; // UPを表示
+            if (changeTypeText != null)
+            {
+                changeTypeText.text = "UP"; // UPを表示
+                changeTypeText.color = Color.green; // 青色に設定
+            }
+
             changeInFollowersText.text = $"+{intValue}{unit}";
             changeInFollowersText.color = Color.green; // 青色に設定
-            changeTypeText.color = Color.green; // 青色に設定
+
         }
         else
         {
-            changeTypeText.text = "DOWN"; // DOWNを表示
+            if (changeTypeText != null)
+            {
+                changeTypeText.text = "DOWN"; // DOWNを表示
+                changeTypeText.color = new Color(243f / 255f, 152f / 255f, 0f / 255f, 1f); // オレンジ色に設
+            }
             changeInFollowersText.text = $"-{intValue}{unit}";
             changeInFollowersText.color = new Color(243f / 255f, 152f / 255f, 0f / 255f, 1f); // オレンジ色に設
-            changeTypeText.color = new Color(243f / 255f, 152f / 255f, 0f / 255f, 1f); // オレンジ色に設
+
 
         }
 
         float weight = Mathf.Clamp01(changeRatio); // 変化したフォロワーの割合を0〜1にクランプする
         textAnimator.SetLayerWeight(1, weight); // レイヤー1のウェイトを1に設定
         textAnimator.SetTrigger("Change"); // アニメーションのトリガーを実行
+        StartCoroutine(UpdateHPBars());
     }
 
+    private IEnumerator UpdateHPBars()
+    {
+        if (orangeHPBar != null && greenHPBar != null)
+        {
+            float elapsedTime = 0f;
+            float currentOrangeFill = orangeHPBar.fillAmount;
+            float targetOrangeFill = (float)followers / maxFollowers;
+
+            float currentGreenFill = greenHPBar.fillAmount;
+            float adjustedFollowers = followers * (1 - maxDecreaseRate);
+            float targetGreenFill = adjustedFollowers / maxFollowers;
+
+            while (elapsedTime < updateDuration)
+            {
+                elapsedTime += Time.deltaTime;
+                float t = elapsedTime / updateDuration;
+
+                orangeHPBar.fillAmount = Mathf.Lerp(currentOrangeFill, targetOrangeFill, t);
+                greenHPBar.fillAmount = Mathf.Lerp(currentGreenFill, targetGreenFill, t);
+
+                yield return null;
+            }
+
+            // 最終的に目標値を設定
+            orangeHPBar.fillAmount = targetOrangeFill;
+            greenHPBar.fillAmount = targetGreenFill;
+        }
+    }
 
     // 数字をK, M, B, Tなどの表記にフォーマットする関数
     private (int, string) FormatNumber(ulong number)
