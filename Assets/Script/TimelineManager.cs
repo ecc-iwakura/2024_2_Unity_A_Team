@@ -55,6 +55,7 @@ public class TimelineManager : MonoBehaviour
     public bool IsStop = false;
 
     public UnityEvent AddTweetSE;
+    public UnityEvent SpeedUP;
 
     [SerializeField]
     private List<TweetObjectData> tweetObjectList = new List<TweetObjectData>(); // ツイートオブジェクトとTweetScriptのセットのリスト
@@ -110,6 +111,7 @@ public class TimelineManager : MonoBehaviour
             {
                 UnityEngine.Debug.LogError($"到達！{stack.ruleFunctionName} {stack.ruleFlag}");
                 ruleChecker.AddRule(stack.ruleFunctionName, stack.ruleFlag);
+                SpeedUP.Invoke();
             }
 
 
@@ -117,6 +119,7 @@ public class TimelineManager : MonoBehaviour
         else
         {
             (text, image, accountImage, accountName, accountID) = GenerateRandomTweetData();
+            AddTweetSE.Invoke();
         }
 
 
@@ -178,7 +181,7 @@ public class TimelineManager : MonoBehaviour
 
         float tweetHeight = tweetRect.sizeDelta.y * 1.1f;
 
-        AddTweetSE.Invoke();
+
         // タイムラインをツイートの高さ分だけ下に移動
         StartCoroutine(MoveTimeline(tweetHeight));
 

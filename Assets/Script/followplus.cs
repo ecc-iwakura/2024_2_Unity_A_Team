@@ -2,6 +2,8 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal; // Universal Render Pipelineを使用している場合
 
 public class followplus : MonoBehaviour
 {
@@ -34,10 +36,15 @@ public class followplus : MonoBehaviour
     [Tooltip("最高到達点のフォロワー数から減少する最大割合")]
     public float maxDecreaseRate = 0.35f; // 最大減少率
 
+    [Header("ビネット設定")]
+    public Volume volume; // Volumeを参照
+    private Vignette vignette; // Vignetteエフェクト
+
 
     public TMP_Text changeInFollowersText;
     public TMP_Text changeTypeText; // UPやDOWNを表示するテキスト
     public Animator textAnimator; // アニメーターを参照するための変数
+
 
 
     void Start()
@@ -46,6 +53,11 @@ public class followplus : MonoBehaviour
         if (nixieTube == null)
         {
             UnityEngine.Debug.LogError("nixieTubeがありません！");
+        }
+
+        if (volume != null)
+        {
+            volume.profile.TryGet(out vignette); // Vignetteの設定を取得
         }
     }
 
@@ -155,12 +167,14 @@ public class followplus : MonoBehaviour
     {
         if (orangeHPBar != null && greenHPBar != null)
         {
+            float minFillAmount = 0.075f; // 最低でも表示されるゲージの割合
             float elapsedTime = 0f;
             float currentOrangeFill = orangeHPBar.fillAmount;
             float targetOrangeFill = (float)followers / maxFollowers;
+            targetOrangeFill = (followers > 0) ? Mathf.Max(targetOrangeFill, minFillAmount) : 0;
 
             float currentGreenFill = greenHPBar.fillAmount;
-            float adjustedFollowers = followers * (1 - maxDecreaseRate);
+            float adjustedFollowers = followers - (maxFollowers * maxDecreaseRate);
             float targetGreenFill = adjustedFollowers / maxFollowers;
 
             while (elapsedTime < updateDuration)
@@ -181,7 +195,7 @@ public class followplus : MonoBehaviour
     }
 
     // 数字をK, M, B, Tなどの表記にフォーマットする関数
-    private (int, string) FormatNumber(ulong number)
+    public (int, string) FormatNumber(ulong number)
     {
         if (number >= 1000000000000) // 兆 (T)
         {
@@ -228,6 +242,7 @@ public class followplus : MonoBehaviour
         return Mathf.Clamp(maxOpacity * (1.0f - (ratio - minRatio) / (maxRatio - minRatio)), minOpacity, maxOpacity);
     }
 
+    // 画像の透明度を設定する関数
     void SetImageTransparency(float transparency)
     {
         if (image != null)
@@ -236,6 +251,12 @@ public class followplus : MonoBehaviour
             Color color = image.color;
             color.a = transparency / 100.0f; // スケーリング値を透明度に変換します
             image.color = color;
+        }
+
+        if (vignette != null)
+        {
+            // VignetteのSmoothnessを変更します
+            vignette.smoothness.value = transparency / 100.0f; // スケーリング値をVignetteのSmoothnessに変換します
         }
     }
 }

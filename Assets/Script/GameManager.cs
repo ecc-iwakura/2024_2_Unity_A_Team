@@ -6,21 +6,27 @@ using System.IO;
 
 public class GameManager : MonoBehaviour
 {
-    public followplus followPlusScript;
-    public TimelineManager timelineManager;
-    public RuleChecker ruleChecker;
-    public KeywordChecker keywordChecker;
+    [Header("ゲームオブジェクト参照")]
+    public followplus followPlusScript;      // フォロープラスのスクリプト
+    public TimelineManager timelineManager;  // タイムラインマネージャー
+    public RuleChecker ruleChecker;          // ルールチェッカー
+    public KeywordChecker keywordChecker;    // キーワードチェッカー
 
-    public List<DifficultyEvent> difficultyEvents = new List<DifficultyEvent>();
-    private bool IsGameover = false;
-    private int currentEventIndex = 0;
-    public TMP_Text GameOverText;
-    public UnityEvent GameOverEvent;
-    public AudioSource audioSource; // オーディオソースを追加
-    private float initialTweetSpeedTime; // 初期のtweetSpeedTimeを保持する変数
+    [Header("ゲーム設定")]
+    public List<DifficultyEvent> difficultyEvents = new List<DifficultyEvent>();  // 難易度イベントのリスト
+    private bool IsGameover = false;       // ゲームオーバーのフラグ
+    private int currentEventIndex = 0;     // 現在のイベントインデックス
+    public TMP_Text GameOverText;          // ゲームオーバー時に表示するテキスト
+    public UnityEvent GameOverEvent;       // ゲームオーバー時に発行するイベント
+    public AudioSource audioSource;        // ゲームオーディオのソース
+
+    [Header("その他")]
+    private float initialTweetSpeedTime;   // 初期のツイート速度時間を保持する変数
+    public TMP_Text NextLevelFollowerText; // 次のレベルのフォロワー数を表示するテキスト
 
     void Start()
     {
+        NextLevelFollower();
         if (followPlusScript == null) { Debug.LogWarning("フォロープラスがありません！"); }
         if (timelineManager == null) { Debug.LogWarning("タイムラインマネージャーがありません！"); }
         if (ruleChecker == null) { Debug.LogWarning("ルールチェッカーがありません！"); }
@@ -77,6 +83,8 @@ public class GameManager : MonoBehaviour
 
                 currentEventIndex++;
             }
+
+            NextLevelFollower();
         }
     }
 
@@ -152,7 +160,23 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning("No saved game data found at: " + filePath);
         }
     }
+
+    private void NextLevelFollower()
+    {
+        if (currentEventIndex < difficultyEvents.Count - 1)
+        {
+            ulong value = difficultyEvents[currentEventIndex].followerThreshold - followPlusScript.followers;
+            (int intValue, string unit) = followPlusScript.FormatNumber(value);
+            NextLevelFollowerText.text = $"{intValue}{unit}";
+        }
+        else
+        {
+            NextLevelFollowerText.text = $"これでもうおしまい！";
+        }
+    }
 }
+
+
 
 [System.Serializable]
 public class DifficultyEvent
