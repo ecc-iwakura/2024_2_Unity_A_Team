@@ -1,0 +1,14 @@
+using UnityEngine;
+
+[System.Serializable]
+public class PlayerProfile : MonoBehaviour
+{
+    public string playerName;
+    public int score;
+
+    public PlayerProfile(string playerName, int score)
+    {
+        this.playerName = playerName;
+        this.score = score;
+    }
+}

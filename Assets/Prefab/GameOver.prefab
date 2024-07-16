@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d9d49d36b42e974bb093124814eebd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highScoreText: {fileID: 0}
+  rankingTexts: []
 --- !u!114 &8153423821353311816
 MonoBehaviour:
   m_ObjectHideFlags: 0
