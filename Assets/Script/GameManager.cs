@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine.Events;
 using TMPro;
 using System.IO;
@@ -19,6 +20,14 @@ public class GameManager : MonoBehaviour
     public TMP_Text GameOverText;          // ゲームオーバー時に表示するテキスト
     public UnityEvent GameOverEvent;       // ゲームオーバー時に発行するイベント
     public AudioSource audioSource;        // ゲームオーディオのソース
+    public GameObject maskObject;
+    public GameObject maskObject2;
+
+    [Header("次レベル設定")]
+    public float animationDuration = 0.2f; // アニメーションの時間（秒）
+    private float elapsedTime = 0f; // 現在の経過時間
+    private Vector3 initialPosition; // 初期のマスクオブジェクトのローカル座標
+    private Vector3 targetPosition; // 目標のマスクオブジェクトのローカル座標
 
     [Header("その他")]
     private float initialTweetSpeedTime;   // 初期のツイート速度時間を保持する変数
@@ -26,6 +35,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        initialPosition = maskObject.transform.localPosition;
+        targetPosition = initialPosition;
+
         NextLevelFollower();
         if (followPlusScript == null) { Debug.LogWarning("フォロープラスがありません！"); }
         if (timelineManager == null) { Debug.LogWarning("タイムラインマネージャーがありません！"); }
@@ -165,7 +177,23 @@ public class GameManager : MonoBehaviour
     {
         if (currentEventIndex < difficultyEvents.Count - 1)
         {
-            ulong value = difficultyEvents[currentEventIndex].followerThreshold - followPlusScript.followers;
+            ulong currentFollowers = followPlusScript.followers;
+            ulong threshold = difficultyEvents[currentEventIndex].followerThreshold;
+
+            // Calculate ratio between current followers and threshold, clamped between 0 and 1
+            float ratio = Mathf.Clamp01((float)currentFollowers / (float)threshold);
+
+            // Scale the ratio to fit between 0 and 25
+            float scaledValue = ratio * 50f;
+
+            // Update the Y position of the maskObject in local space
+            targetPosition.y = scaledValue;
+
+            // Start animation coroutine
+            StartCoroutine(MoveMaskObject());
+
+            // Update text
+            ulong value = threshold - currentFollowers;
             (int intValue, string unit) = followPlusScript.FormatNumber(value);
             NextLevelFollowerText.text = $"{intValue}{unit}";
         }
@@ -173,6 +201,24 @@ public class GameManager : MonoBehaviour
         {
             NextLevelFollowerText.text = $"これでもうおしまい！";
         }
+    }
+
+    private IEnumerator MoveMaskObject()
+    {
+        elapsedTime = 0f;
+        Vector3 startPosition = maskObject.transform.localPosition;
+
+        while (elapsedTime < animationDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsedTime / animationDuration);
+            maskObject.transform.localPosition = Vector3.Lerp(startPosition, targetPosition, t);
+            maskObject2.transform.localPosition = Vector3.Lerp(startPosition, targetPosition, t);
+            yield return null;
+        }
+
+        // Ensure final position is exactly the target position
+        maskObject.transform.localPosition = targetPosition;
     }
 }
 

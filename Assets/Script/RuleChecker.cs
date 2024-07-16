@@ -116,7 +116,7 @@ public class RuleChecker : MonoBehaviour
         {
             new Condition("フォローをしていたら", FollowCondition),
             new Condition("１０分以内なら", TimeCondition),
-            new Condition("「キーワード」があったらそれ以外を押さずに", KeywordCondition),
+            new Condition("NGワードがあったら", KeywordCondition),
             new Condition("画像があったら", ImageCondition)
         };
 
