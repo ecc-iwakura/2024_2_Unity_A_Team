@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     [Header("その他")]
     private float initialTweetSpeedTime;   // 初期のツイート速度時間を保持する変数
     public TMP_Text NextLevelFollowerText; // 次のレベルのフォロワー数を表示するテキスト
+    private int oldcurrentEventIndex = 0;
+    public bool over = false;
 
     void Start()
     {
@@ -84,7 +86,7 @@ public class GameManager : MonoBehaviour
                 return;
             }
 
-            if (followPlusScript.maxFollowers > (ulong)eventInfo.followerThreshold)
+            if (followPlusScript.maxFollowers >= (ulong)eventInfo.followerThreshold)
             {
                 if (!eventInfo.IsExecuted)
                 {
@@ -94,9 +96,8 @@ public class GameManager : MonoBehaviour
                 }
 
                 currentEventIndex++;
+                NextLevelFollower();
             }
-
-            NextLevelFollower();
         }
     }
 
@@ -172,9 +173,19 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning("No saved game data found at: " + filePath);
         }
     }
-
-    private void NextLevelFollower()
+    public void IsLevUp()
     {
+        over = false;
+        NextLevelFollower();
+    }
+    public void NextLevelFollower()
+    {
+        if(oldcurrentEventIndex != currentEventIndex)
+        {
+            oldcurrentEventIndex = currentEventIndex;
+            over = true;
+        }
+
         if (currentEventIndex < difficultyEvents.Count - 1)
         {
             ulong currentFollowers = followPlusScript.followers;
@@ -183,6 +194,7 @@ public class GameManager : MonoBehaviour
             // Calculate ratio between current followers and threshold, clamped between 0 and 1
             float ratio = Mathf.Clamp01((float)currentFollowers / (float)threshold);
 
+            if(over) { ratio = 1; }
             // Scale the ratio to fit between 0 and 25
             float scaledValue = ratio * 50f;
 
@@ -201,6 +213,8 @@ public class GameManager : MonoBehaviour
         {
             NextLevelFollowerText.text = $"これでもうおしまい！";
         }
+
+        if( over ) { NextLevelFollowerText.text = $"UP!"; }
     }
 
     private IEnumerator MoveMaskObject()
