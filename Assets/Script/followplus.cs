@@ -93,6 +93,7 @@ public class followplus : MonoBehaviour
 
         Debug.Log($"正しい行動が実行されました！フォロワー数: {followers} (増加数: {increaseAmount})");
         UpdateUI(increaseAmount, false);
+        SetImageTransparency(CalculateScaling(followers, maxFollowers));
     }
     // 間違った行動をした時に呼び出される関数
     [ContextMenu("IncorrectAction")]
@@ -109,6 +110,7 @@ public class followplus : MonoBehaviour
 
         Debug.Log($"間違った行動が実行されました...フォロワー数: {followers} (減少数: {decreaseAmount})");
         UpdateUI((ulong)decreaseAmount, true);
+        SetImageTransparency(CalculateScaling(followers, maxFollowers));
     }
 
     // 行動を評価する関数
@@ -122,8 +124,6 @@ public class followplus : MonoBehaviour
         {
             IncorrectAction();
         }
-
-        SetImageTransparency(CalculateScaling(followers, maxFollowers));
     }
 
     private void UpdateUI(ulong changeAmount, bool isDecrease)
