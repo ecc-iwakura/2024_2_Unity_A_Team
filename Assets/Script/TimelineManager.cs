@@ -28,20 +28,27 @@ public class TweetObjectData
 }
 
 [System.Serializable]
-public class AddRuleTweet
+public class AddTweet
 {
     public string tweetID;
+    public float tweetCooldownReduction;
+    public float tweetSpeedReduction;
     public string ruleFunctionName;
     public ButtonFlag ruleFlag;
+    public string Keyword;
 
-    public AddRuleTweet(string tweetID, string ruleFunctionName, ButtonFlag ruleFlag)
+    // コンストラクタ: すべてのプロパティを設定
+    public AddTweet(string tweetID, float tweetCooldownReduction = 0, float tweetSpeedReduction = 0,
+                    string ruleFunctionName = null, ButtonFlag ruleFlag = ButtonFlag.None, string Keyword = null)
     {
         this.tweetID = tweetID;
+        this.tweetCooldownReduction = tweetCooldownReduction;
+        this.tweetSpeedReduction = tweetSpeedReduction;
         this.ruleFunctionName = ruleFunctionName;
         this.ruleFlag = ruleFlag;
+        this.Keyword = Keyword;
     }
 }
-
 
 public class TimelineManager : MonoBehaviour
 {
@@ -61,11 +68,14 @@ public class TimelineManager : MonoBehaviour
     private List<TweetObjectData> tweetObjectList = new List<TweetObjectData>(); // ツイートオブジェクトとTweetScriptのセットのリスト
 
 
-    public List<AddRuleTweet> stackTweetIDs = new List<AddRuleTweet>(); // スタックツイートIDリスト
+    public List<AddTweet> stackTweetIDs = new List<AddTweet>(); // スタックツイートIDリスト
 
     private float currentYPosition = 0f;   // 現在のY位置
     public float tweetCooldown = 3f;       // ツイートの間隔（秒）
     public float tweetSpeedTime = 3f;       // ツイートの間隔（秒）
+
+    public AudioSource audioSource;        // ゲームオーディオのソース
+    private float initialTweetSpeedTime;   // 初期のツイート速度時間を保持する変数
 
     private bool isTweetMoving = false;    // ツイートが移動中かどうかを示すフラグ
 
@@ -73,6 +83,7 @@ public class TimelineManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(GenerateTweets());
+        initialTweetSpeedTime = tweetSpeedTime; // 初期値を記録
     }
 
     // ツイートを生成するコルーチン
@@ -102,19 +113,55 @@ public class TimelineManager : MonoBehaviour
         if (stackTweetIDs.Count > 0)
         {
             // スタックツイートIDリストにツイートIDがある場合はそのツイートIDを使ってツイートを生成
-            AddRuleTweet stack = stackTweetIDs[0];
+            AddTweet stack = stackTweetIDs[0];
             string tweetID = stack.tweetID; // リストの先頭からツイートIDを取得
             stackTweetIDs.RemoveAt(0); // リストから削除
             (text, image, accountImage, accountName, accountID) = GenerateTweetData(tweetID);
 
+            bool IsSound = false;
+
+            // キーワードが設定されている場合
+            if (!string.IsNullOrEmpty(stack.Keyword))
+            {
+                keywordChecker.AddKeyword(stack.Keyword);
+                IsSound = true;
+            }
+
+            // 数字が設定されている場合
+            if (stack.tweetCooldownReduction != 0)
+            {
+                // ツイートのクールダウンを調整
+                tweetCooldown *= (1.0f + stack.tweetCooldownReduction); // 数値の割合で調整
+                IsSound = true;
+            }
+
+            if (stack.tweetSpeedReduction != 0)
+            {
+                // ツイートの速度を調整
+                tweetSpeedTime *= (1.0f + stack.tweetSpeedReduction); // 数値の割合で調整
+                IsSound = true;
+            }
+
+            // 関数が設定されている場合
             if (!string.IsNullOrEmpty(stack.ruleFunctionName) && stack.ruleFlag != null)
             {
                 UnityEngine.Debug.LogError($"到達！{stack.ruleFunctionName} {stack.ruleFlag}");
                 ruleChecker.AddRule(stack.ruleFunctionName, stack.ruleFlag);
-                SpeedUP.Invoke();
+                IsSound = true;
+
             }
 
-
+            if (IsSound)
+            {
+                SpeedUP.Invoke();
+            }
+            else
+            {
+                AddTweetSE.Invoke();
+            }
+            float speedRatio = initialTweetSpeedTime / tweetSpeedTime;
+            audioSource.pitch = speedRatio;
+            Debug.LogError($"現在のBGMスピード: {speedRatio}");
         }
         else
         {

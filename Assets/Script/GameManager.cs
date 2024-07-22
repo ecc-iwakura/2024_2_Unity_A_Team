@@ -19,7 +19,6 @@ public class GameManager : MonoBehaviour
     private int currentEventIndex = 0;     // 現在のイベントインデックス
     public TMP_Text GameOverText;          // ゲームオーバー時に表示するテキスト
     public UnityEvent GameOverEvent;       // ゲームオーバー時に発行するイベント
-    public AudioSource audioSource;        // ゲームオーディオのソース
     public GameObject maskObject;
     public GameObject maskObject2;
 
@@ -30,7 +29,6 @@ public class GameManager : MonoBehaviour
     private Vector3 targetPosition; // 目標のマスクオブジェクトのローカル座標
 
     [Header("その他")]
-    private float initialTweetSpeedTime;   // 初期のツイート速度時間を保持する変数
     public TMP_Text NextLevelFollowerText; // 次のレベルのフォロワー数を表示するテキスト
     private int oldcurrentEventIndex = 0;
     public bool over = false;
@@ -47,7 +45,6 @@ public class GameManager : MonoBehaviour
         if (keywordChecker == null) { Debug.LogWarning("キーワードチェッカーがありません！"); }
 
         difficultyEvents.Sort((x, y) => x.followerThreshold.CompareTo(y.followerThreshold));
-        initialTweetSpeedTime = timelineManager.tweetSpeedTime; // 初期値を記録
     }
 
     void Update()
@@ -109,25 +106,19 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        // Adjust tweet cooldown reduction
-        timelineManager.tweetCooldown *= (1.0f + eventInfo.tweetCooldownReduction);
+        // AddTweet インスタンスの作成
+        AddTweet addTweet = new AddTweet(
+            eventInfo.tweetIDToAdd,
+            eventInfo.tweetCooldownReduction, // tweetCooldownReduction をパーセンテージとして扱う
+            eventInfo.tweetSpeedReduction,    // tweetSpeedReduction をパーセンテージとして扱う
+            eventInfo.ruleFunctionName,
+            eventInfo.actionFlag,
+            eventInfo.keyWord
+        );
 
-        // Adjust tweet speed reduction
-        timelineManager.tweetSpeedTime *= (1.0f + eventInfo.tweetSpeedReduction);
+        // スタックに追加
+        timelineManager.stackTweetIDs.Add(addTweet);
 
-        float speedRatio = initialTweetSpeedTime / timelineManager.tweetSpeedTime;
-        audioSource.pitch = speedRatio;
-
-        if (!string.IsNullOrEmpty(eventInfo.ruleFunctionName) && eventInfo.actionFlag != null)
-        {
-            AddRuleTweet addRuleTweet = new AddRuleTweet(eventInfo.tweetIDToAdd, eventInfo.ruleFunctionName, eventInfo.actionFlag);
-            timelineManager.stackTweetIDs.Add(addRuleTweet);
-        }
-
-        if (!string.IsNullOrEmpty(eventInfo.keyWord))
-        {
-            keywordChecker.AddKeyword(eventInfo.keyWord);
-        }
 
         Debug.Log($"Event executed: {eventInfo.ruleFunctionName} added with action {eventInfo.actionFlag}");
     }

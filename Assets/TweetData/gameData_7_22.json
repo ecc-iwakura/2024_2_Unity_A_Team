@@ -1,0 +1,174 @@
+{
+    "Items": [
+        {
+            "followerThreshold": 30,
+            "tweetCooldownReduction": -0.10000000149011612,
+            "tweetSpeedReduction": -0.10000000149011612,
+            "tweetIDToAdd": "isFollower",
+            "ruleFunctionName": "フォローをしていたら",
+            "keyWord": "",
+            "actionFlag": 1,
+            "IsExecuted": false
+        },
+        {
+            "followerThreshold": 100,
+            "tweetCooldownReduction": -0.10000000149011612,
+            "tweetSpeedReduction": -0.10000000149011612,
+            "tweetIDToAdd": "SpeedUp",
+            "ruleFunctionName": "",
+            "keyWord": "",
+            "actionFlag": 0,
+            "IsExecuted": false
+        },
+        {
+            "followerThreshold": 200,
+            "tweetCooldownReduction": 0.20000000298023225,
+            "tweetSpeedReduction": 0.20000000298023225,
+            "tweetIDToAdd": "isRT",
+            "ruleFunctionName": "１０分以内なら",
+            "keyWord": "",
+            "actionFlag": 2,
+            "IsExecuted": false
+        },
+        {
+            "followerThreshold": 1000,
+            "tweetCooldownReduction": -0.10000000149011612,
+            "tweetSpeedReduction": -0.10000000149011612,
+            "tweetIDToAdd": "Achieve_1K",
+            "ruleFunctionName": "",
+            "keyWord": "",
+            "actionFlag": 0,
+            "IsExecuted": false
+        },
+        {
+            "followerThreshold": 2500,
+            "tweetCooldownReduction": -0.10000000149011612,
+            "tweetSpeedReduction": -0.10000000149011612,
+            "tweetIDToAdd": "SpeedUp",
+            "ruleFunctionName": "",
+            "keyWord": "",
+            "actionFlag": 0,
+            "IsExecuted": false
+        },
+        {
+            "followerThreshold": 5000,
+            "tweetCooldownReduction": -0.10000000149011612,
+            "tweetSpeedReduction": -0.10000000149011612,
+            "tweetIDToAdd": "SpeedUp",
+            "ruleFunctionName": "",
+            "keyWord": "",
+            "actionFlag": 0,
+            "IsExecuted": false
+        },
+        {
+            "followerThreshold": 10000,
+            "tweetCooldownReduction": 0.20000000298023225,
+            "tweetSpeedReduction": 0.20000000298023225,
+            "tweetIDToAdd": "Achieve_10K",
+            "ruleFunctionName": "NGワードがあったら",
+            "keyWord": "",
+            "actionFlag": 8,
+            "IsExecuted": false
+        },
+        {
+            "followerThreshold": 12500,
+            "tweetCooldownReduction": 0.20000000298023225,
+            "tweetSpeedReduction": 0.20000000298023225,
+            "tweetIDToAdd": "isNG",
+            "ruleFunctionName": "NGワードがあったら",
+            "keyWord": "",
+            "actionFlag": 8,
+            "IsExecuted": false
+        },
+        {
+            "followerThreshold": 15000,
+            "tweetCooldownReduction": -0.10000000149011612,
+            "tweetSpeedReduction": -0.10000000149011612,
+            "tweetIDToAdd": "NG_01",
+            "ruleFunctionName": "",
+            "keyWord": "弱者男性",
+            "actionFlag": 0,
+            "IsExecuted": false
+        },
+        {
+            "followerThreshold": 20000,
+            "tweetCooldownReduction": -0.10000000149011612,
+            "tweetSpeedReduction": -0.10000000149011612,
+            "tweetIDToAdd": "SpeedUp",
+            "ruleFunctionName": "",
+            "keyWord": "",
+            "actionFlag": 0,
+            "IsExecuted": false
+        },
+        {
+            "followerThreshold": 25000,
+            "tweetCooldownReduction": -0.10000000149011612,
+            "tweetSpeedReduction": -0.10000000149011612,
+            "tweetIDToAdd": "NG_02",
+            "ruleFunctionName": "",
+            "keyWord": "自慢",
+            "actionFlag": 0,
+            "IsExecuted": false
+        },
+        {
+            "followerThreshold": 50000,
+            "tweetCooldownReduction": 0.20000000298023225,
+            "tweetSpeedReduction": 0.20000000298023225,
+            "tweetIDToAdd": "isBookMark",
+            "ruleFunctionName": "画像があったら",
+            "keyWord": "",
+            "actionFlag": 4,
+            "IsExecuted": false
+        },
+        {
+            "followerThreshold": 100000,
+            "tweetCooldownReduction": -0.10000000149011612,
+            "tweetSpeedReduction": -0.10000000149011612,
+            "tweetIDToAdd": "Achieve_100K",
+            "ruleFunctionName": "",
+            "keyWord": "",
+            "actionFlag": 0,
+            "IsExecuted": false
+        },
+        {
+            "followerThreshold": 200000,
+            "tweetCooldownReduction": -0.10000000149011612,
+            "tweetSpeedReduction": -0.10000000149011612,
+            "tweetIDToAdd": "SpeedUp",
+            "ruleFunctionName": "",
+            "keyWord": "",
+            "actionFlag": 0,
+            "IsExecuted": false
+        },
+        {
+            "followerThreshold": 300000,
+            "tweetCooldownReduction": -0.10000000149011612,
+            "tweetSpeedReduction": -0.10000000149011612,
+            "tweetIDToAdd": "NG_03",
+            "ruleFunctionName": "",
+            "keyWord": "就活",
+            "actionFlag": 0,
+            "IsExecuted": false
+        },
+        {
+            "followerThreshold": 500000,
+            "tweetCooldownReduction": -0.20000000298023225,
+            "tweetSpeedReduction": -0.10000000149011612,
+            "tweetIDToAdd": "SpeedUp",
+            "ruleFunctionName": "",
+            "keyWord": "",
+            "actionFlag": 0,
+            "IsExecuted": false
+        },
+        {
+            "followerThreshold": 1000000,
+            "tweetCooldownReduction": -0.20000000298023225,
+            "tweetSpeedReduction": -0.10000000149011612,
+            "tweetIDToAdd": "Achieve_1M",
+            "ruleFunctionName": "",
+            "keyWord": "",
+            "actionFlag": 0,
+            "IsExecuted": false
+        }
+    ]
+}
