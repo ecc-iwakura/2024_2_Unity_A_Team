@@ -20,8 +20,9 @@ public class RankingManager : MonoBehaviour
     }
 
     // プレイヤープロファイルを追加してランキングを更新する
-    public void AddPlayerProfile(PlayerProfile profile)
+    public void AddPlayerProfile(string playerName, int score)
     {
+        PlayerProfile profile = new PlayerProfile(playerName, score);
         playerProfiles.Add(profile);
         SavePlayerProfiles();
         UpdateRanking();
@@ -105,4 +106,3 @@ public class RankingManager : MonoBehaviour
         public T[] Items;
     }
 }
-
