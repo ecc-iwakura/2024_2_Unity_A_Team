@@ -33,6 +33,9 @@ public class GameManager : MonoBehaviour
     private int oldcurrentEventIndex = 0;
     public bool over = false;
 
+    private float reductionInterval = 1f; // 減少を適用する間隔（秒）
+    private float timeSinceLastReduction = 0f; // 最後に減少を適用してからの経過時間
+
     void Start()
     {
         initialPosition = maskObject.transform.localPosition;
@@ -49,7 +52,27 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        UpdateReductions();
         CheckFollowerThreshold();
+    }
+
+
+    void UpdateReductions()
+    {
+        // 経過時間を更新
+        timeSinceLastReduction += Time.deltaTime;
+
+        // 設定した間隔（reductionInterval）を超えた場合に減少を適用
+        if (timeSinceLastReduction >= reductionInterval)
+        {
+            float reductionFactor = 0.999f; // 1秒ごとに0.1%減少
+
+            timelineManager.tweetCooldown *= reductionFactor;
+            timelineManager.tweetSpeedTime *= reductionFactor;
+
+            // 経過時間をリセット
+            timeSinceLastReduction = 0f;
+        }
     }
 
     public void CheckFollowerThreshold()

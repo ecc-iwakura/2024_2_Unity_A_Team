@@ -216,6 +216,7 @@ public class RuleChecker : MonoBehaviour
                 else if (terms == Terms.Equal)
                 {
                     result = selectedRule.actionFlag;
+                    break;
                 }
             }
             else
