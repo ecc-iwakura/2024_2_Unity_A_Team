@@ -56,7 +56,6 @@ public class GameManager : MonoBehaviour
         CheckFollowerThreshold();
     }
 
-
     void UpdateReductions()
     {
         // 経過時間を更新
@@ -142,7 +141,6 @@ public class GameManager : MonoBehaviour
         // スタックに追加
         timelineManager.stackTweetIDs.Add(addTweet);
 
-
         Debug.Log($"Event executed: {eventInfo.ruleFunctionName} added with action {eventInfo.actionFlag}");
     }
 
@@ -187,14 +185,16 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning("No saved game data found at: " + filePath);
         }
     }
+
     public void IsLevUp()
     {
         over = false;
         NextLevelFollower();
     }
+
     public void NextLevelFollower()
     {
-        if(oldcurrentEventIndex != currentEventIndex)
+        if (oldcurrentEventIndex != currentEventIndex)
         {
             oldcurrentEventIndex = currentEventIndex;
             over = true;
@@ -208,8 +208,9 @@ public class GameManager : MonoBehaviour
             // Calculate ratio between current followers and threshold, clamped between 0 and 1
             float ratio = Mathf.Clamp01((float)currentFollowers / (float)threshold);
 
-            if(over) { ratio = 1; }
-            // Scale the ratio to fit between 0 and 25
+            if (over) { ratio = 1; }
+
+            // Scale the ratio to fit between 0 and 50
             float scaledValue = ratio * 50f;
 
             // Update the Y position of the maskObject in local space
@@ -228,7 +229,10 @@ public class GameManager : MonoBehaviour
             NextLevelFollowerText.text = $"これでもうおしまい！";
         }
 
-        if( over ) { NextLevelFollowerText.text = $"UP!"; }
+        if (over)
+        {
+            NextLevelFollowerText.text = $"UP!";
+        }
     }
 
     private IEnumerator MoveMaskObject()
@@ -250,8 +254,6 @@ public class GameManager : MonoBehaviour
     }
 }
 
-
-
 [System.Serializable]
 public class DifficultyEvent
 {
@@ -264,20 +266,19 @@ public class DifficultyEvent
     public RuleChecker.ButtonFlag actionFlag;
     public bool IsExecuted;
 
-    public DifficultyEvent(ulong followerThreshold, float tweetCooldownReduction, float tweetSpeedReduction, string tweetIDToAdd, string ruleFunctionName, string keyWord, RuleChecker.ButtonFlag actionFlag)
+    public DifficultyEvent(ulong followerThreshold, float tweetCooldownReduction, float tweetSpeedReduction, string tweetIDToAdd, string ruleFunctionName, RuleChecker.ButtonFlag actionFlag, string keyWord)
     {
         this.followerThreshold = followerThreshold;
         this.tweetCooldownReduction = tweetCooldownReduction;
         this.tweetSpeedReduction = tweetSpeedReduction;
         this.tweetIDToAdd = tweetIDToAdd;
         this.ruleFunctionName = ruleFunctionName;
-        this.keyWord = keyWord;
         this.actionFlag = actionFlag;
-        this.IsExecuted = false;
+        this.keyWord = keyWord;
+        IsExecuted = false;
     }
 }
 
-// JsonUtilityを使用してジェネリックなJsonHelperクラスを作成する
 public static class JsonHelper
 {
     public static T[] FromJson<T>(string json)

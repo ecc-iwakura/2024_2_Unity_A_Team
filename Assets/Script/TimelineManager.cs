@@ -188,7 +188,7 @@ public class TimelineManager : MonoBehaviour
 
             isKeyword = keywordChecker.CheckForKeyword(text);
 
-            
+
             // ツイートの内容を設定
             tweetScript.UpdateTweet(text, image, accountImage, accountName, accountID, isKeyword, ruleChecker.selectedRules);
 
@@ -313,7 +313,7 @@ public class TimelineManager : MonoBehaviour
             return ("null", null, null, "null", "null"); // 要素数を5つに修正
         }
 
-        if(accountInfo == null)
+        if (accountInfo == null)
         {
             Debug.LogWarning("アカウント情報が取得できませんでした。ID: " + accountID);
             return ("アカウント情報が取得できませんでした", null, null, accountID, accountID); // 要素数を5つに修正
@@ -333,7 +333,8 @@ public class TimelineManager : MonoBehaviour
 
         string accountID = tweetDatabase.GetParentAccountID(ID); // randomIDからIDに変更
 
-        if(accountID == null) {
+        if (accountID == null)
+        {
             Debug.LogWarning("アカウントIDがNullでした！");
         }
 

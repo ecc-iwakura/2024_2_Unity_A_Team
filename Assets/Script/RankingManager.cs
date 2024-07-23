@@ -12,6 +12,8 @@ public class RankingManager : MonoBehaviour
 
     private string filePath;
 
+    public followplus followPlusScript; // 追加: followplusのインスタンスを参照する変数
+
     void Start()
     {
         filePath = Path.Combine(Application.persistentDataPath, "playerProfiles.json");
@@ -20,9 +22,12 @@ public class RankingManager : MonoBehaviour
     }
 
     // プレイヤープロファイルを追加してランキングを更新する
-    public void AddPlayerProfile(string playerName, int score)
+    public void AddPlayerProfile(string playerName)
     {
-        PlayerProfile profile = new PlayerProfile(playerName, score);
+        // followplusからmaxFollowersを取得
+        ulong maxFollowers = followPlusScript != null ? followPlusScript.maxFollowers : 0;
+
+        PlayerProfile profile = new PlayerProfile(playerName, (int)maxFollowers);
         playerProfiles.Add(profile);
         SavePlayerProfiles();
         UpdateRanking();
@@ -65,32 +70,22 @@ public class RankingManager : MonoBehaviour
     // ランキングのテキストを更新する
     private void UpdateRankingText()
     {
-        if (playerProfiles.Count > 0 && rankText1 != null)
+        // デフォルトで全てのランキングを「-」で表示
+        string[] rankings = { "1位: -", "2位: -", "3位: -" };
+
+        // プレイヤープロファイルが存在する場合、ランキングを設定
+        for (int i = 0; i < playerProfiles.Count && i < 3; i++)
         {
-            rankText1.text = FormatRankingText(1, playerProfiles[0]);
-        }
-        else if (rankText1 != null)
-        {
-            rankText1.text = "1位: -";
+            rankings[i] = FormatRankingText(i + 1, playerProfiles[i]);
         }
 
-        if (playerProfiles.Count > 1 && rankText2 != null)
-        {
-            rankText2.text = FormatRankingText(2, playerProfiles[1]);
-        }
-        else if (rankText2 != null)
-        {
-            rankText2.text = "2位: -";
-        }
-
-        if (playerProfiles.Count > 2 && rankText3 != null)
-        {
-            rankText3.text = FormatRankingText(3, playerProfiles[2]);
-        }
-        else if (rankText3 != null)
-        {
-            rankText3.text = "3位: -";
-        }
+        // テキストに表示を更新
+        if (rankText1 != null)
+            rankText1.text = rankings[0];
+        if (rankText2 != null)
+            rankText2.text = rankings[1];
+        if (rankText3 != null)
+            rankText3.text = rankings[2];
     }
 
     // ランキングテキストのフォーマットを行う
