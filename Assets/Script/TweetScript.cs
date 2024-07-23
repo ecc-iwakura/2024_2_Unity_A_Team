@@ -16,7 +16,7 @@ public class TweetScript : MonoBehaviour
     public RectTransform tweetContainer; // ツイート全体を囲むUIのRectTransformコンポーネント
 
     // Fields for tweet data
-    [TextArea(3, 10)] 
+    [TextArea(3, 10)]
 
     public string tweetContent;        // ツイートの文面
     public Sprite tweetImageContent;   // ツイートの画像
@@ -46,6 +46,7 @@ public class TweetScript : MonoBehaviour
     private bool shouldRetweet;
     private bool shouldBookmark;
     private bool shouldReport;
+    private bool isTBD = true;
 
     [SerializeField]
     private ButtonFlag buttonFlag = ButtonFlag.None;
@@ -53,7 +54,7 @@ public class TweetScript : MonoBehaviour
 
 
     // Method to update the tweet content
-    public void UpdateTweet(string newText, Sprite newImage, Sprite newAccountImage, string newAccountName, string newAccountID ,bool isKeyword, List<RuleReference> selectedRules)
+    public void UpdateTweet(string newText, Sprite newImage, Sprite newAccountImage, string newAccountName, string newAccountID, bool isKeyword, List<RuleReference> selectedRules)
     {
         // Update the tweet data fields
         tweetContent = newText;
@@ -80,8 +81,9 @@ public class TweetScript : MonoBehaviour
     {
         buttonFlag = ButtonFlag.None; // あなたのコードに合わせて初期化してください
 
-        if (ruleChecker == null) { 
-            
+        if (ruleChecker == null)
+        {
+
             Debug.LogError("RuleCheckerが見つかりませんでした！追加します！");
             ruleChecker = GameObject.Find("RuleChecker").GetComponent<RuleChecker>();
         }
@@ -105,7 +107,7 @@ public class TweetScript : MonoBehaviour
         accountName.text = tweetAccountName;
         accountID.text = "@" + tweetAccountID;
 
-        if(tweetAccountID != null)
+        if (tweetAccountID != null)
         {
             accountImage.sprite = tweetAccountImage;
         }
@@ -139,7 +141,7 @@ public class TweetScript : MonoBehaviour
         if (tweetImageContent != null)
         {
             // Add image height
-            totalHeight +=  250f;//ごめんめちゃマジックナンバーです
+            totalHeight += 250f;//ごめんめちゃマジックナンバーです
         }
 
         // Set the tweet container height
@@ -151,7 +153,7 @@ public class TweetScript : MonoBehaviour
 
     public void LikeButtonPressed()
     {
-        if(!ruleChecker.IsQuick)
+        if (!ruleChecker.IsQuick)
         {
             shouldLike = !shouldLike;
         }
@@ -160,7 +162,7 @@ public class TweetScript : MonoBehaviour
             if (!shouldLike)
             {
                 shouldLike = true;
-                TweetQuickCheck();
+                TweetQuickCheck(false);
             }
         }
 
@@ -177,7 +179,7 @@ public class TweetScript : MonoBehaviour
             if (!shouldRetweet)
             {
                 shouldRetweet = true;
-                TweetQuickCheck();
+                TweetQuickCheck(false);
             }
         }
     }
@@ -193,7 +195,7 @@ public class TweetScript : MonoBehaviour
             if (!shouldBookmark)
             {
                 shouldBookmark = true;
-                TweetQuickCheck();
+                TweetQuickCheck(false);
             }
         }
     }
@@ -213,7 +215,7 @@ public class TweetScript : MonoBehaviour
             if (!shouldReport)
             {
                 shouldReport = true;
-                TweetQuickCheck();
+                TweetQuickCheck(false) ;
             }
         }
 
@@ -222,7 +224,7 @@ public class TweetScript : MonoBehaviour
     public void RandomTweetInfo()
     {
         // フォローしているかどうかをランダムに決定（50%の確率でフォロー）
-        isFollowing = Random.value > 0.5f;
+        isFollowing = Random.value > 0.4f;
 
         // 投稿されてからの時間をランダムに決定（0から60分の間）
         minutesSincePosted = Random.Range(0f, 60f);
@@ -241,7 +243,7 @@ public class TweetScript : MonoBehaviour
 
         isImage = tweetImageContent != null;
 
-        TweetData tweetData = new TweetData(isFollowing,isImage, (int)minutesSincePosted, tweetContent);
+        TweetData tweetData = new TweetData(isFollowing, isImage, (int)minutesSincePosted, tweetContent);
         buttonFlag = ruleChecker.ApplyRules(tweetData, Rocal_selectedRules);
     }
 
@@ -250,23 +252,32 @@ public class TweetScript : MonoBehaviour
         ruleChecker.CheckAction(buttonFlag, shouldLike, shouldRetweet, shouldBookmark, shouldReport);
     }
 
-    public void TweetQuickCheck()
+    public void TweetQuickCheck(bool Isnot)
     {
-        int value = ruleChecker.QuickCheck(buttonFlag, shouldLike, shouldRetweet, shouldBookmark, shouldReport);
+        int value = ruleChecker.QuickCheck(buttonFlag, shouldLike, shouldRetweet, shouldBookmark, shouldReport,Isnot);
 
         if (value == 1)
         {
             IsLock.gameObject.SetActive(true); // IsLockをアクティブにする
             IsLock.color = new Color(0f, 1f, 0f, 0.2f); // 色を緑に設定し、アルファ値を0.5に設定（半透明）
+            isTBD = false;
         }
         else if (value == 2)
         {
             IsLock.gameObject.SetActive(true); // IsLockをアクティブにする
             IsLock.color = new Color(1f, 0f, 0f, 0.2f); // 色を赤に設定し、アルファ値を0.5に設定（半透明）
+            isTBD = false;
         }
         else
         {
             IsLock.gameObject.SetActive(false); // その他の場合は非アクティブにする
+            isTBD = true;
         }
+    }
+
+    public void IsUnsettled() //ツイートの結果がまだわからない状態の時にtrueを返す
+    {
+        TweetQuickCheck(true);
+        ruleChecker.SendReturn(isTBD);
     }
 }

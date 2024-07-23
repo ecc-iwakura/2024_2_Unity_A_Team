@@ -197,6 +197,8 @@ public class TimelineManager : MonoBehaviour
         }
         else
         {
+
+
             UnityEngine.Debug.Log("再利用！");
             // リストで１番古いツイートを取得して再利用
             var oldTweetObjectData = tweetObjectList[0];
@@ -205,6 +207,8 @@ public class TimelineManager : MonoBehaviour
             {
                 oldTweetObjectData.tweetScript.TweetCheck();
             }
+
+            oldTweetObjectData.tweetScript.IsUnsettled();
 
             tweetObjectList.RemoveAt(0);
 

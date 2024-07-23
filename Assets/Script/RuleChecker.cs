@@ -96,6 +96,8 @@ public class RuleChecker : MonoBehaviour
     public UnityEvent IncorrectSE;
     public UnityEvent ContinueSE;
 
+    public Animator Flick; // Animatorの参照を追加
+
     public int Logs = 5;
 
     [SerializeField]
@@ -278,7 +280,17 @@ public class RuleChecker : MonoBehaviour
         }
     }
 
-    public int QuickCheck(ButtonFlag correctAction, bool shouldLike, bool shouldRetweet, bool shouldBookmark, bool shouldReport)
+    public void SendReturn(bool value)
+    {
+        if (value)
+        {
+            Followplus.EvaluateAction(false);
+            Flick.SetTrigger("Flick"); // トリガーを起動
+            IncorrectSE.Invoke();
+        }
+    }
+
+    public int QuickCheck(ButtonFlag correctAction, bool shouldLike, bool shouldRetweet, bool shouldBookmark, bool shouldReport , bool Isnot)
     {
         ButtonFlag userAction = ButtonFlag.None;
 
@@ -323,19 +335,28 @@ public class RuleChecker : MonoBehaviour
         // 判定結果に応じて処理を分岐
         if (isCorrect)
         {
-            Followplus.EvaluateAction(true);
-            CorrectSE.Invoke();
+            if (!Isnot)
+            {
+                Followplus.EvaluateAction(true);
+                CorrectSE.Invoke();
+            }
             return 1;
         }
         else if (isIncorrect)
         {
-            Followplus.EvaluateAction(false);
-            IncorrectSE.Invoke();
+            if (!Isnot)
+            {
+                Followplus.EvaluateAction(false);
+                IncorrectSE.Invoke();
+            }
             return 2;
         }
         else
         {
-            ContinueSE.Invoke();
+            if (!Isnot)
+            {
+                ContinueSE.Invoke();
+            }
             return 0;
         }
     }
