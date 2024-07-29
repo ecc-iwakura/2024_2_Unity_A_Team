@@ -10,14 +10,9 @@ public class RankingManager : MonoBehaviour
     public TMP_Text rank2;
     public TMP_Text rank3;
 
-    public followplus followPlusScript;
+    public followplus followPlusScript; // followplusのインスタンスを参照する変数
 
     private string filePath;
-    private object followers;
-
-    public static object Instance { get; private set; }
-
-    public followplus followPlusScript; // 追加: followplusのインスタンスを参照する変数
 
     void Start()
     {
@@ -28,7 +23,6 @@ public class RankingManager : MonoBehaviour
     }
 
     // プレイヤープロファイルを追加してランキングを更新する
-<<<<<<< HEAD
     public void AddPlayerProfile(string playerName, ulong score)
     {
         PlayerProfile existingProfile = playerProfiles.Find(profile => profile.playerName == playerName);
@@ -48,25 +42,14 @@ public class RankingManager : MonoBehaviour
             playerProfiles.Add(profile);
         }
 
-=======
-    public void AddPlayerProfile(string playerName)
-    {
-        // followplusからmaxFollowersを取得
-        ulong maxFollowers = followPlusScript != null ? followPlusScript.maxFollowers : 0;
-
-        PlayerProfile profile = new PlayerProfile(playerName, (int)maxFollowers);
-        playerProfiles.Add(profile);
->>>>>>> 4b1ae95980824ae57244fdfdfc19d42f41d680d8
         SavePlayerProfiles();
         UpdateRanking();
     }
-   
 
     public void SaveCurrentScore(ulong currentFollowers, string playerName = "Player")
     {
         AddPlayerProfile(playerName, currentFollowers);
     }
-
 
     // プレイヤープロファイルを保存する
     private void SavePlayerProfiles()
@@ -105,7 +88,6 @@ public class RankingManager : MonoBehaviour
     // ランキングのテキストを更新する
     private void UpdateRankingText()
     {
-<<<<<<< HEAD
         if (rank1 != null)
         {
             rank1.text = playerProfiles.Count > 0 ? FormatRankingText(1, playerProfiles[0]) : "1位: -";
@@ -120,28 +102,13 @@ public class RankingManager : MonoBehaviour
         {
             rank3.text = playerProfiles.Count > 2 ? FormatRankingText(3, playerProfiles[2]) : "3位: -";
         }
-=======
-        // デフォルトで全てのランキングを「-」で表示
-        string[] rankings = { "1位: -", "2位: -", "3位: -" };
-
-        // プレイヤープロファイルが存在する場合、ランキングを設定
-        for (int i = 0; i < playerProfiles.Count && i < 3; i++)
-        {
-            rankings[i] = FormatRankingText(i + 1, playerProfiles[i]);
-        }
-
-        // テキストに表示を更新
-        if (rankText1 != null)
-            rankText1.text = rankings[0];
-        if (rankText2 != null)
-            rankText2.text = rankings[1];
-        if (rankText3 != null)
-            rankText3.text = rankings[2];
->>>>>>> 4b1ae95980824ae57244fdfdfc19d42f41d680d8
     }
 
     // ランキングテキストのフォーマットを行う
-    private string FormatRankingText(int rank, PlayerProfile profile) => $"{rank}位: {profile.playerName} - {profile.score}点";
+    private string FormatRankingText(int rank, PlayerProfile profile)
+    {
+        return $"{rank}位: {profile.playerName} - {profile.score}点";
+    }
 
     // JSON シリアライズ/デシリアライズのためのラッパークラス
     [System.Serializable]
