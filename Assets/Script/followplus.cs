@@ -1,4 +1,4 @@
-﻿using System.Collections; // これを追加
+﻿using System.Collections;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -40,16 +40,12 @@ public class followplus : MonoBehaviour
     public Volume volume; // Volumeを参照
     private Vignette vignette; // Vignetteエフェクト
 
-
     public TMP_Text changeInFollowersText;
     public TMP_Text changeTypeText; // UPやDOWNを表示するテキスト
     public Animator textAnimator; // アニメーターを参照するための変数
 
-
-
     void Start()
     {
-
         if (nixieTube == null)
         {
             UnityEngine.Debug.LogError("nixieTubeがありません！");
@@ -95,6 +91,7 @@ public class followplus : MonoBehaviour
         UpdateUI(increaseAmount, false);
         SetImageTransparency(CalculateScaling(followers, maxFollowers));
     }
+
     // 間違った行動をした時に呼び出される関数
     [ContextMenu("IncorrectAction")]
     public void IncorrectAction()
@@ -104,15 +101,17 @@ public class followplus : MonoBehaviour
         ulong decreaseAmount = (ulong)Mathf.CeilToInt(maxFollowers * decreaseRate); // 減少するフォロワー数
         if (decreaseAmount > followers)
         {
-            decreaseAmount = followers; // フォロワー数より減少量が多い場合は全て減らす
+            followers = 0;
         }
-        followers -= (ulong)decreaseAmount;
-
-        Debug.Log($"間違った行動が実行されました...フォロワー数: {followers} (減少数: {decreaseAmount})");
-        UpdateUI((ulong)decreaseAmount, true);
-        SetImageTransparency(CalculateScaling(followers, maxFollowers));
+        else
+        {
+            followers -= decreaseAmount;
+        }
+        Debug.LogWarning($"間違った行動が実行されました！フォロワー数: {followers} (減少数: {decreaseAmount})");
+        UpdateUI(decreaseAmount, true);
     }
 
+<<<<<<< HEAD
     public ulong GetFollowers()
     {
         return followers;
@@ -125,148 +124,71 @@ public class followplus : MonoBehaviour
 
     // 行動を評価する関数
     public void EvaluateAction(bool isCorrect)
+=======
+    // フォロワー数のUIを更新する
+    private void UpdateUI(ulong changeAmount, bool isDecrease)
+>>>>>>> 4b1ae95980824ae57244fdfdfc19d42f41d680d8
     {
-        if (isCorrect)
+        changeInFollowersText.text = changeAmount.ToString();
+       
+
+        if (textAnimator != null)
+        {
+            textAnimator.SetTrigger("Animate");
+        }
+    }
+
+
+    // 画像の透過度を設定する
+    private void SetImageTransparency(float value)
+    {
+        if (image != null)
+        {
+            Color color = image.color;
+            color.a = value;
+            image.color = color;
+        }
+    }
+
+    // スケーリング値を計算する
+    private float CalculateScaling(ulong currentFollowers, ulong maxFollowers)
+    {
+        if (maxFollowers == 0)
+            return 0f;
+        return Mathf.Clamp01((float)currentFollowers / maxFollowers);
+    }
+
+    internal (int intValue, string unit) FormatNumber(ulong value)
+    {
+        // 数値が百万以上の場合
+        if (value >= 1000000)
+        {
+            // 百万単位でフォーマットし、単位 "M" を付ける
+            return ((int)(value / 1000000), "M");
+        }
+        // 数値が千以上の場合
+        else if (value >= 1000)
+        {
+            // 千単位でフォーマットし、単位 "K" を付ける
+            return ((int)(value / 1000), "K");
+        }
+        // 数値が千未満の場合
+        else
+        {
+            // 単位なしでそのまま返す
+            return ((int)value, "");
+        }
+    }
+
+    internal void EvaluateAction(bool v)
+    {
+        if (v)
         {
             CorrectAction();
         }
         else
         {
             IncorrectAction();
-        }
-    }
-
-    private void UpdateUI(ulong changeAmount, bool isDecrease)
-    {
-        (int intValue, string unit) = FormatNumber(changeAmount);
-        nixieTube.UpdateDisplay(followers);
-        float changeRatio = (float)changeAmount / followers; // 変化したフォロワー数の割合
-
-        if (!isDecrease)
-        {
-            if (changeTypeText != null)
-            {
-                changeTypeText.text = "UP"; // UPを表示
-                changeTypeText.color = Color.green; // 青色に設定
-            }
-
-            changeInFollowersText.text = $"+{intValue}{unit}";
-            changeInFollowersText.color = Color.green; // 青色に設定
-
-        }
-        else
-        {
-            if (changeTypeText != null)
-            {
-                changeTypeText.text = "DOWN"; // DOWNを表示
-                changeTypeText.color = new Color(243f / 255f, 152f / 255f, 0f / 255f, 1f); // オレンジ色に設
-            }
-            changeInFollowersText.text = $"-{intValue}{unit}";
-            changeInFollowersText.color = new Color(243f / 255f, 152f / 255f, 0f / 255f, 1f); // オレンジ色に設
-
-
-        }
-
-        float weight = Mathf.Clamp01(changeRatio); // 変化したフォロワーの割合を0〜1にクランプする
-        textAnimator.SetLayerWeight(1, weight); // レイヤー1のウェイトを1に設定
-        textAnimator.SetTrigger("Change"); // アニメーションのトリガーを実行
-        StartCoroutine(UpdateHPBars());
-    }
-
-    private IEnumerator UpdateHPBars()
-    {
-        if (orangeHPBar != null && greenHPBar != null)
-        {
-            float minFillAmount = 0.075f; // 最低でも表示されるゲージの割合
-            float elapsedTime = 0f;
-            float currentOrangeFill = orangeHPBar.fillAmount;
-            float targetOrangeFill = (float)followers / maxFollowers;
-            targetOrangeFill = (followers > 0) ? Mathf.Max(targetOrangeFill, minFillAmount) : 0;
-
-            float currentGreenFill = greenHPBar.fillAmount;
-            float adjustedFollowers = followers - (maxFollowers * maxDecreaseRate);
-            float targetGreenFill = adjustedFollowers / maxFollowers;
-
-            while (elapsedTime < updateDuration)
-            {
-                elapsedTime += Time.deltaTime;
-                float t = elapsedTime / updateDuration;
-
-                orangeHPBar.fillAmount = Mathf.Lerp(currentOrangeFill, targetOrangeFill, t);
-                greenHPBar.fillAmount = Mathf.Lerp(currentGreenFill, targetGreenFill, t);
-
-                yield return null;
-            }
-
-            // 最終的に目標値を設定
-            orangeHPBar.fillAmount = targetOrangeFill;
-            greenHPBar.fillAmount = targetGreenFill;
-        }
-    }
-
-    // 数字をK, M, B, Tなどの表記にフォーマットする関数
-    public (int, string) FormatNumber(ulong number)
-    {
-        if (number >= 1000000000000) // 兆 (T)
-        {
-            float value = number / 1000000000000f;
-            return ((int)value, "T");
-        }
-        else if (number >= 1000000000) // 十億 (B)
-        {
-            float value = number / 1000000000f;
-            return ((int)value, "B");
-        }
-        else if (number >= 1000000) // 百万 (M)
-        {
-            float value = number / 1000000f;
-            return ((int)value, "M");
-        }
-        else if (number >= 1000) // 千 (K)
-        {
-            float value = number / 1000f;
-            return ((int)value, "K");
-        }
-        else // 1000未満はそのまま表示
-        {
-            return ((int)number, "");
-        }
-    }
-
-    float CalculateScaling(float currentFollowers, float maxFollowers)
-    {
-        float maxOpacity = 100.0f; // 最高透明度
-        float minOpacity = 0.0f; // 最低透明度
-        float minRatio = 0.3f; // 最小比率
-        float maxRatio = 1.0f; // 最大比率
-
-        float ratio = currentFollowers / maxFollowers;
-
-        // ratioがmaxRatioを超える場合は最低透明度を返す
-        if (ratio >= maxRatio)
-        {
-            return minOpacity;
-        }
-
-        // minRatioからmaxRatioの間で線形に透明度を計算し、範囲を設定する
-        return Mathf.Clamp(maxOpacity * (1.0f - (ratio - minRatio) / (maxRatio - minRatio)), minOpacity, maxOpacity);
-    }
-
-    // 画像の透明度を設定する関数
-    void SetImageTransparency(float transparency)
-    {
-        if (image != null)
-        {
-            // Imageのカラーを取得して、透明度を変更します
-            Color color = image.color;
-            color.a = transparency / 100.0f; // スケーリング値を透明度に変換します
-            image.color = color;
-        }
-
-        if (vignette != null)
-        {
-            // VignetteのSmoothnessを変更します
-            vignette.smoothness.value = transparency / 100.0f; // スケーリング値をVignetteのSmoothnessに変換します
         }
     }
 }
