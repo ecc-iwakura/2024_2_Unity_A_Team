@@ -1894,7 +1894,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7288428, g: 1, b: 0.7150943, a: 1}
+  m_Color: {r: 0.2924527, g: 1, b: 0.29765517, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -13355,7 +13355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2793201, g: 1, b: 0.27735847, a: 1}
+  m_Color: {r: 0.2924527, g: 1, b: 0.29765517, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -17781,7 +17781,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1229956061}
         m_TargetAssemblyTypeName: AudioController, Assembly-CSharp
-        m_MethodName: PlayOnSound
+        m_MethodName: PlayThemeBGM
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17793,7 +17793,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1229956061}
         m_TargetAssemblyTypeName: AudioController, Assembly-CSharp
-        m_MethodName: PlayThemeBGM
+        m_MethodName: PlayOnSound
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -18909,7 +18909,7 @@ MonoBehaviour:
     accountImage: {fileID: 21300000, guid: a63f5bf7560dfb842a5bac2c7615b271, type: 3}
     IsExclusion: 1
     tweetList:
-    - tweetContent: "\u3053\u308C\u306F\u30C1\u30E5\u30FC\u30C8\u30EA\u30A2\u30EB\u3067\u3059\u3002\u53F3\u306E\u30EB\u30FC\u30EB\u304C\u306A\u3044\u3068\u304D\u306F\u4F55\u3092\u3057\u3066\u3082\u30AA\u30C3\u30B1\u30FC\u3067\u3059\u3002"
+    - tweetContent: "\u3053\u308C\u306F\u30C1\u30E5\u30FC\u30C8\u30EA\u30A2\u30EB\u3067\u3059\u3002\u53F3\u306E\u30EB\u30FC\u30EB\u304C\u306A\u3044\u3068\u304D\u306F\u4F55\u3092\u3057\u3066\u3082\u5927\u4E08\u592B\u3067\u3059\u3002"
       tweetImageContent: {fileID: 0}
       tweetID: Tutorial_01
       parentAccountID: Tutorial
@@ -18925,7 +18925,7 @@ MonoBehaviour:
       tweetImageContent: {fileID: 0}
       tweetID: Tutorial_04
       parentAccountID: Tutorial
-    - tweetContent: "\u305D\u3057\u3066\u5931\u6557\u3059\u308B\u3068\u30D5\u30A9\u30ED\u30EF\u30FC\u304C\u4E00\u6C17\u306B\u6E1B\u3063\u3066\u3057\u307E\u3044"
+    - tweetContent: "\u30EB\u30FC\u30EB\u304C\u8907\u6570\u6B63\u3057\u304B\u3063\u305F\u3089\u3069\u3061\u3089\u306E\u30DC\u30BF\u30F3\u3082\u62BC\u3057\u307E\u3057\u3087\u3046\u3002"
       tweetImageContent: {fileID: 0}
       tweetID: Tutorial_05
       parentAccountID: Tutorial

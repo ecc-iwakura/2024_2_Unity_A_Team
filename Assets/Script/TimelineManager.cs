@@ -160,6 +160,10 @@ public class TimelineManager : MonoBehaviour
                 AddTweetSE.Invoke();
             }
             float speedRatio = initialTweetSpeedTime / tweetSpeedTime;
+            if(speedRatio <= 0)
+            {
+                speedRatio = 1.0f;
+            }
             audioSource.pitch = speedRatio;
             Debug.LogError($"現在のBGMスピード: {speedRatio}");
         }

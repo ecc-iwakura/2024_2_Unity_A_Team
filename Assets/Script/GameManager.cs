@@ -148,7 +148,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        GameOverText.text = followPlusScript.maxFollowers.ToString() + "フォロワー";
+        GameOverText.text = FormatFollowers(followPlusScript.maxFollowers) + "フォロワー";
         timelineManager.IsStop = true;
         GameOverEvent.Invoke();
         IsGameover = true;
@@ -247,6 +247,35 @@ public class GameManager : MonoBehaviour
 
         // Ensure final position is exactly the target position
         maskObject.transform.localPosition = targetPosition;
+    }
+
+    // フォロワー数に適切な単位を付ける関数
+    private string FormatFollowers(ulong followers)
+    {
+        if (followers >= 10000000000000000) // 1京以上
+        {
+            return (followers / 10000000000000000).ToString() + "京" + ((followers % 10000000000000000) / 1000000000000).ToString() + "兆";
+        }
+        else if (followers >= 1000000000000) // 1兆以上
+        {
+            return (followers / 1000000000000).ToString() + "兆" + ((followers % 1000000000000) / 100000000).ToString() + "億";
+        }
+        else if (followers >= 100000000) // 1億以上
+        {
+            return (followers / 100000000).ToString() + "億" + ((followers % 100000000) / 10000).ToString() + "万";
+        }
+        else if (followers >= 10000) // 1万以上
+        {
+            return (followers / 10000).ToString() + "万" + (followers % 10000).ToString();
+        }
+        else if (followers >= 1000) // 1千以上
+        {
+            return (followers / 1000).ToString() + "千" + (followers % 1000).ToString();
+        }
+        else // 1千未満
+        {
+            return followers.ToString();
+        }
     }
 }
 
