@@ -113,6 +113,16 @@ public class followplus : MonoBehaviour
         SetImageTransparency(CalculateScaling(followers, maxFollowers));
     }
 
+    public ulong GetFollowers()
+    {
+        return followers;
+    }
+
+    public ulong GetMaxFollowers()
+    {
+        return maxFollowers;
+    }
+
     // 行動を評価する関数
     public void EvaluateAction(bool isCorrect)
     {

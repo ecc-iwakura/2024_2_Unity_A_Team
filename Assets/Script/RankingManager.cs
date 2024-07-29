@@ -6,27 +6,55 @@ using System.IO;
 public class RankingManager : MonoBehaviour
 {
     public List<PlayerProfile> playerProfiles = new List<PlayerProfile>();
-    public TMP_Text rankText1;
-    public TMP_Text rankText2;
-    public TMP_Text rankText3;
+    public TMP_Text rank1;
+    public TMP_Text rank2;
+    public TMP_Text rank3;
+
+    public followplus followPlusScript;
 
     private string filePath;
+    private object followers;
+
+    public static object Instance { get; private set; }
 
     void Start()
     {
         filePath = Path.Combine(Application.persistentDataPath, "playerProfiles.json");
         LoadPlayerProfiles();
         UpdateRanking();
+        Debug.Log("Player profiles saved to: " + filePath); // ここでファイルパスをログに出力
     }
 
     // プレイヤープロファイルを追加してランキングを更新する
-    public void AddPlayerProfile(string playerName, int score)
+    public void AddPlayerProfile(string playerName, ulong score)
     {
-        PlayerProfile profile = new PlayerProfile(playerName, score);
-        playerProfiles.Add(profile);
+        PlayerProfile existingProfile = playerProfiles.Find(profile => profile.playerName == playerName);
+
+        if (existingProfile != null)
+        {
+            // 既存のプロファイルがある場合はスコアを更新
+            if (score > existingProfile.score)
+            {
+                existingProfile.score = score;
+            }
+        }
+        else
+        {
+            // 新しいプロファイルを追加
+            PlayerProfile profile = new PlayerProfile(playerName, score);
+            playerProfiles.Add(profile);
+        }
+
         SavePlayerProfiles();
         UpdateRanking();
     }
+   
+
+    public void SaveCurrentScore(ulong currentFollowers, string playerName = "Player")
+    {
+        AddPlayerProfile(playerName, currentFollowers);
+    }
+
 
     // プレイヤープロファイルを保存する
     private void SavePlayerProfiles()
@@ -65,44 +93,42 @@ public class RankingManager : MonoBehaviour
     // ランキングのテキストを更新する
     private void UpdateRankingText()
     {
-        if (playerProfiles.Count > 0 && rankText1 != null)
+        if (rank1 != null)
         {
-            rankText1.text = FormatRankingText(1, playerProfiles[0]);
-        }
-        else if (rankText1 != null)
-        {
-            rankText1.text = "1位: -";
+            rank1.text = playerProfiles.Count > 0 ? FormatRankingText(1, playerProfiles[0]) : "1位: -";
         }
 
-        if (playerProfiles.Count > 1 && rankText2 != null)
+        if (rank2 != null)
         {
-            rankText2.text = FormatRankingText(2, playerProfiles[1]);
-        }
-        else if (rankText2 != null)
-        {
-            rankText2.text = "2位: -";
+            rank2.text = playerProfiles.Count > 1 ? FormatRankingText(2, playerProfiles[1]) : "2位: -";
         }
 
-        if (playerProfiles.Count > 2 && rankText3 != null)
+        if (rank3 != null)
         {
-            rankText3.text = FormatRankingText(3, playerProfiles[2]);
-        }
-        else if (rankText3 != null)
-        {
-            rankText3.text = "3位: -";
+            rank3.text = playerProfiles.Count > 2 ? FormatRankingText(3, playerProfiles[2]) : "3位: -";
         }
     }
 
     // ランキングテキストのフォーマットを行う
-    private string FormatRankingText(int rank, PlayerProfile profile)
-    {
-        return $"{rank}位: {profile.playerName} - {profile.score}点";
-    }
+    private string FormatRankingText(int rank, PlayerProfile profile) => $"{rank}位: {profile.playerName} - {profile.score}点";
 
     // JSON シリアライズ/デシリアライズのためのラッパークラス
     [System.Serializable]
     private class Wrapper<T>
     {
         public T[] Items;
+    }
+
+    [System.Serializable]
+    public class PlayerProfile
+    {
+        public string playerName;
+        public ulong score;
+
+        public PlayerProfile(string playerName, ulong score)
+        {
+            this.playerName = playerName;
+            this.score = score;
+        }
     }
 }
