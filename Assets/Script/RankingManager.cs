@@ -28,7 +28,7 @@ public class RankingManager : MonoBehaviour
     }
 
     // プレイヤープロファイルを追加してランキングを更新する
-
+<<<<<<< HEAD
     public void AddPlayerProfile(string playerName, ulong score)
     {
         PlayerProfile existingProfile = playerProfiles.Find(profile => profile.playerName == playerName);
@@ -48,7 +48,7 @@ public class RankingManager : MonoBehaviour
             playerProfiles.Add(profile);
         }
 
-
+=======
     public void AddPlayerProfile(string playerName)
     {
         // followplusからmaxFollowersを取得
@@ -56,7 +56,7 @@ public class RankingManager : MonoBehaviour
 
         PlayerProfile profile = new PlayerProfile(playerName, (int)maxFollowers);
         playerProfiles.Add(profile);
-
+>>>>>>> 4b1ae95980824ae57244fdfdfc19d42f41d680d8
         SavePlayerProfiles();
         UpdateRanking();
     }
@@ -120,7 +120,7 @@ public class RankingManager : MonoBehaviour
         {
             rank3.text = playerProfiles.Count > 2 ? FormatRankingText(3, playerProfiles[2]) : "3位: -";
         }
-
+=======
         // デフォルトで全てのランキングを「-」で表示
         string[] rankings = { "1位: -", "2位: -", "3位: -" };
 
@@ -137,7 +137,7 @@ public class RankingManager : MonoBehaviour
             rankText2.text = rankings[1];
         if (rankText3 != null)
             rankText3.text = rankings[2];
-
+>>>>>>> 4b1ae95980824ae57244fdfdfc19d42f41d680d8
     }
 
     // ランキングテキストのフォーマットを行う
